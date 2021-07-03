@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 20:06:03 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/03 19:12:04 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/03 21:36:29 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int		var_setter(t_execdata *d);
 int		pipe_setter(t_execdata *d, int child);
 int		bin_wrapper(t_execdata *d, char **env);
 int		export_wrapper(t_execdata *d, char **env);
+int		import_wrapper(t_execdata *d, char **env);
+int		interactive_wrapper(t_execdata *d, char **env);
 int		cmd_dispatcher(t_execdata *d, char **env);
 int		exec_loop(t_execdata *d, char **env);
 void	ft_close(int *fd, int size);

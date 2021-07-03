@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   io_wrapper.c                                       :+:      :+:    :+:   */
+/*   export_wrapper.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/16 20:41:49 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/03 19:32:35 by nouchata         ###   ########.fr       */
+/*   Created: 2021/07/03 19:49:55 by nouchata          #+#    #+#             */
+/*   Updated: 2021/07/03 19:50:10 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ int		export_loop(t_execdata *d)
 	char	buffer[30];
 
 	export_fd(d, &fd, &ret);
-	// fd = open(d->cmd[0], O_WRONLY | O_APPEND | O_CREAT);
-	// if (fd == -1)
-	// 	return (-1);
-	// ret = 1;
 	while (ret)
 	{
 		ft_memset(buffer, 0, 30);
