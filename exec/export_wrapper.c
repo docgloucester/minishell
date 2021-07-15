@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:49:55 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 07:44:10 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 10:02:20 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	export_loop(t_execdata *d)
 	return (0);
 }
 
-int	export_wrapper(t_execdata *d, char **env)
+int	export_wrapper(t_execdata *d, t_varenv *ve)
 {
 	if (var_setter(d) == -1)
 		return (-1);
@@ -60,10 +60,10 @@ int	export_wrapper(t_execdata *d, char **env)
 	{
 		pipe_setter(d, 0);
 		if (d->pipe_on)
-			if (cmd_dispatcher(d->next, env) == -1)
+			if (cmd_dispatcher(d->next, ve) == -1)
 				return (-1);
 		if (!d->pipe_on)
-			if (cmd_dispatcher(NULL, env) == -1)
+			if (cmd_dispatcher(NULL, ve) == -1)
 				return (-1);
 		waitpid(d->pid, &d->return_v, 0);
 		ft_close(d->pipes, 2);

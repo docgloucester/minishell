@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:13:20 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/06 15:15:31 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 11:27:42 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*value_to_str(char **value, int value_num)
 	if (value_num < 0)
 		value_num = 0;
 	str = malloc(sizeof(char) * (value_len(value) + value_num + 1));
-	printf(">>%d\n", value_len(value) + value_num + 1);
 	if (!str)
 		return (NULL);
 	while (value[0])
