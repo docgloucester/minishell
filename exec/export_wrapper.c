@@ -6,13 +6,13 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:49:55 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/03 19:50:10 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 07:44:10 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "exec.h"
+#include	"exec.h"
 
-int		export_fd(t_execdata *d, int *fd, int *ret)
+int	export_fd(t_execdata *d, int *fd, int *ret)
 {
 	if (d->type == OUTPUT)
 		*fd = open(d->cmd[0], O_WRONLY | O_CREAT, 0664);
@@ -27,7 +27,7 @@ int		export_fd(t_execdata *d, int *fd, int *ret)
 	return (0);
 }
 
-int		export_loop(t_execdata *d)
+int	export_loop(t_execdata *d)
 {
 	int		fd;
 	int		ret;
@@ -52,7 +52,7 @@ int		export_loop(t_execdata *d)
 	return (0);
 }
 
-int		export_wrapper(t_execdata *d, char **env)
+int	export_wrapper(t_execdata *d, char **env)
 {
 	if (var_setter(d) == -1)
 		return (-1);

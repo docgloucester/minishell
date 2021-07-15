@@ -6,23 +6,23 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:12:27 by nouchata          #+#    #+#             */
-/*   Updated: 2021/06/15 21:48:00 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 07:38:18 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "exec.h"
+#include	"exec.h"
 
-int		close_fd(int fd)
+int	close_fd(int fd)
 {
 	if (fd)
 		close(fd);
 	return (0);
 }
 
-int		exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe)
+int	exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe)
 {
-	t_execdata *new;
-	t_execdata *current;
+	t_execdata	*new;
+	t_execdata	*current;
 
 	new = malloc(sizeof(t_execdata) * 1);
 	if (!new)

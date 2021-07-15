@@ -6,13 +6,13 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:29:34 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/03 19:35:54 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 07:38:37 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "exec.h"
+#include	"exec.h"
 
-int		bin_wrapper(t_execdata *d, char **env)
+int	bin_wrapper(t_execdata *d, char **env)
 {
 	if (var_setter(d) == -1)
 		return (-1);

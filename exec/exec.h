@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 20:06:03 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/03 21:36:29 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 07:43:10 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <errno.h>
 # include "../_libft/libft.h"
 
-typedef enum			e_execerror
+typedef enum e_execerror
 {
 	NO_ERROR,
 	PIPE,
@@ -32,9 +32,9 @@ typedef enum			e_execerror
 	DUP,
 	READ,
 	OPEN
-}						t_execerror;
+}			t_execerror;
 
-typedef enum			e_exectype
+typedef enum e_exectype
 {
 	BINARY,
 	BUILTIN,
@@ -42,9 +42,9 @@ typedef enum			e_exectype
 	OUTPUT_D,
 	INPUT,
 	INPUT_D
-}						t_exectype;
+}			t_exectype;
 
-typedef struct			s_execdata
+typedef struct s_execdata
 {
 	t_exectype			type;
 	char				**cmd;
@@ -55,7 +55,7 @@ typedef struct			s_execdata
 	t_execerror			error;
 	struct s_execdata	*prec;
 	struct s_execdata	*next;
-}						t_execdata;
+}				t_execdata;
 
 int		exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe);
 int		close_fd(int fd);
@@ -70,4 +70,4 @@ int		cmd_dispatcher(t_execdata *d, char **env);
 int		exec_loop(t_execdata *d, char **env);
 void	ft_close(int *fd, int size);
 
-# endif
+#endif

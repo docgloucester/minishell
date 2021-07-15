@@ -6,13 +6,13 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:50:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/03 21:36:47 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 07:42:02 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "exec.h"
 
-int		interactive_loop(t_execdata *d, int fdout)
+int	interactive_loop(t_execdata *d, int fdout)
 {
 	char	*str;
 
@@ -24,11 +24,14 @@ int		interactive_loop(t_execdata *d, int fdout)
 		write(STDOUT_FILENO, str, ft_strlen(str));
 		write(STDOUT_FILENO, "\n", 1);
 		write(fdout, "> ", 2);
+		free(str);
+		str = NULL;
 	}
+	free(str);
 	return (0);
 }
 
-int		import_loop(t_execdata *d)
+int	import_loop(t_execdata *d)
 {
 	int		fd;
 	int		ret;
@@ -52,7 +55,7 @@ int		import_loop(t_execdata *d)
 	return (0);
 }
 
-int		import_wrapper(t_execdata *d, char **env)
+int	import_wrapper(t_execdata *d, char **env)
 {
 	int		fdout;
 
@@ -80,7 +83,7 @@ int		import_wrapper(t_execdata *d, char **env)
 	return (0);
 }
 
-int		interactive_wrapper(t_execdata *d, char **env)
+int	interactive_wrapper(t_execdata *d, char **env)
 {
 	int		fdout;
 

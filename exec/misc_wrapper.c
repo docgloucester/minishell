@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:30:24 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/03 19:11:08 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 07:41:00 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "exec.h"
+#include	"exec.h"
 
 void	ft_close(int *fd, int size)
 {
@@ -28,14 +28,16 @@ void	ft_close(int *fd, int size)
 	}
 }
 
-int		var_setter(t_execdata *d)
+int	var_setter(t_execdata *d)
 {
 	if (d->pipe_on)
+	{
 		if (pipe(d->pipes) == -1)
 		{
 			d->error = PIPE;
 			return (-1);
 		}
+	}
 	d->pid = fork();
 	if (d->pid == -1)
 	{
@@ -45,11 +47,12 @@ int		var_setter(t_execdata *d)
 	return (0);
 }
 
-int		pipe_setter(t_execdata *d, int child)
+int	pipe_setter(t_execdata *d, int child)
 {
 	if (d->prec && d->prec->pipe_on)
 	{
-		if (child && (dup2(d->prec->pipes[0], STDIN_FILENO) == -1))
+		if (d->type != INPUT_D && child && \
+		(dup2(d->prec->pipes[0], STDIN_FILENO) == -1))
 		{
 			d->error = DUP;
 			return (-1);
@@ -70,7 +73,7 @@ int		pipe_setter(t_execdata *d, int child)
 	return (0);
 }
 
-int		find_ret_value(t_execdata *d)
+int	find_ret_value(t_execdata *d)
 {
 	int		ret;
 
