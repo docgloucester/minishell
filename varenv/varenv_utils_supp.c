@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 14:41:37 by nouchata          #+#    #+#             */
-/*   Updated: 2021/04/06 16:24:25 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 12:32:41 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	find_content(t_envitem *ei, char *src)
 	i = 0;
 	y = count_varenv_occ(src);
 	ei->value_num = y;
-	strs = malloc(sizeof(char *) * y + 1);
+	strs = malloc(sizeof(char *) * (y + 1));
 	if (!strs)
 		return (-1);
 	strs[y] = NULL;
