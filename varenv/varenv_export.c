@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:03:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/06 15:06:09 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 22:55:06 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "varenv.h"
+#include	"../minishell.h"
 
 long int	envitem_len(t_envitem *ei)
 {

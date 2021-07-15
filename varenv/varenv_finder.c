@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:13:20 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 11:27:42 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 22:55:09 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "varenv.h"
+#include	"../minishell.h"
 
 long int	value_len(char **value)
 {

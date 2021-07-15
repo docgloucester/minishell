@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:30:24 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 07:41:00 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 23:14:55 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"exec.h"
+#include	"../minishell.h"
 
 void	ft_close(int *fd, int size)
 {
@@ -57,7 +57,7 @@ int	pipe_setter(t_execdata *d, int child)
 			d->error = DUP;
 			return (-1);
 		}
-		close(d->prec->pipes[0]);
+		ft_close(&d->prec->pipes[0], 1);
 	}
 	if (d->pipe_on)
 	{
@@ -67,8 +67,8 @@ int	pipe_setter(t_execdata *d, int child)
 			return (-1);
 		}
 		if (child)
-			close(d->pipes[0]);
-		close(d->pipes[1]);
+			ft_close(&d->pipes[0], 1);
+		ft_close(&d->pipes[1], 1);
 	}
 	return (0);
 }

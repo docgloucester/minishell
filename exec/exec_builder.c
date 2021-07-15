@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:12:27 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 07:38:18 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 23:21:29 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"exec.h"
+#include	"../minishell.h"
 
 int	close_fd(int fd)
 {
@@ -45,5 +45,21 @@ int	exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe)
 		current->next = new;
 	else
 		*d = new;
+	return (0);
+}
+
+int	exec_killer(t_execdata *d)
+{
+	t_execdata *next;
+
+	next = NULL;
+	while (d)
+	{
+		ft_close(d->pipes, 2);
+		//kill_env_to_str(d->cmd);
+		next = d->next;
+		free(d);
+		d = next;
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:51:40 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/06 14:54:22 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 23:26:00 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define VARENV_H
 # include <stdlib.h>
 # include <stdio.h>
-# include "../_libft/libft.h"
+# include "../minishell.h"
 
 typedef struct s_envitem {
 	int			value_num;
@@ -26,6 +26,7 @@ typedef struct s_envitem {
 typedef struct s_varenv {
 	int			count;
 	char		bin_return;
+	char		**env_to_str;
 	t_envitem	*envtab;
 }				t_varenv;
 

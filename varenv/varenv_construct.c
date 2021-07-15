@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:57:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/04/06 16:23:51 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 23:02:12 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "varenv.h"
+#include	"../minishell.h"
 
 int	varenv_extract(t_varenv *ve, char *src)
 {
@@ -90,6 +90,7 @@ void	varenv_kill(t_varenv *ve)
 	t_envitem	*old;
 	t_envitem	*ei;
 
+	kill_env_to_str(ve->env_to_str);
 	ei = ve->envtab;
 	while (ei)
 	{

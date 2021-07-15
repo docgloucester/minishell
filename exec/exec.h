@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 20:06:03 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 10:00:14 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 23:26:45 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <curses.h>
 # include <term.h>
 # include <errno.h>
-# include "../_libft/libft.h"
 # include "../varenv/varenv.h"
 
 typedef enum e_execerror
@@ -70,5 +69,6 @@ int		interactive_wrapper(t_execdata *d, t_varenv *ve);
 int		cmd_dispatcher(t_execdata *d, t_varenv *ve);
 int		exec_loop(t_execdata *d, t_varenv *ve);
 void	ft_close(int *fd, int size);
+int		exec_killer(t_execdata *d);
 
 #endif

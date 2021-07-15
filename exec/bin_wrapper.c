@@ -6,14 +6,15 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:29:34 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 10:02:22 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 23:23:47 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"exec.h"
+#include	"../minishell.h"
 
 int	bin_wrapper(t_execdata *d, t_varenv *ve)
 {
+
 	if (var_setter(d) == -1)
 		return (-1);
 	if (d->pid)
@@ -32,7 +33,7 @@ int	bin_wrapper(t_execdata *d, t_varenv *ve)
 	{
 		if (pipe_setter(d, 1) == -1)
 			exit(EXIT_FAILURE);
-		if (execve(d->cmd[0], d->cmd, env_to_str(ve)) == -1)
+		if (execve(d->cmd[0], d->cmd, ve->env_to_str) == -1)
 			exit(EXIT_FAILURE);
 	}
 	return (0);

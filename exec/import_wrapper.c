@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:50:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 11:29:40 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 22:54:36 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "exec.h"
+#include	"../minishell.h"
 
 int	interactive_loop(t_execdata *d, int fdout)
 {

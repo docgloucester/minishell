@@ -1,4 +1,4 @@
-# include "exec/exec.h"
+# include "minishell.h"
 
 void	signo(int signal)
 {
@@ -14,6 +14,7 @@ int		main(int argc, char **argv, char **env)
 	char *expp[3] = {"_zz", NULL, NULL};
 	t_execdata *d = NULL;
 	t_varenv ve = varenv_construct(env);
+	ve.env_to_str = env_to_str(&ve);
 
 	exec_builder(&d, cat, BINARY, 1);
 	exec_builder(&d, exp, INPUT_D, 1);
@@ -23,5 +24,7 @@ int		main(int argc, char **argv, char **env)
 	// exec_builder(&d, ls, BINARY, 0);
 	signal(SIGINT, signo);
 	printf("!!%d\n", exec_loop(d, &ve));
+	varenv_kill(&ve);
+	exec_killer(d);
 	return (0);
 }

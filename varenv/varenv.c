@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:57:47 by nouchata          #+#    #+#             */
-/*   Updated: 2021/04/06 16:26:44 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 22:55:20 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "varenv.h"
+#include	"../minishell.h"
 
 void	builtin_env(t_varenv *ve)
 {

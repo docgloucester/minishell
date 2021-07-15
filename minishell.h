@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_wrapper.c                                  :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/18 14:01:29 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 22:54:20 by nouchata         ###   ########.fr       */
+/*   Created: 2021/07/15 22:49:13 by nouchata          #+#    #+#             */
+/*   Updated: 2021/07/15 23:01:25 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../minishell.h"
+#ifndef MINISHELL_H
+# define MINISHELL_H
+# include "_libft/libft.h"
+# include "exec/exec.h"
+# include "varenv/varenv.h"
+# include "explorer/explorer.h"
 
-int	builtin_exec(t_execdata *d, t_varenv *ve, int (*fc)(char **))
+typedef struct s_minishell
 {
-	(void)ve;
-	d->return_v = (*fc)(&d->cmd[1]);
-	return (0);
-}
+	char		nameofshell[30];
+	t_varenv	ve;
+	t_execdata	*ed;
+}				t_minishell;
 
-int	builtin_loop(t_execdata *d, t_varenv *ve);
+# endif

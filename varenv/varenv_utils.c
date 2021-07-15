@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:42:51 by nouchata          #+#    #+#             */
-/*   Updated: 2021/04/06 16:03:51 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 22:55:16 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "varenv.h"
+#include	"../minishell.h"
 
 int	search_char(char *str, char c, int returnlength)
 {

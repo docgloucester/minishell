@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:23:43 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 12:34:27 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 22:59:40 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"exec.h"
+#include	"../minishell.h"
 
 int	cmd_dispatcher(t_execdata *d, t_varenv *ve)
 {

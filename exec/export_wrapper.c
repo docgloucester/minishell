@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:49:55 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 10:02:20 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/15 22:54:33 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"exec.h"
+#include	"../minishell.h"
 
 int	export_fd(t_execdata *d, int *fd, int *ret)
 {
