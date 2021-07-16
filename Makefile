@@ -6,12 +6,23 @@
 #    By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 10:06:20 by nouchata          #+#    #+#              #
-#    Updated: 2021/07/15 11:34:03 by nouchata         ###   ########.fr        #
+#    Updated: 2021/07/16 11:57:23 by nouchata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS_E =	${wildcard exec/*.c}
-SRCS_V = 	${wildcard varenv/*.c}
+SRCS_E =	exec/bin_wrapper.c \
+			exec/builtin_wrapper.c \
+			exec/exec_builder.c \
+			exec/exec_main.c \
+			exec/export_wrapper.c \
+			exec/import_wrapper.c \
+			exec/misc_wrapper.c
+SRCS_V = 	varenv/varenv_construct.c \
+			varenv/varenv_export.c \
+			varenv/varenv_finder.c \
+			varenv/varenv_utils_supp.c \
+			varenv/varenv_utils.c \
+			varenv/varenv.c
 SRCS_M =	main.c
 OBJS_E =	${SRCS_E:.c=.o}
 OBJS_V =	${SRCS_V:.c=.o}

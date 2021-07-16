@@ -1,10 +1,5 @@
 # include "minishell.h"
 
-void	signo(int signal)
-{
-	return ;
-}
-
 int		main(int argc, char **argv, char **env)
 {
 	char *cat[4] = {"/bin/cat", NULL, NULL, NULL};
@@ -18,12 +13,13 @@ int		main(int argc, char **argv, char **env)
 
 	exec_builder(&d, cat, BINARY, 1);
 	exec_builder(&d, exp, INPUT_D, 1);
-	exec_builder(&d, cat, BINARY, 0);
+	exec_builder(&d, grep, BINARY, 0);
+	exec_builder(&d, ls, BINARY, 0);
 	// exec_builder(&d, grep, BINARY, 0);
 	// exec_builder(&d, expp, OUTPUT, 0);
 	// exec_builder(&d, ls, BINARY, 0);
-	signal(SIGINT, signo);
-	printf("!!%d\n", exec_loop(d, &ve));
+	exec_loop(d, &ve);
+	printf("!!%d\n", d->next->return_v >> 8 & 0xFF);
 	varenv_kill(&ve);
 	exec_killer(d);
 	return (0);
