@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 20:06:03 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 23:26:45 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 10:37:54 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_execdata
 
 int		exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe);
 int		close_fd(int fd);
-int		find_ret_value(t_execdata *d);
 int		var_setter(t_execdata *d);
 int		pipe_setter(t_execdata *d, int child);
 int		bin_wrapper(t_execdata *d, t_varenv *ve);

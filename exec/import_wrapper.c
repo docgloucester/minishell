@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:50:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/16 15:07:13 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 11:18:42 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 int	interactive_loop(t_execdata *d, int fdout)
 {
 	char	*str;
+	int		ret;
 
+	ret = 1;
 	write(fdout, "> ", 2);
-	while (get_next_line(STDIN_FILENO, &str))
+	while (ret)
 	{
+		ret = get_next_line(STDIN_FILENO, &str);
+		if (ret == -1)
+			return(error_handler("bash", d->cmd[0], -1));
 		if (!ft_strncmp(d->cmd[0], str, 0))
-			return (0);
+			break ;
 		write(STDOUT_FILENO, str, ft_strlen(str));
 		write(STDOUT_FILENO, "\n", 1);
 		write(fdout, "> ", 2);
@@ -39,17 +44,14 @@ int	import_loop(t_execdata *d)
 
 	fd = open(d->cmd[0], O_RDONLY);
 	if (fd == -1)
-		return (-1); // intégrer un système d'erreurs cf si le fichier n'a pas les droits
+		return(error_handler("bash", d->cmd[0], -1));
 	ret = 1;
 	while (ret)
 	{
 		ft_memset(buffer, 0, 100);
 		ret = read(fd, buffer, 99);
 		if (ret == -1)
-		{
-			d->error = READ;
-			return (-1);
-		}
+			return(error_handler("bash", d->cmd[0], -1));
 		write(STDOUT_FILENO, buffer, ft_strlen(buffer));
 	}
 	return (0);
@@ -66,8 +68,7 @@ int	import_wrapper(t_execdata *d, t_varenv *ve)
 			if (cmd_dispatcher(d->next, ve) < 0)
 				return (-1);
 		if (!d->pipe_on)
-			if (cmd_dispatcher(NULL, ve) < 0)
-				return (-1);
+			cmd_dispatcher(NULL, ve);
 		waitpid(d->pid, &d->return_v, 0);
 		ft_close(d->pipes, 2);
 	}
@@ -97,8 +98,7 @@ int	interactive_wrapper(t_execdata *d, t_varenv *ve)
 			if (cmd_dispatcher(d->next, ve) < 0)
 				return (-1);
 		if (!d->pipe_on)
-			if (cmd_dispatcher(NULL, ve) < 0)
-				return (-1);
+			cmd_dispatcher(NULL, ve);
 		ft_close(d->pipes, 2);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:23:43 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/16 15:10:06 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 08:36:48 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,29 @@ int	cmd_dispatcher(t_execdata *d, t_varenv *ve)
 	return (0);
 }
 
-int	exec_ret(t_execdata *d, int status)
+int	exec_ret(t_execdata *d)
 {
-	if (WIFSIGNALED(status) && WTERMSIG(status) == 2)
+	int		status;
+
+	status = 0;
+	while (d && d->pipe_on)
+	{
+		if (WIFSIGNALED(d->return_v) && WTERMSIG(d->return_v) == 2)
+			return (130);
+		if (d->type == BINARY || d->type == BUILTIN)
+			status = d->return_v;
+		d = d->next;
+	}
+	if (WIFSIGNALED(d->return_v) && WTERMSIG(d->return_v) == 2)
 		return (130);
+	if (d->type == BINARY || d->type == BUILTIN)
+		status = d->return_v;
 	return (WEXITSTATUS(status));
 }
 
 int	exec_loop(t_execdata *d, t_varenv *ve)
 {
+	t_execdata	*first;
 	pid_t		pid;
 	int			status;
 
@@ -50,6 +64,7 @@ int	exec_loop(t_execdata *d, t_varenv *ve)
 	signal(SIGINT, signo);
 	while (d)
 	{
+		first = d;
 		status = cmd_dispatcher(d, ve);
 		if (status == -1)
 			printf("error\n");
@@ -57,5 +72,6 @@ int	exec_loop(t_execdata *d, t_varenv *ve)
 			d = d->next;
 		d = d->next;
 	}
-	return (exec_ret(d, status));
+	signal(SIGINT, SIG_DFL);
+	return (exec_ret(first));
 }

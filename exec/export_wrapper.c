@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:49:55 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/16 15:06:53 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 11:18:24 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ int	export_fd(t_execdata *d, int *fd, int *ret)
 	else
 		*fd = open(d->cmd[0], O_WRONLY | O_APPEND | O_CREAT, 0664);
 	if (*fd == -1)
-	{
-		d->error = OPEN;
-		return (-1);
-	}
+		return(error_handler("bash", d->cmd[0], -1));
 	*ret = 1;
 	return (0);
 }
@@ -33,15 +30,16 @@ int	export_loop(t_execdata *d)
 	int		ret;
 	char	buffer[30];
 
-	export_fd(d, &fd, &ret);
+	if (export_fd(d, &fd, &ret) == -1)
+		return (-1);
 	while (ret)
 	{
 		ft_memset(buffer, 0, 30);
 		ret = read(STDIN_FILENO, buffer, 29);
 		if (ret == -1)
 		{
-			d->error = READ;
-			return (-1);
+			close(fd);
+			return(error_handler("bash", d->cmd[0], -1));
 		}
 		if (d->pipe_on)
 			write(STDOUT_FILENO, buffer, ft_strlen(buffer));
@@ -63,8 +61,7 @@ int	export_wrapper(t_execdata *d, t_varenv *ve)
 			if (cmd_dispatcher(d->next, ve) < 0)
 				return (-1);
 		if (!d->pipe_on)
-			if (cmd_dispatcher(NULL, ve) < 0)
-				return (-1);
+			cmd_dispatcher(NULL, ve);
 		waitpid(d->pid, &d->return_v, 0);
 		ft_close(d->pipes, 2);
 	}

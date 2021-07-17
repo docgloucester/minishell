@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_dir.c                                        :+:      :+:    :+:   */
+/*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/15 12:19:37 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 09:22:19 by nouchata         ###   ########.fr       */
+/*   Created: 2021/07/17 09:12:04 by nouchata          #+#    #+#             */
+/*   Updated: 2021/07/17 09:17:13 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../minishell.h"
+#	include "minishell.h"
 
-int		test_dir(char *path, char *cmd, int print_error)
+int		error_handler(char *cmd, char *arg, int retval)
 {
-	pid_t	pid;
-	int		status;
-
-	pid = fork();
-	if (pid == -1)
-		return (-1);
-	if (pid)
-		waitpid(pid, &status, 0);
-	if (!pid)
+	if (cmd)
 	{
-		status = chdir(path);
-		if (status && print_error)
-			error_handler(cmd, path, status);
-		exit(status);
+		write(2, cmd, ft_strlen(cmd));
+		write(2, ": ", 2);
 	}
-	return (WEXITSTATUS(status));
-}
-
-int		search_in_dir(char *path)
-{
-	return (0);
+	if (arg)
+	{
+		write(2, arg, ft_strlen(arg));
+		write(2, ": ", 2);
+	}
+	perror("");
+	return (retval);
 }
