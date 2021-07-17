@@ -6,15 +6,72 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:29:34 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 11:12:00 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 13:52:01 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../minishell.h"
 
+int	is_file_in_path(char *file, DIR *dir)
+{
+	struct dirent	*entity;
+
+	entity = readdir(dir);
+	while (entity)
+	{
+		if (!ft_strncmp(file, entity->d_name, 0))
+			return (1);
+		entity = readdir(dir);
+	}
+	return (0);
+}
+
+int	file_path_creator(t_execdata *d, char *path)
+{
+	char	*newpath;
+	char	*new;
+
+	newpath = ft_strjoin(path, "/");
+	if (!newpath)
+		return (-1);
+	new = ft_strjoin(newpath, d->cmd[0]);
+	if (!new)
+		return (-1);
+	free(newpath);
+	// free(d->cmd[0]);
+	d->cmd[0] = new;
+	return (0);
+}
+
+int	search_in_path(t_execdata *d, t_varenv *ve)
+{
+	char	**paths;
+	int		i;
+	DIR*	dir;
+
+	if (ft_strchr(d->cmd[0], '/'))
+		return (0);
+	paths = var_value_finder(ve, "PATH", 0);
+	i = -1;
+	dir = NULL;
+	while (paths[++i])
+	{
+		dir = opendir(paths[i]);
+		if (!dir)
+			continue ;
+		if(is_file_in_path(d->cmd[0], dir))
+		{
+			closedir(dir);
+			return(file_path_creator(d, paths[i]));
+		}
+		closedir(dir);
+	}
+	return (0);
+}
+
 int	bin_wrapper(t_execdata *d, t_varenv *ve)
 {
-	if (var_setter(d) == -1)
+	if (var_setter(d, ve) == -1)
 		return (-1);
 	if (d->pid)
 	{

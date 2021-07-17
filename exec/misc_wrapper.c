@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:30:24 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 11:56:31 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 13:43:59 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ int	ft_kill(t_execdata *d, int sig, int retval)
 	return (retval);
 }
 
-int	var_setter(t_execdata *d)
+int	var_setter(t_execdata *d, t_varenv *ve)
 {
+	if (d->type == BINARY && search_in_path(d, ve) == -1)
+		return(error_handler("bash", d->cmd[0], -1));
 	if (d->pipe_on)
 		if (pipe(d->pipes) == -1)
 			return(error_handler("bash", d->cmd[0], -1));

@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:49:55 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 12:04:43 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 12:40:28 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	export_loop(t_execdata *d)
 
 int	export_wrapper(t_execdata *d, t_varenv *ve)
 {
-	if (var_setter(d) == -1)
+	if (var_setter(d, ve) == -1)
 		return (-1);
 	if (d->pid)
 	{
