@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_dir.c                                        :+:      :+:    :+:   */
+/*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/15 12:19:37 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 09:22:19 by nouchata         ###   ########.fr       */
+/*   Created: 2021/07/17 15:32:26 by nouchata          #+#    #+#             */
+/*   Updated: 2021/07/17 17:16:58 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../minishell.h"
+# ifndef BUILTIN_H
+#define BUILTIN_H
 
-int		test_dir(char *path, char *cmd, int print_error)
-{
-	pid_t	pid;
-	int		status;
+int		builtin_export(t_execdata *d, t_varenv *ve);
+int		builtin_unset(t_execdata *d, t_varenv *ve);
+int		builtin_envc(t_execdata *d, t_varenv *ve);
+int		builtin_cd(t_execdata *d, t_varenv *ve);
+int		print_builtin(t_execdata *d, char *str);
+int		builtin_dispatcher(t_execdata *d, t_varenv *ve);
 
-	pid = fork();
-	if (pid == -1)
-		return (-1);
-	if (pid)
-		waitpid(pid, &status, 0);
-	if (!pid)
-	{
-		status = chdir(path);
-		if (status && print_error)
-			error_handler(cmd, path, status);
-		exit(status);
-	}
-	return (WEXITSTATUS(status));
-}
-
-int		search_in_dir(char *path)
-{
-	return (0);
-}
+#endif

@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   explorer.h                                         :+:      :+:    :+:   */
+/*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/15 11:40:33 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 09:22:56 by nouchata         ###   ########.fr       */
+/*   Created: 2021/07/17 15:34:12 by nouchata          #+#    #+#             */
+/*   Updated: 2021/07/17 17:19:09 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef EXPLORER_H
-#define EXPLORER_H
-#include <string.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include "../minishell.h"
+#	include "../minishell.h"
 
+int	builtin_cd(t_execdata *d, t_varenv *ve)
+{
+	int		ret;
 
-int		test_dir(char *path, char *cmd, int print_error);
-
-# endif
+	ret = 0;
+	if (!d->cmd[1] || !ft_strlen(d->cmd[1]))
+		return (0);
+	ret = chdir(d->cmd[1]);
+	if (ret == -1)
+		return (error_handler("cd", d->cmd[1], 1));
+	return (0);
+}

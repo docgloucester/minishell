@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:50:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 12:40:28 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 15:48:42 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	interactive_loop(t_execdata *d, int fdout)
 	{
 		ret = get_next_line(STDIN_FILENO, &str);
 		if (ret == -1)
-			return(error_handler("bash", d->cmd[0], -1));
+			return(error_handler(NULL, d->cmd[0], -1));
 		if (!ft_strncmp(d->cmd[0], str, 0))
 			break ;
 		write(STDOUT_FILENO, str, ft_strlen(str));
@@ -44,14 +44,14 @@ int	import_loop(t_execdata *d)
 
 	fd = open(d->cmd[0], O_RDONLY);
 	if (fd == -1)
-		return(error_handler("bash", d->cmd[0], -1));
+		return(error_handler(NULL, d->cmd[0], -1));
 	ret = 1;
 	while (ret)
 	{
 		ft_memset(buffer, 0, 100);
 		ret = read(fd, buffer, 99);
 		if (ret == -1)
-			return(error_handler("bash", d->cmd[0], -1));
+			return(error_handler(NULL, d->cmd[0], -1));
 		write(STDOUT_FILENO, buffer, ft_strlen(buffer));
 	}
 	return (0);

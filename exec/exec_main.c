@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:23:43 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 12:08:22 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 17:01:39 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ int	cmd_dispatcher(t_execdata *d, t_varenv *ve)
 			return (-1);
 	if (d && d->type == INPUT_D)
 		if (interactive_wrapper(d, ve) < 0)
+			return (-1);
+	if (d && d->type == BUILTIN)
+		if (builtin_wrapper(d, ve) < 0)
 			return (-1);
 	return (0);
 }

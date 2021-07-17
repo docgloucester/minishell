@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 20:06:03 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 12:40:48 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 17:14:03 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int		cmd_dispatcher(t_execdata *d, t_varenv *ve);
 int		exec_loop(t_execdata *d, t_varenv *ve);
 void	ft_close(int *fd, int size);
 int		exec_killer(t_execdata *d);
+int		builtin_wrapper(t_execdata *d, t_varenv *ve);
 
 #endif

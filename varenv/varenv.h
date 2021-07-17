@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:51:40 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 23:26:00 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 17:13:13 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,5 @@ int				pop_envitem(t_varenv *ve, char *str);
 char			**env_to_str(t_varenv *ve);
 void			kill_env_to_str(char **ets);
 char			**var_value_finder(t_varenv *ve, char *var_name, char malloc_str);
-void			builtin_env(t_varenv *ve);
-void			builtin_export(t_varenv *ve, int argc, char **args);
-void			builtin_unset(t_varenv *ve, int argc, char **args);
 
 #	endif

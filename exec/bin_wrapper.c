@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:29:34 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 13:52:01 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 15:47:45 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	bin_wrapper(t_execdata *d, t_varenv *ve)
 		if (pipe_setter(d, 1) == -1)
 			exit(EXIT_FAILURE);
 		if (execve(d->cmd[0], d->cmd, ve->env_to_str) == -1)
-			exit(error_handler("bash", d->cmd[0], EXIT_FAILURE));
+			exit(error_handler(NULL, d->cmd[0], EXIT_FAILURE));
 	}
 	return (0);
 }

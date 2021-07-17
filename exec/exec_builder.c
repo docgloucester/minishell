@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:12:27 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 11:02:00 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 15:47:56 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe)
 
 	new = malloc(sizeof(t_execdata) * 1);
 	if (!new)
-		return(error_handler("bash", NULL, -1));
+		return(error_handler(NULL, NULL, -1));
 	current = *d;
 	while (current && current->next)
 		current = current->next;
