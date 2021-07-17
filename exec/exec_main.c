@@ -6,16 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:23:43 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 08:36:48 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 12:08:22 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../minishell.h"
-
-void	signo(int signal)
-{
-	return ;
-}
 
 int	cmd_dispatcher(t_execdata *d, t_varenv *ve)
 {
@@ -36,22 +31,24 @@ int	cmd_dispatcher(t_execdata *d, t_varenv *ve)
 
 int	exec_ret(t_execdata *d)
 {
-	int		status;
+	t_execdata *ret;
 
-	status = 0;
+	ret = NULL;
 	while (d && d->pipe_on)
 	{
 		if (WIFSIGNALED(d->return_v) && WTERMSIG(d->return_v) == 2)
 			return (130);
-		if (d->type == BINARY || d->type == BUILTIN)
-			status = d->return_v;
+		if (d->type == BINARY || d->type == BUILTIN || ((d->type == OUTPUT || \
+		d->type == OUTPUT_D || d->type == INPUT) && WEXITSTATUS(d->return_v)))
+			ret = d;
 		d = d->next;
 	}
 	if (WIFSIGNALED(d->return_v) && WTERMSIG(d->return_v) == 2)
 		return (130);
-	if (d->type == BINARY || d->type == BUILTIN)
-		status = d->return_v;
-	return (WEXITSTATUS(status));
+	if (d->type == BINARY || d->type == BUILTIN || ((d->type == OUTPUT || \
+	d->type == OUTPUT_D || d->type == INPUT) && WEXITSTATUS(d->return_v)))
+		ret = d;
+	return (WEXITSTATUS(ret->return_v));
 }
 
 int	exec_loop(t_execdata *d, t_varenv *ve)
@@ -61,7 +58,7 @@ int	exec_loop(t_execdata *d, t_varenv *ve)
 	int			status;
 
 	status = 0;
-	signal(SIGINT, signo);
+	signal(SIGINT, SIG_IGN);
 	while (d)
 	{
 		first = d;

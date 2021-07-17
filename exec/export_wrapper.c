@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:49:55 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 11:18:24 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 12:04:43 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	export_wrapper(t_execdata *d, t_varenv *ve)
 		if (pipe_setter(d, 1) == -1)
 			exit(EXIT_FAILURE);
 		if (export_loop(d) == -1)
-			exit(EXIT_FAILURE);
+			exit(ft_kill(d, SIGTERM, EXIT_FAILURE));
 		exit(EXIT_SUCCESS);
 	}
 	return (0);

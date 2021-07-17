@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 19:50:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 11:18:42 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 12:04:34 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	import_wrapper(t_execdata *d, t_varenv *ve)
 		if (pipe_setter(d, 1) == -1)
 			exit(EXIT_FAILURE);
 		if (import_loop(d) == -1)
-			exit(EXIT_FAILURE);
+			exit(ft_kill(d, SIGTERM, EXIT_FAILURE));
 		exit(EXIT_SUCCESS);
 	}
 	return (0);
@@ -108,7 +108,7 @@ int	interactive_wrapper(t_execdata *d, t_varenv *ve)
 		if (pipe_setter(d, 1) == -1)
 			exit(EXIT_FAILURE);
 		if (interactive_loop(d, fdout) == -1)
-			exit(EXIT_FAILURE);
+			exit(ft_kill(d, SIGTERM, EXIT_FAILURE));
 		exit(EXIT_SUCCESS);
 	}
 	return (0);

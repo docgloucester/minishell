@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:30:24 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 10:42:09 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/17 11:56:31 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ void	ft_close(int *fd, int size)
 		}
 		i++;
 	}
+}
+
+int	ft_kill(t_execdata *d, int sig, int retval)
+{
+	if (d->prec)
+	{
+		kill(d->prec->pid, sig);
+		d->prec->return_v = 40;
+	}
+	return (retval);
 }
 
 int	var_setter(t_execdata *d)
