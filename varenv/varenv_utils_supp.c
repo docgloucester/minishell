@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 14:41:37 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 22:55:13 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/19 11:44:40 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	find_name(t_envitem *ei, char *src)
 	i = search_char(src, '=', 1);
 	if (i == -1)
 		return (-1);
+	if (!i)
+		i = ft_strlen(src);
 	str = malloc(sizeof(char) * i + 1);
 	if (!str)
 		return (-1);
@@ -75,7 +77,7 @@ void	pop_envitem_supp(t_varenv *ve, t_envitem *ei, t_envitem *tmp)
 	}
 }
 
-int	pop_envitem(t_varenv *ve, char *str)
+int	pop_envitem(t_varenv *ve, char *str, int length_compare)
 {
 	t_envitem	*ei;
 	t_envitem	*tmp;
@@ -84,7 +86,7 @@ int	pop_envitem(t_varenv *ve, char *str)
 	tmp = NULL;
 	while (ei)
 	{
-		if (!ft_strncmp(str, ei->name, 0))
+		if (!ft_strncmp(str, ei->name, length_compare))
 		{
 			pop_envitem_supp(ve, ei, tmp);
 			ve->count--;
@@ -102,10 +104,13 @@ int	push_envitem(t_varenv *ve, char *src)
 	int		y;
 
 	y = search_char(src, '=', 1);
-	if (src[0] == ' ' || (search_char(src, ' ', 0) && \
-	y > search_char(src, ' ', 1)))
-		return (-1); // ERREUR : IL Y A UN ESPACE DANS LE NOM DE LA VAR
-	i = varenv_extract(ve, src);
+	if (!ft_strlen(src) || src[0] == '=' || src[0] == ' ' || \
+	(search_char(src, ' ', 0) && y > search_char(src, ' ', 1)))
+		return (1);
+	if (!y)
+		return (blank_var(ve, src));
+	pop_envitem(ve, src, y);
+	i = varenv_extract(ve, src); // ne gère pas les variables sans valeurs
 	ve->count++;
 	return (i);
 }

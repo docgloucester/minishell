@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:42:51 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 22:55:16 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/19 11:55:14 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,32 @@ int	extract_content(char **str, char *src)
 	res[i] = 0;
 	*str = res;
 	return (y);
+}
+
+int	blank_var(t_varenv *ve, char *src)
+{
+	t_envitem	*ei;
+	t_envitem	*last;
+
+	ei = ve->envtab;
+	last = NULL;
+	while (ei)
+	{
+		if (!ft_strncmp(src, ei->name, 0))
+			return (0);
+		if (!ei->next)
+			last = ei;
+		ei = ei->next;
+	}
+	ei = malloc(sizeof(t_envitem) * 1);
+	if (!ei)
+		return (-1);
+	ei->next = NULL;
+	ei->value_num = 0;
+	ei->value = NULL;
+	if (find_name(ei, src) == -1)
+		return (-1);
+	last->next = ei;
+	ve->count++;
+	return (0);
 }

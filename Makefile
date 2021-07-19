@@ -6,7 +6,7 @@
 #    By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 10:06:20 by nouchata          #+#    #+#              #
-#    Updated: 2021/07/17 17:39:22 by nouchata         ###   ########.fr        #
+#    Updated: 2021/07/17 23:02:16 by nouchata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,7 @@ SRCS_V = 	varenv/varenv_construct.c \
 			varenv/varenv_export.c \
 			varenv/varenv_finder.c \
 			varenv/varenv_utils_supp.c \
-			varenv/varenv_utils.c \
-			varenv/varenv.c
+			varenv/varenv_utils.c
 SRCS_B =	builtin/builtin.c \
 			builtin/builtin_cd.c \
 			builtin/builtin_var.c

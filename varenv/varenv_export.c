@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:03:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 22:55:06 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/19 10:59:14 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ char	**env_to_str(t_varenv *ve)
 		return (NULL);
 	while (ei)
 	{
+		if (!ei->value_num)
+		{
+			ei = ei->next;
+			continue ;
+		}
 		str[i] = malloc(sizeof(char) * envitem_len(ei));
 		fill_str(str[i], ei);
 		i++;

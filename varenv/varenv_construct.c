@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:57:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/15 23:02:12 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/19 11:59:02 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ void	envitem_kill(t_envitem *ei)
 			free(ei->value[i]);
 		i++;
 	}
-	if (ei->value[ei->value_num] == NULL)
-		free(ei->value[ei->value_num]);
 	if (ei->value)
 		free(ei->value);
 }
