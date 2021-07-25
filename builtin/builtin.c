@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:35:20 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 17:35:32 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/25 13:39:32 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ int	builtin_dispatcher(t_execdata *d, t_varenv *ve)
 		i = builtin_unset(d, ve);
 	if (d && !ft_strncmp(d->cmd[0], "cd", 0))
 		return (builtin_cd(d, ve));
+	if (d && !ft_strncmp(d->cmd[0], "echo", 0))
+		return (builtin_echo(d, ve));
+	if (d && !ft_strncmp(d->cmd[0], "exit", 0))
+		return (builtin_exit(d, ve));
 	if (d && (!ft_strncmp(d->cmd[0], "export", 0) || \
 	!ft_strncmp(d->cmd[0], "unset", 0)))
 	{

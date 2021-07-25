@@ -6,7 +6,7 @@
 #    By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 10:06:20 by nouchata          #+#    #+#              #
-#    Updated: 2021/07/17 23:02:16 by nouchata         ###   ########.fr        #
+#    Updated: 2021/07/25 13:41:14 by nouchata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,9 @@ SRCS_V = 	varenv/varenv_construct.c \
 			varenv/varenv_utils.c
 SRCS_B =	builtin/builtin.c \
 			builtin/builtin_cd.c \
+			builtin/builtin_export.c \
+			builtin/builtin_echo.c \
+			builtin/builtin_exit.c \
 			builtin/builtin_var.c
 SRCS_M =	main.c error_handler.c
 OBJS_E =	${SRCS_E:.c=.o}
@@ -82,4 +85,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean varenv exec libft re
+.PHONY:		all clean fclean varenv exec builtin libft re

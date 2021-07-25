@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 20:06:03 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 17:14:03 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/25 13:30:59 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@
 # include <errno.h>
 # include <signal.h>
 # include "../varenv/varenv.h"
-
-typedef enum e_execerror
-{
-	NO_ERROR,
-	PIPE,
-	FORK,
-	DUP,
-	READ,
-	OPEN
-}			t_execerror;
 
 typedef enum e_exectype
 {
@@ -53,7 +43,6 @@ typedef struct s_execdata
 	int					pipes[2];
 	char				pipe_on;
 	int					return_v;
-	t_execerror			error;
 	struct s_execdata	*prec;
 	struct s_execdata	*next;
 }				t_execdata;

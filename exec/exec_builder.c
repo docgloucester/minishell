@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:12:27 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 15:47:56 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/07/25 13:37:30 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe)
 	new->pipes[0] = 0;
 	new->pipes[1] = 0;
 	new->pipe_on = pipe;
-	new->error = NO_ERROR;
+	new->pid = 0;
 	new->prec = NULL;
 	new->return_v = 0;
 	if (current)
@@ -55,8 +55,9 @@ int	exec_killer(t_execdata *d)
 	next = NULL;
 	while (d)
 	{
+		if (d->pid)
+			kill(d->pid, SIGTERM);
 		ft_close(d->pipes, 2);
-		//kill_env_to_str(d->cmd);
 		next = d->next;
 		free(d);
 		d = next;
