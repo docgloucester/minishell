@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:51:40 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/19 11:39:54 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/04 11:21:32 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_envitem {
 }				t_envitem;
 
 typedef struct s_varenv {
+	void		*minishell_var;
 	int			count;
 	char		bin_return;
 	char		**env_to_str;
@@ -35,7 +36,7 @@ int				find_name(t_envitem *ei, char *src);
 int				find_content(t_envitem *ei, char *src);
 int				blank_var(t_varenv *ve, char *src);
 int				varenv_extract(t_varenv *ve, char *src);
-t_varenv		varenv_construct(char **src);
+t_varenv		varenv_construct(void *minishell_var, char **src);
 int				count_varenv_occ(char *src);
 int				extract_content(char **str, char *src);
 void			envitem_kill(t_envitem *ei);

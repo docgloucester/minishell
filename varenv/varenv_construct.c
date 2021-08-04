@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:57:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/19 11:59:02 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/04 11:22:01 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	varenv_extract(t_varenv *ve, char *src)
 	return (i);
 }
 
-t_varenv	varenv_construct(char **src)
+t_varenv	varenv_construct(void *minishell_var, char **src)
 {
 	t_varenv	ve;
 	int			i;
@@ -50,6 +50,7 @@ t_varenv	varenv_construct(char **src)
 	i = 0;
 	while (src[i])
 		i++;
+	ve.minishell_var = minishell_var;
 	ve.count = i;
 	ve.envtab = NULL;
 	i = 0;
