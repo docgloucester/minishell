@@ -6,7 +6,7 @@
 /*   By: nouchata <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 15:16:00 by nouchata          #+#    #+#             */
-/*   Updated: 2019/11/09 18:34:13 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/04 15:40:38 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	unsigned int	i;
 	long			str_len;
 	char			*cpy;
 
-	i = 0;
 	str_len = ft_strlen(s);
 	cpy = (char *)s;
 	if (c == 0)
