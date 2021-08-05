@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:57:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/04 11:22:01 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/05 17:27:24 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,7 @@ t_varenv	varenv_construct(void *minishell_var, char **src)
 		y = varenv_extract(&ve, src[i]);
 		i++;
 		if (y == -1)
-		{
-			varenv_kill(&ve);
-			exit(EXIT_FAILURE); // A REMPLACER PAR UNE FNCT DE KILL GLOBALE
-		}
+			builtin_exit(minishell_var);
 	}
 	return (ve);
 }

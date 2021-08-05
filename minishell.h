@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 22:49:13 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 17:38:22 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/05 16:08:21 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "exec/exec.h"
 # include "varenv/varenv.h"
 # include "builtin/builtin.h"
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <term.h>
 
 typedef struct s_minishell
 {

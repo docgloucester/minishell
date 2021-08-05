@@ -6,7 +6,7 @@
 #    By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 10:06:20 by nouchata          #+#    #+#              #
-#    Updated: 2021/07/25 13:41:14 by nouchata         ###   ########.fr        #
+#    Updated: 2021/08/05 16:07:50 by nouchata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ builtin:	libft ${OBJS_B}
 			@echo "✓ Built-in container"		
 
 ${NAME}:	libft varenv builtin exec ${OBJS_M}
-			@${CC} ${CFLAGS} ${OBJS_M} -o ${NAME} exec/exec.a \
+			@${CC} ${CFLAGS} -lreadline ${OBJS_M} -o ${NAME} exec/exec.a \
 			varenv/varenv.a _libft/libft.a builtin/builtin.a
 			@echo "✨✨ minishell is compiled ! ✨✨"
 
