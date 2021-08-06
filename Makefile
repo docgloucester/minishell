@@ -6,7 +6,7 @@
 #    By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 10:06:20 by nouchata          #+#    #+#              #
-#    Updated: 2021/08/06 17:32:07 by nouchata         ###   ########.fr        #
+#    Updated: 2021/08/06 18:24:57 by nouchata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,6 +97,7 @@ clean:
 			@${RM} ${OBJS_E}
 			@${RM} ${OBJS_M}
 			@${RM} ${OBJS_B}
+			@${RM} ${OBJS_C}
 			@cd _libft && ${MAKE} clean
 			@echo "✨✨ .o cleaned ✨✨"
 
@@ -104,6 +105,7 @@ fclean:		clean
 			@${RM} varenv/varenv.a
 			@${RM} exec/exec.a
 			@${RM} builtin/builtin.a
+			@${RM} cp/cparsing.a
 			@${RM} ${NAME}
 			@cd _libft && ${MAKE} fclean
 			@echo "✨✨ all cleaned ✨✨"
