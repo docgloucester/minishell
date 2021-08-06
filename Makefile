@@ -6,7 +6,7 @@
 #    By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 10:06:20 by nouchata          #+#    #+#              #
-#    Updated: 2021/08/06 16:26:37 by nouchata         ###   ########.fr        #
+#    Updated: 2021/08/06 17:32:07 by nouchata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,7 @@ builtin:	libft ${OBJS_B}
 
 ${NAME}:	libft varenv builtin exec cparsing ${OBJS_M}
 			@${CC} ${CFLAGS} -lreadline ${OBJS_M} -o ${NAME} exec/exec.a \
-			varenv/varenv.a _libft/libft.a builtin/builtin.a
+			varenv/varenv.a _libft/libft.a builtin/builtin.a cp/cparsing.a
 			@echo "✨✨ minishell is compiled ! ✨✨"
 
 clean:

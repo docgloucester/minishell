@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:12:27 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/25 13:37:30 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/06 16:51:28 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	close_fd(int fd)
 	return (0);
 }
 
-int	exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe)
+int	exec_builder(t_execdata **d, t_list *parsed, t_exectype type, char pipe)
 {
 	t_execdata	*new;
 	t_execdata	*current;
@@ -31,9 +31,9 @@ int	exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe)
 	while (current && current->next)
 		current = current->next;
 	new->type = type;
-	new->cmd = cmd;
-	new->pipes[0] = 0;
-	new->pipes[1] = 0;
+	new->cmd = NULL;
+	ft_close(new->pipes, 2);
+	new->stocked_list = parsed;
 	new->pipe_on = pipe;
 	new->pid = 0;
 	new->prec = NULL;

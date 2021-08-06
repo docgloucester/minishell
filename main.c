@@ -16,7 +16,7 @@ int		main_test(int argc, char **argv, char **env)
 	m.ve = varenv_construct(&m, env);
 	m.ve.env_to_str = env_to_str(&m.ve);
 	// printf("---->%d\n", ve.count);
-	exec_builder(&m.ed, cat, BINARY, 0);
+	// exec_builder(&m.ed, cat, BINARY, 0);
 	// exec_builder(&m.ed, export, BUILTIN, 0);
 	// exec_builder(&m.ed, envc, BUILTIN, 0);
 	// exec_builder(&d, exp, INPUT_D, 1);
@@ -43,7 +43,23 @@ void sig_reset_prompt(int signal)
 
 int	exec_maker(t_minishell *m, char *line)
 {
-	return (0);
+	t_cmd_cont     *parsed;
+	t_list			**tmp;
+	t_list			*translated;
+	t_proc_command	*pc;
+
+	parsed = command_parsing(line);
+	tmp = process_parsed_command(parsed);
+	translated = translate_cmd(tmp);
+	while (translated)
+	{
+		pc = translated->content;
+		exec_builder(&m->ed, translated, pc->type, pc->pipe);
+		translated = translated->next;
+	}
+	free(parsed->source_command);
+	free(parsed);
+	return (1);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -54,16 +70,15 @@ int	main(int argc, char **argv, char **env)
 	m.ed = NULL;
 	m.ve = varenv_construct(&m, env);
 	m.ve.env_to_str = env_to_str(&m.ve);
-	line = "x";
+	line = "echo $PATH";
 	signal(SIGINT, &sig_reset_prompt);
 	while (line)
 	{
-		line = readline("pasdebashing$ ");
+		// line = readline("pasdebashing$ ");
 		add_history(line);
-		if (line)
-		{
-
-		}
+		if (line && exec_maker(&m, line))
+			m.ve.bin_return = exec_loop(m.ed, &m.ve);
+		break ;
 	}
 	builtin_exit(m.ve.minishell_var);
 	return (0);

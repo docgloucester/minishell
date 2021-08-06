@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:30:24 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 15:49:07 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/06 17:53:07 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ int	ft_kill(t_execdata *d, int sig, int retval)
 
 int	var_setter(t_execdata *d, t_varenv *ve)
 {
+	t_proc_command	*pc;
+
+	exec_cleaner(ve->minishell_var, &d->stocked_list);
+	pc = d->stocked_list->content;
+	d->cmd = pc->cmd;
 	if (d->type == BINARY && search_in_path(d, ve) == -1)
 		return(error_handler(NULL, d->cmd[0], -1));
 	if (d->pipe_on)

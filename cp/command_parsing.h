@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 17:13:13 by tor               #+#    #+#             */
-/*   Updated: 2021/08/06 16:20:04 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/06 17:28:45 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ int	check_sep(int *exec_name_set);
 void	malloc_protected(void *to_alloc, size_t size);
 void	clean_backslash(t_command_id *to_clean);
 void	clean_quotes(t_command_id *to_clean);
-void	clean_section(t_list **to_clean);
-void	exec_cleaner(t_list **to_clean);
+void	clean_section(t_list **to_clean, void *m);
+void	exec_cleaner(void *m, t_list **to_clean);
 
 char	**create_cmd(t_list *to_translate);
 void	free_translate(t_list *to_free);

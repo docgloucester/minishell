@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 13:05:46 by tor               #+#    #+#             */
-/*   Updated: 2021/08/06 16:33:37 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/06 17:27:42 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,10 @@ void	free_pp(t_list **list)
 
 int     main(int ac, char **av)
 {
-    int                     i;
-    t_cmd_cont     *parsed;
+    int             i;
+    t_cmd_cont		*parsed;
 	t_list			**tmp;
-	t_list			*translated;
+	t_list			*translated;	
 
     i = 1;
     if (ac < 2)
@@ -123,7 +123,7 @@ int     main(int ac, char **av)
         	parsed = command_parsing(av[i]);
 			tmp = process_parsed_command(parsed);
 			translated = translate_cmd(tmp);
-			exec_cleaner(&translated);
+			// exec_cleaner(&translated);
 			printf("---%s\n", parsed->source_command);
 			// t_list *x = parsed->parsed_command;
 			// t_command_id *ci;

@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 20:06:03 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/25 13:30:59 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/06 16:49:26 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef enum e_exectype
 
 typedef struct s_execdata
 {
+	t_list				*stocked_list;
 	t_exectype			type;
 	char				**cmd;
 	pid_t				pid;
@@ -47,7 +48,7 @@ typedef struct s_execdata
 	struct s_execdata	*next;
 }				t_execdata;
 
-int		exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe);
+int		exec_builder(t_execdata **d, t_list *parsed, t_exectype type, char pipe);
 int		close_fd(int fd);
 int		ft_kill(t_execdata *d, int sig, int retval);
 int		var_setter(t_execdata *d, t_varenv *ve);
