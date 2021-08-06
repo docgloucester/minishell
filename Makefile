@@ -6,7 +6,7 @@
 #    By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 10:06:20 by nouchata          #+#    #+#              #
-#    Updated: 2021/08/05 16:07:50 by nouchata         ###   ########.fr        #
+#    Updated: 2021/08/06 16:26:37 by nouchata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,31 @@ SRCS_B =	builtin/builtin.c \
 			builtin/builtin_echo.c \
 			builtin/builtin_exit.c \
 			builtin/builtin_var.c
+SRCS_C =	cp/clean_section.c \
+			cp/command_parsing.c \
+			cp/create_cmd.c \
+			cp/error_parsing.c \
+			cp/exec_cleaner.c \
+			cp/free_command_container.c \
+			cp/ft_split_str.c \
+			cp/proc_command_struct.c \
+			cp/process_parsed_command_utils.c \
+			cp/process_parsed_command.c \
+			cp/quotes_split_utils.c \
+			cp/split_functions.c \
+			cp/struct_command_id.c \
+			cp/translate_utils.c \
+			cp/translate.c \
+			cp/utils_lst.c \
+			cp/utils_minishell.c \
+			cp/utils_struct_debug.c \
+			cp/utils.c
 SRCS_M =	main.c error_handler.c
 OBJS_E =	${SRCS_E:.c=.o}
 OBJS_V =	${SRCS_V:.c=.o}
 OBJS_M =	${SRCS_M:.c=.o}
 OBJS_B =	${SRCS_B:.c=.o}
+OBJS_C =	${SRCS_C:.c=.o}
 CC =		gcc
 CFLAGS =	#-Wall -Werror -Wextra
 NAME =		minishell
@@ -52,6 +72,11 @@ varenv:		libft ${OBJS_V}
 			@ranlib varenv/varenv.a
 			@echo "✓ Env container"
 
+cparsing:	libft varenv ${OBJS_C}
+			@ar rc cp/cparsing.a ${OBJS_C}
+			@ranlib cp/cparsing.a
+			@echo "✓ Command-parsing container"
+
 exec:		libft varenv ${OBJS_E}
 			@ar rc exec/exec.a ${OBJS_E}
 			@ranlib exec/exec.a
@@ -62,7 +87,7 @@ builtin:	libft ${OBJS_B}
 			@ranlib builtin/builtin.a
 			@echo "✓ Built-in container"		
 
-${NAME}:	libft varenv builtin exec ${OBJS_M}
+${NAME}:	libft varenv builtin exec cparsing ${OBJS_M}
 			@${CC} ${CFLAGS} -lreadline ${OBJS_M} -o ${NAME} exec/exec.a \
 			varenv/varenv.a _libft/libft.a builtin/builtin.a
 			@echo "✨✨ minishell is compiled ! ✨✨"

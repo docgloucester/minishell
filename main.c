@@ -37,8 +37,13 @@ void sig_reset_prompt(int signal)
 {
 	printf("\n");
     rl_on_new_line();
-    rl_replace_line("", 0);
+    // rl_replace_line("", 0);
     rl_redisplay();
+}
+
+int	exec_maker(t_minishell *m, char *line)
+{
+	return (0);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -55,6 +60,10 @@ int	main(int argc, char **argv, char **env)
 	{
 		line = readline("pasdebashing$ ");
 		add_history(line);
+		if (line)
+		{
+
+		}
 	}
 	builtin_exit(m.ve.minishell_var);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:03:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/05 17:25:05 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/06 16:29:18 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	**env_to_str(t_varenv *ve)
 		}
 		str[i] = malloc(sizeof(char) * envitem_len(ei));
 		if (!str[i])
-			return (builtin_exit(ve->minishell_var));
+			builtin_exit(ve->minishell_var);
 		fill_str(str[i], ei);
 		i++;
 		ei = ei->next;

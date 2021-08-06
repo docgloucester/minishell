@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 22:49:13 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/05 16:08:21 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/06 16:20:25 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "exec/exec.h"
 # include "varenv/varenv.h"
 # include "builtin/builtin.h"
+# include "cp/command_parsing.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <term.h>
