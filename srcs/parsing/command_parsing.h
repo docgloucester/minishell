@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 17:13:13 by tor               #+#    #+#             */
-/*   Updated: 2021/08/08 15:57:29 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/08 16:40:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int				lst_size(t_list *to_count);
 // void			free_command_container(t_cmd_cont *to_free);
 t_list			*command_id_create(char *value, int id);
 void			free_command_id(void *to_free);
+void			free_cmd(t_cmd_cont *to_free);
 
 void			print_command_container(t_cmd_cont *to_print);
 void			print_conmmand_id_lst(t_list *to_print);

@@ -55,6 +55,7 @@ int	exec_maker(t_minishell *m, char *line)
 	if (error_token(parsed->parsed_command))
 		return (1);
 	tmp = process_parsed_command(parsed);
+	free_cmd(parsed);
 	translated = translate_cmd(tmp);
 	while (translated)
 	{
@@ -62,9 +63,7 @@ int	exec_maker(t_minishell *m, char *line)
 		exec_builder(&m->ed, translated, pc->type, pc->pipe);
 		translated = translated->next;
 	}
-	free(parsed->source_command);
-	free(parsed);
-	return (1);
+	return (0);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -83,7 +82,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		line = readline("pasdebashing$ ");
 		add_history(line);
-		if (line && exec_maker(&m, line))
+		if (line && !exec_maker(&m, line))
 			m.ve.bin_return = exec_loop(m.ed, &m.ve);
 		break ;
 	}

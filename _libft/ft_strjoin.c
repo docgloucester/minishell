@@ -3,51 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 12:16:32 by nouchata          #+#    #+#             */
-/*   Updated: 2021/03/18 11:21:16 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/08 16:35:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strjoin_supp(const char **s1, const char **s2, char **res)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
-	int	y;
+	char	*r;
+	int		j;
 
-	i = -1;
-	while (*s1[++i])
-		*res[i] = *s1[i];
-	y = i;
-	i = -1;
-	while (*s2[++i])
-	{
-		*res[y] = *s2[i];
-		y++;
-	}
-	*res[y] = 0;
-}
-
-char	*ft_strjoin(const char *s1, char const *s2)
-{
-	char			*res;
-	long			all;
-
-	all = -1;
-	if (s1 && s2)
-		all = ft_strlen(s1) + ft_strlen(s2);
-	if (all == -1)
-	{
-		res = malloc(0);
-		if (res)
-			return (res);
+	j = 0;
+	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	}
-	res = malloc((all + 1) * sizeof(char));
-	if (!res)
+	if (!(r = (char *)malloc(sizeof(char)
+		* (ft_strlen(s1) + ft_strlen(s2) + 1))))
 		return (NULL);
-	ft_strjoin_supp(&s1, &s2, &res);
-	return (res);
+	while (*s1)
+	{
+		r[j] = *s1;
+		s1++;
+		j++;
+	}
+	while (*s2)
+	{
+		r[j] = *s2;
+		s2++;
+		j++;
+	}
+	r[j] = '\0';
+	return (r);
 }
