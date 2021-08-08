@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:58:03 by nouchata          #+#    #+#             */
-/*   Updated: 2021/03/18 12:50:04 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/06/29 20:47:19 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ char	*pr_make_arg(char c, t_flags f, va_list ap)
 	return (res);
 }
 
+int	pr_parsing_supp(const char *str, int it)
+{
+	return (str[it] != 'c' && str[it] != 's' && str[it] != 'p' && str[it] != \
+	 'i' && str[it] != 'd' && str[it] != 'u' && str[it] != 'x' && str[it] != \
+	  'X' && str[it] != '%');
+}
+
 int	pr_parsing(const char *str, va_list ap, int *p_char)
 {
 	int			it;
@@ -60,9 +67,7 @@ int	pr_parsing(const char *str, va_list ap, int *p_char)
 	it = pr_conversion_spec(&str[1]);
 	if (it == -1)
 		return (*p_char = -1);
-	if (str[it] != 'c' && str[it] != 's' && str[it] != 'p' && str[it] != \
-	 'i' && str[it] != 'd' && str[it] != 'u' && str[it] != 'x' && str[it] != \
-	  'X' && str[it] != '%')
+	if (pr_parsing_supp(str, it))
 	{
 		*p_char += pr_printchar(str, 1);
 		return (1);

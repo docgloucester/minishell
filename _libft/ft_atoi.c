@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 16:18:34 by nouchata          #+#    #+#             */
-/*   Updated: 2021/03/18 12:29:49 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/06/29 20:40:51 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,28 @@
 
 int	ft_atoi(const char *str)
 {
-	int			res;
-	int			i;
-	char		neg;
+	int			i[3];
 
-	i = 0;
-	res = 0;
-	neg = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' \
-	 || str[i] == '\r' || str[i] == '\v' || str[i] == '\f')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	i[0] = 0;
+	i[1] = 0;
+	i[2] = 0;
+	while (str[i[0]] == ' ' || str[i[0]] == '\t' || str[i[0]] == '\n' \
+	 || str[i[0]] == '\r' || str[i[0]] == '\v' || str[i[0]] == '\f')
+		i[0]++;
+	if (str[i[0]] == '-' || str[i[0]] == '+')
 	{
-		if (str[i] == '-')
-			neg++;
-		i++;
+		if (str[i[0]] == '-')
+			i[2]++;
+		i[0]++;
 	}
-	if (neg && ft_strncmp(&str[i], "2147483648", 0))
+	if (i[2] && ft_strncmp(&str[i[0]], "2147483648", 0))
 		return (-2147483648);
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i[0]] >= '0' && str[i[0]] <= '9')
 	{
-		res = res * 10 + (str[i] - 48);
-		i++;
+		i[1] = i[1] * 10 + (str[i[0]] - 48);
+		i[0]++;
 	}
-	if (neg)
-		return (-res);
-	return (res);
+	if (i[2])
+		return (-i[1]);
+	return (i[1]);
 }
