@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:13:20 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/08 16:47:25 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/08 20:24:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	**var_value_finder(t_varenv *ve, char *var_name, char malloc_str)
 	ei = ve->envtab;
 	while (ei)
 	{
-		if (!ft_strncmp(ei->name, var_name, 0))
+		if (var_name && !ft_strncmp(ei->name, var_name, 0))
 		{
 			if (malloc_str)
 			{

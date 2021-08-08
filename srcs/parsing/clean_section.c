@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 14:56:12 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/08 20:11:25 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/08 20:52:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 char	*env_transaltion_d_quotes(char * to_translate, t_varenv *ve)
 {
-	char	*begin;
-	char	*end;
+	// char	**parsed;
 
-	
-
+	(void)to_translate;
+	(void)ve;
+	return (NULL);
 }
 
 void	clean_backslash(t_command_id *to_clean)
@@ -37,14 +37,15 @@ void	clean_quotes(t_command_id *to_clean, t_varenv *ve)
 	tmp = to_clean->value;
 	if (to_clean->id == QUOTES_S)
 	{
-		// to_clean->value = ft_strtrim(to_clean->value, "'");
+		to_clean->value = ft_strtrim(to_clean->value, "'");
 		free(tmp);
 	}
 	if (to_clean->id == QUOTES_D)
 	{
-		//env_translation
 		to_clean->value = ft_strtrim(to_clean->value, "\"");
 		free(tmp);
+		tmp = to_clean->value;
+		to_clean->value = env_transaltion_d_quotes(to_clean->value, ve);
 	}
 }
 

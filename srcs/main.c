@@ -45,7 +45,7 @@ void sig_reset_prompt(int signal)
 
 int	exec_maker(t_minishell *m, char *line)
 {
-	t_cmd_cont     *parsed;
+	t_cmd_cont		*parsed;
 	t_list			**tmp;
 	t_list			*translated;
 	t_proc_command	*pc;
@@ -85,10 +85,11 @@ int	main(int argc, char **argv, char **env)
 	while (line)
 	{
 		line = readline("pasdebashing$ ");
-		add_history(line);
-		/*if (line && !*/exec_maker(&m, line);/*)
+		if (line && line[0] && !exec_maker(&m, line))
+		{
+			add_history(line);
 			m.ve.bin_return = exec_loop(m.ed, &m.ve);
-		break ;*/
+		}
 	}
 	builtin_exit(m.ve.minishell_var);
 	return (0);
