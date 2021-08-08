@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 17:44:18 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/08 11:03:04 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/08 20:01:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,15 @@ int	is_pipe(t_command_id *to_check)
 
 int	set_pipe(t_list **to_proc)
 {
-	t_list	*first;
-	t_list	*last;
-	t_list	*tmp;
-	int		ret;
+	t_list			*last;
 
-	first = (*to_proc);
 	last = ft_lstlast(*to_proc);
-	ret = 0;
-	if (is_pipe(first->content))
-	{
-		tmp = first->next;
-		// free_command_id(&first);
-		(*to_proc) = tmp;
-		ret = 1;
-	}
 	if (is_pipe(last->content))
-		ret = 1;
-	return (ret);
+	{
+		erase_last_commad_id_lst(*to_proc);
+		return (1);
+	}
+	return (0);
 }
 
 int	set_type_parsing(t_list *last)

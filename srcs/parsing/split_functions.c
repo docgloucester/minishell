@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:02:23 by tor               #+#    #+#             */
-/*   Updated: 2021/08/06 16:27:56 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/08 17:40:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	backslash_split(char *to_parse, char ***splited)
 
 	i = 1;
 	while (to_parse[i] && (ft_isascii(to_parse[i])
-			&& !(is_white_space(to_parse[i]))))
+			&& !(is_white_space(to_parse[i])) && !(is_special_char_command(to_parse[i]))))
 		i++;
 	tmp = ft_strdup(to_parse);
 	tmp[i] = 0;

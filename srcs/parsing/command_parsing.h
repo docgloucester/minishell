@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 17:13:13 by tor               #+#    #+#             */
-/*   Updated: 2021/08/08 16:40:57 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/08 20:06:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ void			free_cmd(t_cmd_cont *to_free);
 
 void			print_command_container(t_cmd_cont *to_print);
 void			print_conmmand_id_lst(t_list *to_print);
-void			print_proc_command_lst(t_list *to_print);
-void			print_proc_command_lst(t_list *to_print);
+void	print_proc_cmd_lst(t_list *to_print);
 void			print_str_table(char **to_print);
 
 t_list			**process_parsed_command(t_cmd_cont *command_parsed);
@@ -98,7 +97,7 @@ int				check_sep(int *exec_name_set);
 
 void			malloc_protected(void *to_alloc, size_t size);
 void			clean_backslash(t_command_id *to_clean);
-void			clean_quotes(t_command_id *to_clean);
+void			clean_quotes(t_command_id *to_clean, t_varenv *env);
 void			clean_section(t_list **to_clean, void *m);
 void			exec_cleaner(void *m, t_list **to_clean);
 
@@ -107,5 +106,7 @@ void			free_translate(t_list *to_free);
 void			go_to_sep(t_list **to_translate);
 void			create_cmd_lst(t_list **lst, t_list *to_trans);
 t_proc_command	*create_proc_command(t_list *to_translate);
+void			free_lst_lst(t_list **to_free);
+void			free_proc_cmd_lst(t_list *to_free);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 13:05:46 by tor               #+#    #+#             */
-/*   Updated: 2021/08/08 11:06:42 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/08 16:52:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,15 @@ void	print_proc_cmd_lst(t_list *to_print)
 	t_proc_command	*cast;
 	t_list			*tmp;
 
-	//printf("TRANSLATED\n");
+	printf("TRANSLATED\n");
 	while (to_print)
 	{
 		cast = to_print->content;
-		//printf("\tPIPE : %d\tKIND : %d\nStr\n", cast->pipe, cast->type);
-		//print_str_table(cast->cmd);
-		//print_conmmand_id_lst(cast->subsection);
+		printf("\tPIPE : %d\tKIND : %d\nStr\n", cast->pipe, cast->type);
+		print_str_table(cast->cmd);
+		print_conmmand_id_lst(cast->subsection);
 		tmp = to_print;
 		to_print = to_print->next;
-		free_str_table(cast->cmd);
-		xxxxx(cast->subsection);
-		free(cast);
-		free(tmp);
 	}
 }
 

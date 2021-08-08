@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_struct_debug.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 11:18:06 by tor               #+#    #+#             */
-/*   Updated: 2021/08/06 16:28:13 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/08 17:20:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,37 @@ void	print_conmmand_id_lst(t_list *to_print)
 	}
 }
 
-void	print_proc_command_lst(t_list *to_print)
-{
-	t_list			*cursor;
-	t_proc_command	*cast;
-	int				i;
+// void	print_proc_command_lst(t_list *to_print)
+// {
+// 	t_list			*cursor;
+// 	t_proc_command	*cast;
+// 	int				i;
 
-	cursor = to_print;
-	while (cursor)
+// 	cursor = to_print;
+// 	while (cursor)
+// 	{
+// 		cast = cursor->content;
+// 		printf("TR: \tcmd\n");
+// 		i = -1;
+// 		while (cast->cmd[++i])
+// 			printf("\t%s\n", cast->cmd[i]);
+// 		printf("type : %d\tpipe: %d\n", cast->type, cast->pipe);
+// 		cursor = cursor->next;
+// 	}
+// }
+
+void	print_proc_cmd_lst(t_list *to_print)
+{
+	t_proc_command	*cast;
+
+	printf("TRANSLATED\n");
+	while (to_print)
 	{
-		cast = cursor->content;
-		printf("TR: \tcmd\n");
-		i = -1;
-		while (cast->cmd[++i])
-			printf("\t%s\n", cast->cmd[i]);
-		printf("type : %d\tpipe: %d\n", cast->type, cast->pipe);
-		cursor = cursor->next;
+		cast = to_print->content;
+		printf("\tPIPE : %d\tKIND : %d\nStr\n", cast->pipe, cast->type);
+		print_str_table(cast->cmd);
+		print_conmmand_id_lst(cast->subsection);
+		to_print = to_print->next;
 	}
 }
 

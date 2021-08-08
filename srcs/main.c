@@ -51,18 +51,21 @@ int	exec_maker(t_minishell *m, char *line)
 	t_proc_command	*pc;
 
 	parsed = command_parsing(line);
-	print_conmmand_id_lst(parsed->parsed_command);
 	if (error_token(parsed->parsed_command))
+	{
+		free_cmd(parsed);
 		return (1);
+	}
 	tmp = process_parsed_command(parsed);
-	free_cmd(parsed);
 	translated = translate_cmd(tmp);
+	free_lst_lst(tmp);
 	while (translated)
 	{
 		pc = translated->content;
 		exec_builder(&m->ed, translated, pc->type, pc->pipe);
 		translated = translated->next;
 	}
+	free_cmd(parsed);
 	return (0);
 }
 
@@ -73,7 +76,8 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argv;
 	(void)argc;
-	m.ed = NULL;
+	ft_memset(&m, 0, sizeof(t_minishell));
+	// m.ed = NULL;
 	m.ve = varenv_construct(&m, env);
 	m.ve.env_to_str = env_to_str(&m.ve);
 	line = "echo $PATH";
@@ -82,9 +86,9 @@ int	main(int argc, char **argv, char **env)
 	{
 		line = readline("pasdebashing$ ");
 		add_history(line);
-		if (line && !exec_maker(&m, line))
+		/*if (line && !*/exec_maker(&m, line);/*)
 			m.ve.bin_return = exec_loop(m.ed, &m.ve);
-		break ;
+		break ;*/
 	}
 	builtin_exit(m.ve.minishell_var);
 	return (0);

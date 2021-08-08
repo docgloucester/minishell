@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:46:20 by tor               #+#    #+#             */
-/*   Updated: 2021/08/06 16:27:14 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/08 17:34:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	id_command(char *value, int *exec_name_set, char *next, t_list *last)
 	if (value[0] && ft_isalnum(value[0]))
 		return (ARG);
 	if (value[0] == ' ' && ((next && is_sep_command(next[0]))
-			|| (c && (c->id == EXEC_NAME || c->id == SEP))))
+			|| (c && c->id == SEP)))
 		return (TO_FREE);
 	else if (value[0] == ' ')
 		return (END_OF_ARG);
