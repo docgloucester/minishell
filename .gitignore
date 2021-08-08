@@ -1,6 +1,10 @@
 */*.a
 *.a
 minishell
-*/*.o
+**/*.o
 *.o
+**/*.d
+*.d
 .vscode
+.devcontainer
+./obj

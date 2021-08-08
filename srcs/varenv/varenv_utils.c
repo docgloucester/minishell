@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   varenv_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:42:51 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/19 11:55:14 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/08 15:36:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	search_char(char *str, char c, int returnlength)
 {
 	int	i;
-	int	y;
 
 	i = 0;
-	y = 0;
 	if (!str)
 		return (-1);
 	while (str[i] && str[i] != c)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   process_parsed_command_utils.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 17:45:56 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/06 16:27:45 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/08 10:59:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "../minishell.h"
+#include "command_parsing.h"
 
 void	erase_last_commad_id_lst(t_list *lst)
 {
@@ -26,7 +26,6 @@ void	erase_last_commad_id_lst(t_list *lst)
 		first = first->next;
 		second = second->next;
 	}
-	// free_command_id(&second);
 	first->next = NULL;
 }
 

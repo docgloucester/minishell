@@ -38,31 +38,31 @@ int	is_white_space(char c)
 	return (0);
 }
 
-char	**ft_insert_str(int insert, char **to_realloc, char *to_insert)
+char	**ft_insert_str(int index, char **realloc, char *insert)
 {
 	int		len;
 	int		i;
 	int		j;
 	char	**tmp;
 
-	len = str_table_size(to_realloc) + 1;
-	tmp = to_realloc;
+	len = str_table_size(realloc) + 1;
+	tmp = realloc;
 	i = 0;
 	j = 0;
-	to_realloc = malloc(sizeof(char *) * (len + 1));
-	if (!to_realloc)
+	realloc = malloc(sizeof(char *) * (len + 1));
+	if (!realloc)
 		exit(1);
-	to_realloc[len] = NULL;
+	realloc[len] = NULL;
 	if (!tmp)
-		to_realloc[i++] = to_insert;
+		realloc[i++] = insert;
 	while (i < len)
 	{
-		if (i == insert)
-			to_realloc[i++] = to_insert;
-		to_realloc[i++] = tmp[j++];
+		if (i == index)
+			realloc[i++] = insert;
+		realloc[i++] = tmp[j++];
 	}
 	free(tmp);
-	return (to_realloc);
+	return (realloc);
 }
 
 void	free_str_table(char **to_free)

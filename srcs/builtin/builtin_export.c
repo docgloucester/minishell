@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 18:33:14 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/25 12:50:04 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/08 15:40:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	builtin_export_alphasort(t_envitem **sorted, int count)
 	}
 }
 
-t_envitem	**builtin_export_alphafinder(t_execdata *d, t_varenv *ve)
+t_envitem	**builtin_export_alphafinder(t_varenv *ve)
 {
 	int			i;
 	t_envitem	**sorted;
@@ -73,14 +73,14 @@ t_envitem	**builtin_export_alphafinder(t_execdata *d, t_varenv *ve)
 	return (sorted);
 }
 
-int	builtin_export_print(t_execdata *d, t_varenv *ve)
+int	builtin_export_print(t_varenv *ve)
 {
 	t_envitem	**list;
 	char		**args;
 	int			i;
 
 	i = 0;
-	list = builtin_export_alphafinder(d, ve);
+	list = builtin_export_alphafinder(ve);
 	if (!list)
 		return (error_handler("export", NULL, 1));
 	while (list[i])
@@ -110,7 +110,7 @@ int	builtin_export(t_execdata *d, t_varenv *ve)
 	i = 0;
 	ret[1] = 0;
 	if (!d->cmd[1])
-		return (builtin_export_print(d, ve));
+		return (builtin_export_print(ve));
 	while (d->cmd[++i])
 	{
 		ret[0] = push_envitem(ve, d->cmd[i]);

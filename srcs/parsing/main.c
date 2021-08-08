@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 13:05:46 by tor               #+#    #+#             */
-/*   Updated: 2021/08/06 17:27:42 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/08 11:06:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,45 +54,9 @@ void	print_proc_cmd_lst(t_list *to_print)
 	}
 }
 
-void	free_command_id(void *to_free)
-{
-	t_command_id	*cast;
-
-	cast = to_free;
-	free(cast->value);
-	cast->value = NULL;
-}
-
 void	free_subsection(t_list *subsection)
 {
 	ft_lstclear(&subsection, &free_command_id);
-}
-
-void	free_proc_cmd(void *to_clean)
-{
-	t_proc_command	*cast;
-
-	cast = to_clean;
-	free_str_table(cast->cmd);
-	free_subsection(cast->subsection);
-	free(to_clean);
-
-}
-
-void	free_proc_cmd_lst(t_list *translated)
-{
-	// t_proc_command *cast;
-	// t_list *ls;
-
-	// ls = translated;
-	// cast = ls->content;
-	// while (ls)
-	// {
-	// 	printf("%s", cast->cmd[0]);
-	// 	ls = ls->next;
-	// 	cast = ls->content;
-	// }
-	ft_lstclear(&translated, &free_proc_cmd);
 }
 
 void	free_pp(t_list **list)

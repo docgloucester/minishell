@@ -117,7 +117,5 @@ t_cmd_cont	*command_parsing(char *command_line)
 	current_command->parsed_command = NULL;
 	current_command->source_command = ft_strdup(command_line);
 	current_command_process(current_command);
-	if (error_token(current_command->parsed_command))
-		exit(1); // add killer
 	return (current_command);
 }

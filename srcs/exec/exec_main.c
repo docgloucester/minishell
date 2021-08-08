@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:23:43 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/06 17:41:00 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/08 14:58:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	exec_ret(t_execdata *d)
 int	exec_loop(t_execdata *d, t_varenv *ve)
 {
 	t_execdata	*first;
-	pid_t		pid;
+	// pid_t		pid;
 	int			status;
 
 	status = 0;

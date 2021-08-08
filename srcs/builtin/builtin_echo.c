@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 13:01:01 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/25 13:21:21 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/08 15:41:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		builtin_echo_check_option(char *str)
 	return (1);
 }
 
-int		builtin_echo(t_execdata *d, t_varenv *ve)
+int		builtin_echo(t_execdata *d)
 {
 	char	c;
 	int		i;

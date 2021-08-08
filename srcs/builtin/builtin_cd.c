@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cleaner.c                                     :+:      :+:    :+:   */
+/*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/05 13:04:42 by marvin            #+#    #+#             */
-/*   Updated: 2021/08/06 17:53:01 by nouchata         ###   ########.fr       */
+/*   Created: 2021/07/17 15:34:12 by nouchata          #+#    #+#             */
+/*   Updated: 2021/08/08 15:37:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "../minishell.h"
 
-void	exec_cleaner(void *m, t_list **to_clean)
+int	builtin_cd(t_execdata *d)
 {
-	t_list			*cursor;
-	t_proc_command	*cast;
+	int		ret;
 
-	cursor = *to_clean;
-	while (cursor)
-	{
-		cast = cursor->content;
-		clean_section(&(cast->subsection), m);
-		cast->cmd = create_cmd(cast->subsection);
-		cursor = cursor->next;
-	}
+	ret = 0;
+	if (!d->cmd[1] || !ft_strlen(d->cmd[1]))
+		return (0);
+	ret = chdir(d->cmd[1]);
+	if (ret == -1)
+		return (error_handler("cd", d->cmd[1], 1));
+	return (0);
 }
