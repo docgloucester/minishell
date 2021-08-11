@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 14:56:12 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/08 20:52:32 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/09 11:04:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ void	clean_quotes(t_command_id *to_clean, t_varenv *ve)
 	}
 }
 
-void	clean_section(t_list **to_clean, void *m)
+void	clean_section(t_list *to_clean, void *m)
 {
 	t_list			*cursor;
 	t_command_id	*cast;
 	char			**var;
 	t_minishell		*minishell;
 
-	cursor = *to_clean;
+	cursor = to_clean;
 	minishell = m;
 	while (cursor)
 	{
@@ -65,11 +65,11 @@ void	clean_section(t_list **to_clean, void *m)
 			clean_quotes(cast, &(minishell->ve));
 		if (cast->id == BACKSLASH)
 			clean_backslash(cast);
-		if (cast->id == ENV)
+		if (cast->id == ENV && ft_strlen(cast->value) > 1)
 		{
 			var = var_value_finder(&(minishell->ve), &cast->value[1], 1);
 			free(cast->value);
-			cast->value = var[0];
+			cast->value = ft_strdup(var[0]);
 			free(var);
 		}
 		cursor = cursor->next;

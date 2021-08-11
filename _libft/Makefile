@@ -67,7 +67,7 @@ PR_SRCS	=	./ftpr/ft_printf.c \
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra -g
 
 OBJS	=	${SRCS:.c=.o}
 

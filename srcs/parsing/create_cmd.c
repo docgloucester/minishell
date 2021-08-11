@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 15:01:37 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/06 18:09:22 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/09 11:02:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,20 @@ int	count_cmd_size(t_list *to_count)
 {
 	t_command_id	*cast;
 	int				i;
-	int				is_same_arg;
+	// int				is_same_arg;
 
-	cast = to_count->content;
+	cast = NULL;
+	if (to_count)
+		cast = to_count->content;
 	i = 0;
-	is_same_arg = 0;
+	// is_same_arg = 0;
 	if (cast->id == SEP)
 		to_count = to_count->next;
 	while (to_count && cast->id != SEP)
 	{
 		cast = to_count->content;
-		if (cast->id == BINARY || (cast->id == ARG && !is_same_arg))
-			i++;
-		if (cast->id == ARG)
-			is_same_arg = 1;
 		if (cast->id == END_OF_ARG)
-			is_same_arg = 0;
+			i++;
 		to_count = to_count->next;
 	}
 	return (i + 1);
@@ -75,11 +73,6 @@ char	**create_cmd(t_list *to_translate)
 		exit(1);
 	i = 0;
 	cast = to_translate->content;
-	if (cast->id == EXEC_NAME)
-	{
-		cmd[i++] = ft_strdup(cast->value);
-		to_translate = to_translate->next;
-	}
 	while (i < size && to_translate && cast->id != SEP)
 	{
 		cast = to_translate->content;

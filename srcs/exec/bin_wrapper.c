@@ -49,6 +49,7 @@ int	search_in_path(t_execdata *d, t_varenv *ve)
 	int		i;
 	DIR*	dir;
 
+	// debug_execdata(d);
 	if (ft_strchr(d->cmd[0], '/'))
 		return (0);
 	paths = var_value_finder(ve, "PATH", 0);

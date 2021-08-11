@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 11:18:06 by tor               #+#    #+#             */
-/*   Updated: 2021/08/08 17:20:15 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/09 15:52:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,16 @@ void	print_proc_cmd_lst(t_list *to_print)
 	t_proc_command	*cast;
 
 	printf("TRANSLATED\n");
+	if (!to_print)
+		printf("EMPTYYYY!!!\n");
 	while (to_print)
 	{
 		cast = to_print->content;
 		printf("\tPIPE : %d\tKIND : %d\nStr\n", cast->pipe, cast->type);
 		print_str_table(cast->cmd);
-		print_conmmand_id_lst(cast->subsection);
+		// printf("ICI\n");
+			// printf("Autre addresse %p\n", cast->subsection);
+			print_conmmand_id_lst(cast->subsection);
 		to_print = to_print->next;
 	}
 }
@@ -89,3 +93,18 @@ void	print_str_table(char **to_print)
 			printf("!%s!\n", to_print[i]);
 	}
 }
+
+void debug_execdata(t_execdata * data)
+{
+	printf("===== EXECDATA =====\n");
+	while (data)
+	{
+		printf("++ NODE ++\n");
+		print_conmmand_id_lst(data->stocked_list);
+		printf("type : %d\n", data->type);
+		print_str_table(data->cmd);
+		printf("pipe_on : %d\n", data->pipe_on);
+		data = data->next;
+	}
+} 
+

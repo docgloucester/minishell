@@ -13,7 +13,7 @@
 .SUFFIXES:
 
 CC	=		gcc
-CFLAGS	=	-Wall -Werror -Wextra -MMD
+CFLAGS	=	-Wall -Werror -Wextra -MMD -g3
 NAME	=		minishell
 RM	=		rm -rf
 
@@ -122,6 +122,12 @@ fclean:		clean
 			$(RM) $(OBJ_PATH)
 			$(RM) $(DEPS)
 			@echo "✨✨ all cleaned ✨✨"
+
+run:		$(NAME)
+			./minishell
+
+vg:			$(NAME)
+			valgrind --track-origins=yes ./minishell
 
 re:			fclean all
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:12:27 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/06 16:51:28 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/09 16:27:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	exec_builder(t_execdata **d, t_list *parsed, t_exectype type, char pipe)
 		current = current->next;
 	new->type = type;
 	new->cmd = NULL;
+	new->pipes[0] = 0;
+	new->pipes[1] = 0;
 	ft_close(new->pipes, 2);
 	new->stocked_list = parsed;
 	new->pipe_on = pipe;

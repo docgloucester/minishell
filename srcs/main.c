@@ -49,6 +49,7 @@ int	exec_maker(t_minishell *m, char *line)
 	t_list			**tmp;
 	t_list			*translated;
 	t_proc_command	*pc;
+	t_list			*cursor;
 
 	parsed = command_parsing(line);
 	if (error_token(parsed->parsed_command))
@@ -57,15 +58,23 @@ int	exec_maker(t_minishell *m, char *line)
 		return (1);
 	}
 	tmp = process_parsed_command(parsed);
+	// ft_lstclear(&(parsed->parsed_command), &free_command_id);
 	translated = translate_cmd(tmp);
-	free_lst_lst(tmp);
-	while (translated)
+	// print_proc_cmd_lst(translated);
+	// print_proc_cmd_lst(translated);
+	cursor = translated;
+	while (cursor)
 	{
-		pc = translated->content;
-		exec_builder(&m->ed, translated, pc->type, pc->pipe);
-		translated = translated->next;
+		pc = cursor->content;
+		// print_conmmand_id_lst(pc->subsection);
+		exec_builder(&m->ed, pc->subsection, pc->type, pc->pipe);
+		// printf("pre\n");
+		// printf("post\n");
+		// printf("AFTER\n");
+		// print_proc_cmd_lst(m->ed->stocked_list);
+		cursor = cursor->next;
 	}
-	free_cmd(parsed);
+	// free_lst_lst(tmp);
 	return (0);
 }
 
@@ -77,18 +86,19 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	(void)argc;
 	ft_memset(&m, 0, sizeof(t_minishell));
-	// m.ed = NULL;
+	m.ed = NULL;
 	m.ve = varenv_construct(&m, env);
 	m.ve.env_to_str = env_to_str(&m.ve);
-	line = "echo $PATH";
 	signal(SIGINT, &sig_reset_prompt);
+	line = "";
 	while (line)
 	{
 		line = readline("pasdebashing$ ");
 		if (line && line[0] && !exec_maker(&m, line))
 		{
-			add_history(line);
+			// print_proc_cmd_lst(m.ed->stocked_list);
 			m.ve.bin_return = exec_loop(m.ed, &m.ve);
+			add_history(line);
 		}
 	}
 	builtin_exit(m.ve.minishell_var);

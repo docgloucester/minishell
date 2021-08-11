@@ -98,8 +98,8 @@ int				check_sep(int *exec_name_set);
 void			malloc_protected(void *to_alloc, size_t size);
 void			clean_backslash(t_command_id *to_clean);
 void			clean_quotes(t_command_id *to_clean, t_varenv *env);
-void			clean_section(t_list **to_clean, void *m);
-void			exec_cleaner(void *m, t_list **to_clean);
+void			clean_section(t_list *to_clean, void *m);
+void			exec_cleaner(void *m, t_execdata **to_clean);
 
 char			**create_cmd(t_list *to_translate);
 void			free_translate(t_list *to_free);
@@ -108,5 +108,7 @@ void			create_cmd_lst(t_list **lst, t_list *to_trans);
 t_proc_command	*create_proc_command(t_list *to_translate);
 void			free_lst_lst(t_list **to_free);
 void			free_proc_cmd_lst(t_list *to_free);
+
+void debug_execdata(t_execdata * data);
 
 #endif
