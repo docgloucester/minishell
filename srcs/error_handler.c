@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/17 09:12:04 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 15:47:12 by nouchata         ###   ########.fr       */
+/*   Created: 2021/08/11 15:05:06 by marvin            #+#    #+#             */
+/*   Updated: 2021/08/11 15:06:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "minishell.h"
 
-int		error_handler(char *cmd, char *arg, int retval)
+int	error_handler(char *cmd, char *arg, int retval)
 {
 	write(2, "bash: ", 6);
 	if (cmd)

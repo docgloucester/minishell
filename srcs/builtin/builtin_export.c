@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 18:33:14 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/08 15:40:11 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/11 15:15:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "../minishell.h"
 
-int			builtin_export_is_asorted(t_envitem **sorted, int count)
+int	builtin_export_is_asorted(t_envitem **sorted, int count)
 {
 	int		i;
 

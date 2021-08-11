@@ -52,16 +52,16 @@ int	exec_maker(t_minishell *m, char *line)
 	t_list			*cursor;
 
 	parsed = command_parsing(line);
+	// print_conmmand_id_lst(parsed->parsed_command);
 	if (error_token(parsed->parsed_command))
 	{
+		printf("SHIIIT\n");
 		free_cmd(parsed);
 		return (1);
 	}
 	tmp = process_parsed_command(parsed);
 	// ft_lstclear(&(parsed->parsed_command), &free_command_id);
 	translated = translate_cmd(tmp);
-	// print_proc_cmd_lst(translated);
-	// print_proc_cmd_lst(translated);
 	cursor = translated;
 	while (cursor)
 	{
@@ -97,8 +97,8 @@ int	main(int argc, char **argv, char **env)
 		if (line && line[0] && !exec_maker(&m, line))
 		{
 			// print_proc_cmd_lst(m.ed->stocked_list);
-			m.ve.bin_return = exec_loop(m.ed, &m.ve);
 			add_history(line);
+			m.ve.bin_return = exec_loop(m.ed, &m.ve);
 		}
 	}
 	builtin_exit(m.ve.minishell_var);

@@ -6,19 +6,30 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 14:56:12 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/09 11:04:32 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/11 15:25:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*env_transaltion_d_quotes(char * to_translate, t_varenv *ve)
+char	*env_transaltion_d_quotes(char *to_translate, t_varenv *ve)
 {
-	// char	**parsed;
+	char	**split;
 
-	(void)to_translate;
+	split = ft_split(to_translate, '$');
+	// print_str_table(split);
 	(void)ve;
-	return (NULL);
+	return (split[0]);
+}
+
+char	*suppress_first_char(char *to_trim)
+{
+	char	*ret;
+
+	if (!to_trim)
+		return (NULL);
+	ret = ft_strdup(&to_trim[1]);
+	return (ret);
 }
 
 void	clean_backslash(t_command_id *to_clean)
@@ -26,26 +37,37 @@ void	clean_backslash(t_command_id *to_clean)
 	char	*tmp;
 
 	tmp = to_clean->value;
-	to_clean->value = ft_strtrim(to_clean->value, "\\");
+	to_clean->value = suppress_first_char(to_clean->value);
 	free(tmp);
 }
 
 void	clean_quotes(t_command_id *to_clean, t_varenv *ve)
 {
 	char	*tmp;
+	int		size;
 
 	tmp = to_clean->value;
+	size = 0;
+	if (ft_strlen(to_clean->value) >= 2)
+		size = ft_strlen(to_clean->value) - 2;
 	if (to_clean->id == QUOTES_S)
 	{
-		to_clean->value = ft_strtrim(to_clean->value, "'");
+		to_clean->value = suppress_first_char(to_clean->value);
+		to_clean->value[size] = 0;
 		free(tmp);
 	}
 	if (to_clean->id == QUOTES_D)
 	{
-		to_clean->value = ft_strtrim(to_clean->value, "\"");
+		if (size == 0)
+			to_clean->value = NULL;
+		else
+		{
+			to_clean->value = suppress_first_char(to_clean->value);
+			to_clean->value[size] = 0;
+		}
 		free(tmp);
-		tmp = to_clean->value;
-		to_clean->value = env_transaltion_d_quotes(to_clean->value, ve);
+		/*to_clean->value = */env_transaltion_d_quotes(to_clean->value, ve);
+		(void)ve;
 	}
 }
 

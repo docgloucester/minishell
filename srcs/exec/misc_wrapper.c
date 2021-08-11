@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:30:24 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/09 14:01:41 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/11 16:02:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	ft_kill(t_execdata *d, int sig, int retval)
 int	var_setter(t_execdata *d, t_varenv *ve)
 {
 	exec_cleaner(ve->minishell_var, &d);
+debug_execdata(d);
 	if (d->type == BINARY && search_in_path(d, ve) == -1)
 		return(error_handler(NULL, d->cmd[0], -1));
 	if (d->pipe_on)

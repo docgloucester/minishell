@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 13:01:01 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/08 15:41:01 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/11 15:12:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "../minishell.h"
 
-int		builtin_echo_check_option(char *str)
+int	builtin_echo_check_option(char *str)
 {
 	int		i;
 
@@ -30,7 +30,7 @@ int		builtin_echo_check_option(char *str)
 	return (1);
 }
 
-int		builtin_echo(t_execdata *d)
+int	builtin_echo(t_execdata *d)
 {
 	char	c;
 	int		i;

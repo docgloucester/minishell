@@ -45,16 +45,15 @@ int	special_char_split(char *to_parse, char ***splited)
 	return (i);
 }
 
-int	backslash_split(char *to_parse, char ***splited)
+int	backslash_split(char *to_par, char ***splited)
 {
 	int		i;
 	char	*tmp;
 
 	i = 1;
-	while (to_parse[i] && (ft_isascii(to_parse[i])
-			&& !(is_white_space(to_parse[i])) && !(is_special_char_command(to_parse[i]))))
+	while (to_par[i] && (ft_isascii(to_par[i]) && !(is_white_space(to_par[i]))))
 		i++;
-	tmp = ft_strdup(to_parse);
+	tmp = ft_strdup(to_par);
 	tmp[i] = 0;
 	*splited = ft_insert_str(str_table_size(*splited), *splited, tmp);
 	return (i);

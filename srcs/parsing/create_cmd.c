@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 15:01:37 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/09 11:02:36 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/11 15:50:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ int	count_cmd_size(t_list *to_count)
 {
 	t_command_id	*cast;
 	int				i;
-	// int				is_same_arg;
 
 	cast = NULL;
 	if (to_count)
 		cast = to_count->content;
 	i = 0;
-	// is_same_arg = 0;
 	if (cast->id == SEP)
 		to_count = to_count->next;
 	while (to_count && cast->id != SEP)
@@ -46,7 +44,9 @@ char	*create_arg(t_list **to_translate)
 	while (*to_translate && cast->id != END_OF_ARG && cast->id != SEP)
 	{
 		tmp = arg;
-		if (!arg)
+		if (!cast->value)
+			arg = NULL;
+		else if (!arg)
 			arg = ft_strdup(cast->value);
 		else if (arg)
 			arg = ft_strjoin(arg, cast->value);

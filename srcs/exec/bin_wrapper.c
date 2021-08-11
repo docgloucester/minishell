@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bin_wrapper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:29:34 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 15:47:45 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/11 15:45:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ int	search_in_path(t_execdata *d, t_varenv *ve)
 {
 	char	**paths;
 	int		i;
-	DIR*	dir;
+	DIR		*dir;
 
-	// debug_execdata(d);
 	if (ft_strchr(d->cmd[0], '/'))
 		return (0);
 	paths = var_value_finder(ve, "PATH", 0);
@@ -60,10 +59,10 @@ int	search_in_path(t_execdata *d, t_varenv *ve)
 		dir = opendir(paths[i]);
 		if (!dir)
 			continue ;
-		if(is_file_in_path(d->cmd[0], dir))
+		if (is_file_in_path(d->cmd[0], dir))
 		{
 			closedir(dir);
-			return(file_path_creator(d, paths[i]));
+			return (file_path_creator(d, paths[i]));
 		}
 		closedir(dir);
 	}

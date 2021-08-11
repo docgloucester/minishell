@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 16:03:20 by tor               #+#    #+#             */
-/*   Updated: 2021/08/08 20:03:19 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/11 15:53:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,28 @@ void	handle_semi_colon(t_list **to_proc)
 	}
 }
 
-t_list	*copy_cmd_id_lst(t_list **to_copy)
+t_list	*copy_cmd_id_lst(t_list **copy)
 {
 	t_list			*ret;
-	t_command_id	*cast;
+	t_command_id	*c;
 
-	cast = (*to_copy)->content;
-	if (is_pipe((*to_copy)->content))
-		*to_copy = (*to_copy)->next;
-	ret = ft_lstnew((*to_copy)->content);
-	if (*to_copy)
-		(*to_copy) = (*to_copy)->next;
-	if (*to_copy)
-		cast = (*to_copy)->content;
-	while ((*to_copy) && !is_command_id_value_sep(cast))
+	c = (*copy)->content;
+	if (is_pipe((*copy)->content))
+		*copy = (*copy)->next;
+	ret = ft_lstnew((*copy)->content);
+	if (*copy)
+		(*copy) = (*copy)->next;
+	if (*copy)
+		c = (*copy)->content;
+	while ((*copy) && !is_command_id_value_sep(c))
 	{
-		ft_lstadd_back(&ret, ft_lstnew(cast));
-		(*to_copy) = (*to_copy)->next;
-		if ((*to_copy))
-			cast = (*to_copy)->content;
+		ft_lstadd_back(&ret, ft_lstnew(c));
+		(*copy) = (*copy)->next;
+		if ((*copy))
+			c = (*copy)->content;
 	}
-	if (*to_copy && cast->id == SEP && is_command_id_value_sep((*to_copy)->content))
-		ft_lstadd_back(&ret, ft_lstnew(cast));
+	if (*copy && c->id == SEP && is_command_id_value_sep((*copy)->content))
+		ft_lstadd_back(&ret, ft_lstnew(c));
 	return (ret);
 }
 

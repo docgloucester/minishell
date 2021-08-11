@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_wrapper.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 14:01:29 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/17 17:15:31 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/11 15:18:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	builtin_wrapper(t_execdata *d, t_varenv *ve)
 	signal(SIGINT, SIG_DFL);
 	if (d->pipe_on)
 		if (pipe(d->pipes) == -1)
-			return(error_handler(NULL, d->cmd[0], -1));
+			return (error_handler(NULL, d->cmd[0], -1));
 	if (d->prec && d->prec->pipe_on)
 		ft_close(&d->prec->pipes[0], 1);
 	d->return_v = builtin_dispatcher(d, ve) << 8;
