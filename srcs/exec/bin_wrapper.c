@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bin_wrapper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:29:34 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/11 15:45:17 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 20:28:52 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	search_in_path(t_execdata *d, t_varenv *ve)
 	paths = var_value_finder(ve, "PATH", 0);
 	i = -1;
 	dir = NULL;
-	while (paths[++i])
+	while (paths && paths[++i])
 	{
 		dir = opendir(paths[i]);
 		if (!dir)
