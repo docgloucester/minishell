@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 15:01:37 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/11 15:50:54 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 13:22:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	count_cmd_size(t_list *to_count)
 	if (to_count)
 		cast = to_count->content;
 	i = 0;
-	if (cast->id == SEP)
+	if (cast && cast->id == SEP)
 		to_count = to_count->next;
 	while (to_count && cast->id != SEP)
 	{
@@ -72,7 +72,8 @@ char	**create_cmd(t_list *to_translate)
 	if (!cmd)
 		exit(1);
 	i = 0;
-	cast = to_translate->content;
+	if (to_translate)
+		cast = to_translate->content;
 	while (i < size && to_translate && cast->id != SEP)
 	{
 		cast = to_translate->content;

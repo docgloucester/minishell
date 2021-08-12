@@ -131,6 +131,9 @@ vg:			$(NAME)
 
 re:			fclean all
 
-.PHONY:		all clean fclean libft re
+readline:	
+			sudo apt update && sudo apt install libreadline-dev
+
+.PHONY:		all clean fclean libft re rn vg readline
 
 -include $(DEPS)

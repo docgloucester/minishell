@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 11:18:06 by tor               #+#    #+#             */
-/*   Updated: 2021/08/09 15:52:55 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 11:47:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,10 @@ void	print_proc_cmd_lst(t_list *to_print)
 		printf("EMPTYYYY!!!\n");
 	while (to_print)
 	{
+	printf("====NODE====\n");
 		cast = to_print->content;
 		printf("\tPIPE : %d\tKIND : %d\nStr\n", cast->pipe, cast->type);
 		print_str_table(cast->cmd);
-		// printf("ICI\n");
-			// printf("Autre addresse %p\n", cast->subsection);
 			print_conmmand_id_lst(cast->subsection);
 		to_print = to_print->next;
 	}

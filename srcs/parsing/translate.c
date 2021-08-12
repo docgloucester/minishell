@@ -6,11 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 17:14:19 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/09 14:19:51 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 13:57:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "../minishell.h"
+# include "../minishell.h"
 
 void	free_translate(t_list *to_free)
 {
@@ -33,7 +33,6 @@ void	free_to_split(t_list *to_free)
 	t_command_id	*cast;
 
 	cursor = to_free;
-	print_conmmand_id_lst(to_free);
 	while (cursor)
 	{
 		cast = cursor->content;
@@ -53,7 +52,8 @@ t_list	*split_builder_cmd(t_list *to_split)
 	if (cast->id == SEP)
 	{
 		to_split = to_split->next;
-		cast = to_split->content;
+		if (to_split)
+			cast = to_split->content;
 	}
 	while (to_split && cast->id != SEP)
 	{
@@ -76,8 +76,8 @@ t_proc_command	*create_proc_command(t_list *to_translate)
 	if (!ret)
 		exit(1);
 	ret->cmd = NULL;
-	ret->pipe = set_pipe(&to_translate);
 	ret->type = set_type_parsing(to_translate);
+	ret->pipe = set_pipe(to_translate);
 	ret->subsection = split_builder_cmd(to_translate);
 	return (ret);
 }

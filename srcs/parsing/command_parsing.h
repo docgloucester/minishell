@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 17:13:13 by tor               #+#    #+#             */
-/*   Updated: 2021/08/11 15:50:28 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 11:03:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int				count_sep_lst(t_list *to_count);
 t_proc_command	*proc_command_create(char **cmd, int type, int pipe);
 t_list			**split_lst(t_list *to_split);
 int				is_pipe(t_command_id *to_check);
-int				set_pipe(t_list **to_proc);
+int				set_pipe(t_list *to_proc);
 int				is_semi_colon(t_command_id *t);
 void			erase_last_commad_id_lst(t_list *lst);
 int				is_command_id_value_sep(t_command_id *t);

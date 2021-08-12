@@ -6,11 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 17:44:18 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/08 20:01:10 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 11:27:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "../minishell.h"
+# include "../minishell.h"
 
 void	free_command_id_element(t_list **to_free)
 {
@@ -24,21 +24,21 @@ void	free_command_id_element(t_list **to_free)
 
 int	is_pipe(t_command_id *to_check)
 {
-	if (to_check->id == SEP && !ft_strncmp(to_check->value, "|", 1))
+	if (to_check->id == SEP && ft_strncmp(to_check->value, ";", 1))
 		return (1);
 	return (0);
 }
 
-int	set_pipe(t_list **to_proc)
+int	set_pipe(t_list *to_proc)
 {
-	t_list			*last;
+	t_command_id	*cast;
 
-	last = ft_lstlast(*to_proc);
-	if (is_pipe(last->content))
-	{
-		erase_last_commad_id_lst(*to_proc);
+	cast = to_proc->content;
+	if (cast->id == SEP)
+		to_proc = to_proc->next;
+	go_to_sep(&to_proc);
+	if (to_proc && is_pipe(to_proc->content))
 		return (1);
-	}
 	return (0);
 }
 

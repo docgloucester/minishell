@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/12 10:52:45 by marvin            #+#    #+#             */
+/*   Updated: 2021/08/12 14:25:12 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "minishell.h"
 
 // int		main_test(int argc, char **argv, char **env)
@@ -52,7 +64,6 @@ int	exec_maker(t_minishell *m, char *line)
 	t_list			*cursor;
 
 	parsed = command_parsing(line);
-	// print_conmmand_id_lst(parsed->parsed_command);
 	if (error_token(parsed->parsed_command))
 	{
 		printf("SHIIIT\n");
@@ -60,14 +71,19 @@ int	exec_maker(t_minishell *m, char *line)
 		return (1);
 	}
 	tmp = process_parsed_command(parsed);
+	// int i = -1;
+	// while (tmp[++i])
+	// 	print_conmmand_id_lst(tmp[i]);
 	// ft_lstclear(&(parsed->parsed_command), &free_command_id);
 	translated = translate_cmd(tmp);
+	// print_proc_cmd_lst(translated);
 	cursor = translated;
 	while (cursor)
 	{
 		pc = cursor->content;
 		// print_conmmand_id_lst(pc->subsection);
 		exec_builder(&m->ed, pc->subsection, pc->type, pc->pipe);
+		// debug_execdata(m->ed);
 		// printf("pre\n");
 		// printf("post\n");
 		// printf("AFTER\n");
@@ -97,6 +113,7 @@ int	main(int argc, char **argv, char **env)
 		if (line && line[0] && !exec_maker(&m, line))
 		{
 			// print_proc_cmd_lst(m.ed->stocked_list);
+			debug_execdata(m.ed);
 			add_history(line);
 			m.ve.bin_return = exec_loop(m.ed, &m.ve);
 		}
