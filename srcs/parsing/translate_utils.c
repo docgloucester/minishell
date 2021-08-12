@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 17:44:18 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/12 16:37:14 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 18:34:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ int	set_type_parsing(t_list *last)
 		return (OUTPUT_D);
 	else if (c->id == SEP && !(ft_strncmp(c->value, "<<", ft_strlen(c->value))))
 		return (INPUT_D);
+	else if (is_builtin(c->value))
+		return (BUILTIN);
 	return (BINARY);
 }

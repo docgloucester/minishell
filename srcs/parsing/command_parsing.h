@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 17:13:13 by tor               #+#    #+#             */
-/*   Updated: 2021/08/12 11:03:19 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 18:34:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void			create_cmd_lst(t_list **lst, t_list *to_trans);
 t_proc_command	*create_proc_command(t_list *to_translate);
 void			free_lst_lst(t_list **to_free);
 void			free_proc_cmd_lst(t_list *to_free);
+void			find_builtin(t_execdata **to_clean);
+int				is_builtin(char *check);
 
 void debug_execdata(t_execdata *data);
 
