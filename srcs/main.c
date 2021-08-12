@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 10:52:45 by marvin            #+#    #+#             */
-/*   Updated: 2021/08/12 14:25:12 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 18:10:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,10 @@ int	main(int argc, char **argv, char **env)
 		if (line && line[0] && !exec_maker(&m, line))
 		{
 			// print_proc_cmd_lst(m.ed->stocked_list);
-			debug_execdata(m.ed);
 			add_history(line);
+			// debug_execdata(m.ed);
 			m.ve.bin_return = exec_loop(m.ed, &m.ve);
+			// exec_killer(m.ed);
 		}
 	}
 	builtin_exit(m.ve.minishell_var);

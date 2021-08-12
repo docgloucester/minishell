@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 17:44:18 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/12 11:27:23 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 16:37:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ int	set_pipe(t_list *to_proc)
 
 	cast = to_proc->content;
 	if (cast->id == SEP)
+	{
 		to_proc = to_proc->next;
+		if (to_proc)
+			cast = to_proc->content;
+	}
 	go_to_sep(&to_proc);
 	if (to_proc && is_pipe(to_proc->content))
 		return (1);

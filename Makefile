@@ -126,6 +126,9 @@ fclean:		clean
 run:		$(NAME)
 			./minishell
 
+run_s:		$(NAME)
+			sudo ./minishell
+
 vg:			$(NAME)
 			valgrind --track-origins=yes ./minishell
 
@@ -134,6 +137,6 @@ re:			fclean all
 readline:	
 			sudo apt update && sudo apt install libreadline-dev
 
-.PHONY:		all clean fclean libft re rn vg readline
+.PHONY:		all clean fclean libft re rn vg readline run
 
 -include $(DEPS)

@@ -6,20 +6,34 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 14:56:12 by lnoirot           #+#    #+#             */
-/*   Updated: 2021/08/11 15:25:09 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 18:22:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+// int		env_split(char *to_split)
+// {
+// 	int		i;
+
+// 	i = 0;
+// 	while (to_split[i])
+// 	{
+		
+// 	}
+// }
+
 char	*env_transaltion_d_quotes(char *to_translate, t_varenv *ve)
 {
-	char	**split;
+	// char	**split;
+	// int		i;
+	// int		len;
 
-	split = ft_split(to_translate, '$');
-	// print_str_table(split);
 	(void)ve;
-	return (split[0]);
+	(void)to_translate;
+	(void)ve;
+	// split = env_split();
+	return (NULL);
 }
 
 char	*suppress_first_char(char *to_trim)
@@ -64,6 +78,7 @@ void	clean_quotes(t_command_id *to_clean, t_varenv *ve)
 		{
 			to_clean->value = suppress_first_char(to_clean->value);
 			to_clean->value[size] = 0;
+			printf("TO_CLEAN %s\n", to_clean->value);
 		}
 		free(tmp);
 		/*to_clean->value = */env_transaltion_d_quotes(to_clean->value, ve);
@@ -91,8 +106,10 @@ void	clean_section(t_list *to_clean, void *m)
 		{
 			var = var_value_finder(&(minishell->ve), &cast->value[1], 1);
 			free(cast->value);
-			cast->value = ft_strdup(var[0]);
-			free(var);
+			if (var)
+				cast->value = var[0];
+			else
+				cast->value = ft_calloc(1, 1);
 		}
 		cursor = cursor->next;
 	}
