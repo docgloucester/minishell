@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 10:52:45 by marvin            #+#    #+#             */
-/*   Updated: 2021/08/12 14:25:12 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 20:09:57 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void sig_reset_prompt(int signal)
 	printf("\n");
 	(void)signal;
     rl_on_new_line();
-    rl_replace_line("", 0);
+    //rl_replace_line("", 0);
     rl_redisplay();
 }
 
@@ -96,26 +96,28 @@ int	exec_maker(t_minishell *m, char *line)
 
 int	main(int argc, char **argv, char **env)
 {
-	t_minishell m;
-	char	*line;
+	t_minishell		m;
+	char			*line;
 
 	(void)argv;
 	(void)argc;
-	ft_memset(&m, 0, sizeof(t_minishell));
 	m.ed = NULL;
 	m.ve = varenv_construct(&m, env);
 	m.ve.env_to_str = env_to_str(&m.ve);
-	signal(SIGINT, &sig_reset_prompt);
 	line = "";
 	while (line)
 	{
+		signal(SIGINT, &sig_reset_prompt);
 		line = readline("pasdebashing$ ");
 		if (line && line[0] && !exec_maker(&m, line))
 		{
 			// print_proc_cmd_lst(m.ed->stocked_list);
-			debug_execdata(m.ed);
+			// debug_execdata(m.ed);
 			add_history(line);
 			m.ve.bin_return = exec_loop(m.ed, &m.ve);
+			exec_killer(m.ed);
+			m.ed = NULL;
+			printf("x\n");
 		}
 	}
 	builtin_exit(m.ve.minishell_var);
