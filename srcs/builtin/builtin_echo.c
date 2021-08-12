@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 13:01:01 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/11 15:12:07 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/12 19:46:37 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	builtin_echo_check_option(char *str)
 	i = 1;
 	if (!str)
 		return (0);
-	if (str[0] != '-' && str[1] != 'n')
+	if (str[0] != '-' || str[1] != 'n')
 		return (0);
 	while (str[i])
 	{
