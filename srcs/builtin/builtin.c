@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:35:20 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/12 18:59:25 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/13 21:02:58 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	builtin_dispatcher(t_execdata *d, t_varenv *ve)
 	if (d && !ft_strncmp(d->cmd[0], "echo", 0))
 		return (builtin_echo(d));
 	if (d && !ft_strncmp(d->cmd[0], "exit", 0))
-		return (builtin_exit(ve->minishell_var));
+		return (builtin_exit(ve->minishell_var, &d->cmd[1]));
 	if (d && (!ft_strncmp(d->cmd[0], "export", 0) || \
 	!ft_strncmp(d->cmd[0], "unset", 0)))
 	{

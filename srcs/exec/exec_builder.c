@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:12:27 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/11 15:19:40 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/13 21:12:20 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,19 @@ int	exec_builder(t_execdata **d, t_list *parsed, t_exectype type, char pipe)
 
 int	exec_killer(t_execdata *d)
 {
-	t_execdata *next;
+	int			i;
+	t_execdata	*next;
 
 	next = NULL;
 	while (d)
 	{
+		i = 0;
+		while (d->cmd && d->cmd[i])
+		{
+			free(d->cmd[i]);
+			i++;
+		}
+		free(d->cmd);
 		if (d->pid)
 			kill(d->pid, SIGTERM);
 		ft_close(d->pipes, 2);

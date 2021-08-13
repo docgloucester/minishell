@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   varenv_construct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:57:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/11 15:10:43 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/13 20:42:10 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_varenv	varenv_construct(void *minishell_var, char **src)
 		y = varenv_extract(&ve, src[i]);
 		i++;
 		if (y == -1)
-			builtin_exit(minishell_var);
+			builtin_exit(minishell_var, NULL);
 	}
 	return (ve);
 }

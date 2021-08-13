@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 14:41:37 by nouchata          #+#    #+#             */
-/*   Updated: 2021/07/19 11:44:40 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/13 20:05:37 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int	push_envitem(t_varenv *ve, char *src)
 	y = search_char(src, '=', 1);
 	if (!ft_strlen(src) || src[0] == '=' || src[0] == ' ' || \
 	(search_char(src, ' ', 0) && y > search_char(src, ' ', 1)))
+		return (1);
+	if (src[0] >= '0' || src[0] <= '9')
 		return (1);
 	if (!y)
 		return (blank_var(ve, src));

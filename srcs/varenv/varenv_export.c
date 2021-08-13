@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   varenv_export.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:03:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/11 15:10:40 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/13 20:42:15 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	**env_to_str(t_varenv *ve)
 		}
 		str[i] = malloc(sizeof(char) * envitem_len(ei));
 		if (!str[i])
-			builtin_exit(ve->minishell_var);
+			builtin_exit(ve->minishell_var, NULL);
 		fill_str(str[i], ei);
 		i++;
 		ei = ei->next;

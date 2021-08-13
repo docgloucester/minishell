@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_wrapper.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 14:01:29 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/12 18:56:49 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/13 19:35:14 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	builtin_wrapper(t_execdata *d, t_varenv *ve)
 			return (error_handler(NULL, d->cmd[0], -1));
 	if (d->prec && d->prec->pipe_on)
 		ft_close(&d->prec->pipes[0], 1);
-	d->return_v = builtin_dispatcher(d, ve) << 8;
 	exec_cleaner(ve->minishell_var, &d);
+	d->return_v = builtin_dispatcher(d, ve) << 8;
 	if (d->pipe_on)
 		ft_close(&d->pipes[1], 1);
 	if (d->pipe_on)
