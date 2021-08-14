@@ -75,7 +75,7 @@ int	main(int argc, char **argv, char **env)
 		if (line && line[0] && !exec_maker(&m, line))
 		{
 			add_history(line);
-			// debug_execdata(m.ed);
+			debug_execdata(m.ed);
 			m.ve.bin_return = exec_loop(m.ed, &m.ve);
 
 			exec_killer(m.ed);

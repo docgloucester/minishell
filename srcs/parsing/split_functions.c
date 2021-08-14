@@ -49,11 +49,18 @@ int	backslash_split(char *to_par, char ***splited)
 {
 	int		i;
 	char	*tmp;
+	int		is_env;
 
 	i = 1;
-	if (is_special_char_command(to_par[i]))
+	is_env = 0;
+	if (to_par[0] == '$')
+		is_env = 1;
+	if (is_special_char_command(to_par[i]) && !is_env)
 		i++;
-	while (to_par[i] && (ft_isascii(to_par[i]) && !(is_white_space(to_par[i]))) && !is_special_char_command(to_par[i]))
+	while (is_env && to_par[i] && (ft_isascii(to_par[i]) &&
+		!(is_white_space(to_par[i]))) && !is_special_char_command(to_par[i]) && to_par[i] != D_QUOTES && to_par[i] != S_QUOTES && !is_sep_command(to_par[i]))
+		i++;
+	while (!is_env  && to_par[i] && (ft_isascii(to_par[i]) && !(is_white_space(to_par[i]))) && !is_special_char_command(to_par[i]))
 		i++;
 	tmp = ft_strdup(to_par);
 	tmp[i] = 0;
