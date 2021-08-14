@@ -61,7 +61,7 @@ char	**str_returnval(t_varenv *ve)
 	value = malloc(sizeof(char *) * 2);
 	if (!value)
 		return (NULL);
-	value[0] = ft_itoa(ve->bin_return);
+	value[0] = ft_itoa((unsigned char)ve->bin_return);
 	value[1] = NULL;
 	return (value);
 } 

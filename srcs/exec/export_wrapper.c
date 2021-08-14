@@ -68,6 +68,7 @@ int	export_wrapper(t_execdata *d, t_varenv *ve)
 	else
 	{
 		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		if (pipe_setter(d, 1) == -1)
 			exit(EXIT_FAILURE);
 		if (export_loop(d) == -1)

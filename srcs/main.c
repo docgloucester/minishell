@@ -67,17 +67,17 @@ int	main(int argc, char **argv, char **env)
 	m.ve = varenv_construct(&m, env);
 	m.ve.env_to_str = env_to_str(&m.ve);
 	line = "";
+	signal(SIGQUIT, SIG_IGN);
 	while (line)
 	{
 		signal(SIGINT, &sig_reset_prompt);
 		line = readline("pasdebashing$ ");
 		if (line && line[0] && !exec_maker(&m, line))
 		{
-			// print_proc_cmd_lst(m.ed->stocked_list);
-			// debug_execdata(m.ed);
 			add_history(line);
 			// debug_execdata(m.ed);
 			m.ve.bin_return = exec_loop(m.ed, &m.ve);
+
 			exec_killer(m.ed);
 			m.ed = NULL;
 		}

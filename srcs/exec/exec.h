@@ -57,7 +57,7 @@ int		bin_wrapper(t_execdata *d, t_varenv *ve);
 int		search_in_path(t_execdata *d, t_varenv *ve);
 int		export_wrapper(t_execdata *d, t_varenv *ve);
 int		import_wrapper(t_execdata *d, t_varenv *ve);
-int		interactive_wrapper(t_execdata *d, t_varenv *ve);
+int		interactive_wrapper(t_execdata *d, t_varenv *ve, int fdout);
 int		cmd_dispatcher(t_execdata *d, t_varenv *ve);
 int		exec_loop(t_execdata *d, t_varenv *ve);
 void	ft_close(int *fd, int size);

@@ -87,6 +87,7 @@ int	bin_wrapper(t_execdata *d, t_varenv *ve)
 	else
 	{
 		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		if (pipe_setter(d, 1) == -1)
 			exit(EXIT_FAILURE);
 		if (execve(d->cmd[0], d->cmd, ve->env_to_str) == -1)

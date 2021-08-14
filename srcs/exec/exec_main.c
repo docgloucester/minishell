@@ -24,7 +24,7 @@ int	cmd_dispatcher(t_execdata *d, t_varenv *ve)
 		if (import_wrapper(d, ve) < 0)
 			return (-1);
 	if (d && d->type == INPUT_D)
-		if (interactive_wrapper(d, ve) < 0)
+		if (interactive_wrapper(d, ve, 0) < 0)
 			return (-1);
 	if (d && d->type == BUILTIN)
 		if (builtin_wrapper(d, ve) < 0)
@@ -41,6 +41,8 @@ int	exec_ret(t_execdata *d)
 	{
 		if (WIFSIGNALED(d->return_v) && WTERMSIG(d->return_v) == 2)
 			return (130);
+		if (WIFSIGNALED(d->return_v) && WTERMSIG(d->return_v) == 3)
+			return (131);
 		if (d->type == BINARY || d->type == BUILTIN || ((d->type == OUTPUT || \
 		d->type == OUTPUT_D || d->type == INPUT) && WEXITSTATUS(d->return_v)))
 			ret = d;
@@ -48,6 +50,8 @@ int	exec_ret(t_execdata *d)
 	}
 	if (WIFSIGNALED(d->return_v) && WTERMSIG(d->return_v) == 2)
 		return (130);
+	if (WIFSIGNALED(d->return_v) && WTERMSIG(d->return_v) == 3)
+		return (131);
 	if (d->type == BINARY || d->type == BUILTIN || ((d->type == OUTPUT || \
 	d->type == OUTPUT_D || d->type == INPUT) && WEXITSTATUS(d->return_v)))
 		ret = d;
@@ -70,6 +74,8 @@ int	exec_loop(t_execdata *d, t_varenv *ve)
 		while (d && d->pipe_on)
 			d = d->next;
 		d = d->next;
+		if (exec_ret(first) == 131)
+			printf("Quit (core dumped)\n");
 	}
 	signal(SIGINT, SIG_DFL);
 	return (exec_ret(first));

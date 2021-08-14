@@ -14,7 +14,6 @@
 
 int	builtin_wrapper(t_execdata *d, t_varenv *ve)
 {
-	signal(SIGINT, SIG_DFL);
 	if (d->pipe_on)
 		if (pipe(d->pipes) == -1)
 			return (error_handler(NULL, d->cmd[0], -1));

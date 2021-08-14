@@ -75,6 +75,7 @@ int	import_wrapper(t_execdata *d, t_varenv *ve)
 	else
 	{
 		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		if (pipe_setter(d, 1) == -1)
 			exit(EXIT_FAILURE);
 		if (import_loop(d) == -1)
@@ -84,10 +85,8 @@ int	import_wrapper(t_execdata *d, t_varenv *ve)
 	return (0);
 }
 
-int	interactive_wrapper(t_execdata *d, t_varenv *ve)
+int	interactive_wrapper(t_execdata *d, t_varenv *ve, int fdout)
 {
-	int		fdout;
-
 	if (var_setter(d, ve) == -1)
 		return (-1);
 	if (d->pid)
@@ -104,6 +103,7 @@ int	interactive_wrapper(t_execdata *d, t_varenv *ve)
 	else
 	{
 		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		fdout = dup(STDOUT_FILENO);
 		if (pipe_setter(d, 1) == -1)
 			exit(EXIT_FAILURE);
