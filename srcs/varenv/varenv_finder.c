@@ -76,7 +76,7 @@ char	**var_value_finder(t_varenv *ve, char *var_name, char malloc_str)
 		return (str_returnval(ve));
 	while (ei)
 	{
-		if (var_name && !ft_strncmp(ei->name, var_name, 0))
+		if (var_name && !ft_strncmp(ei->name, var_name, 0) && ei->value_num)
 		{
 			if (malloc_str)
 			{
