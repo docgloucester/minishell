@@ -52,6 +52,7 @@ SRCS_B_LIST	=	$(addprefix $(SRCS_B_PATH), \
 					builtin.c \
 					builtin_cd.c \
 					builtin_export.c \
+					builtin_export_misc.c \
 					builtin_echo.c \
 					builtin_exit.c \
 					builtin_var.c \
