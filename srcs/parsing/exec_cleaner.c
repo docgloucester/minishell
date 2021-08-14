@@ -47,11 +47,8 @@ void	exec_cleaner(void *m, t_execdata **to_clean)
 	cursor = *to_clean;
 	while (cursor)
 	{
-		printf("THERE\n");
 		clean_section(cursor->stocked_list, m);
 		cursor->cmd = create_cmd(cursor->stocked_list);
-		print_str_table(cursor->cmd);
 		cursor = cursor->next;
 	}
-	// find_builtin(to_clean);
 }

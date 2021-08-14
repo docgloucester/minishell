@@ -51,7 +51,9 @@ int	backslash_split(char *to_par, char ***splited)
 	char	*tmp;
 
 	i = 1;
-	while (to_par[i] && (ft_isascii(to_par[i]) && !(is_white_space(to_par[i]))))
+	if (is_special_char_command(to_par[i]))
+		i++;
+	while (to_par[i] && (ft_isascii(to_par[i]) && !(is_white_space(to_par[i]))) && !is_special_char_command(to_par[i]))
 		i++;
 	tmp = ft_strdup(to_par);
 	tmp[i] = 0;
