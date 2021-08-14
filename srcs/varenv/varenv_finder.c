@@ -54,12 +54,26 @@ char	*value_to_str(char **value, int value_num)
 	return (str);
 }
 
+char	**str_returnval(t_varenv *ve)
+{
+	char		**value;
+
+	value = malloc(sizeof(char *) * 2);
+	if (!value)
+		return (NULL);
+	value[0] = ft_itoa(ve->bin_return);
+	value[1] = NULL;
+	return (value);
+} 
+
 char	**var_value_finder(t_varenv *ve, char *var_name, char malloc_str)
 {
 	char		**value;
 	t_envitem	*ei;
 
 	ei = ve->envtab;
+	if (!ft_strncmp(var_name, "?", 0))
+		return (str_returnval(ve));
 	while (ei)
 	{
 		if (var_name && !ft_strncmp(ei->name, var_name, 0))
