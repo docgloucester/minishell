@@ -36,18 +36,19 @@ int	builtin_echo(t_execdata *d)
 	int		i;
 
 	i = 1;
-	c = '\n';
+	c = 1;
 	if (builtin_echo_check_option(d->cmd[1]))
 		c = 0;
 	if (!c)
 		i++;
 	while (d->cmd[i])
 	{
-		printf("%s", d->cmd[i]);
+		print_builtin(d, d->cmd[i]);
 		if (d->cmd[i + 1])
-			printf(" ");
+			print_builtin(d, " ");
 		i++;
 	}
-	printf("%c", c);
+	if (c)
+		print_builtin(d, "\n");
 	return (0);
 }

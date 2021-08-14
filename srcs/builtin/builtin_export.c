@@ -73,7 +73,7 @@ t_envitem	**builtin_export_alphafinder(t_varenv *ve)
 	return (sorted);
 }
 
-int	builtin_export_print(t_varenv *ve)
+int	builtin_export_print(t_execdata *d, t_varenv *ve)
 {
 	t_envitem	**list;
 	char		**args;
@@ -85,17 +85,20 @@ int	builtin_export_print(t_varenv *ve)
 		return (error_handler("export", NULL, 1));
 	while (list[i])
 	{
-		printf("declare -x %s", list[i]->name);
+		print_builtin(d, "declare -x ");
+		print_builtin(d, list[i]->name);
 		if (list[i]->value_num)
 		{
 			args = var_value_finder(ve, list[i]->name, 1);
 			if (!args || !args[0])
 				return (error_handler("export", NULL, 1));
-			printf("=\"%s\"", args[0]);
+			print_builtin(d, "=\"");
+			print_builtin(d, args[0]);
+			print_builtin(d, "\"");
 			free(args[0]);
 			free(args);
 		}
-		printf("\n");
+		print_builtin(d, "\n");
 		i++;
 	}
 	free(list);
@@ -110,7 +113,7 @@ int	builtin_export(t_execdata *d, t_varenv *ve)
 	i = 0;
 	ret[1] = 0;
 	if (!d->cmd[1])
-		return (builtin_export_print(ve));
+		return (builtin_export_print(d, ve));
 	while (d->cmd[++i])
 	{
 		ret[0] = push_envitem(ve, d->cmd[i]);
