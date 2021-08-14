@@ -76,7 +76,7 @@ int	main(int argc, char **argv, char **env)
 			// print_proc_cmd_lst(m.ed->stocked_list);
 			// debug_execdata(m.ed);
 			add_history(line);
-			// debug_execdata(m.ed);
+			debug_execdata(m.ed);
 			m.ve.bin_return = exec_loop(m.ed, &m.ve);
 			exec_killer(m.ed);
 			m.ed = NULL;

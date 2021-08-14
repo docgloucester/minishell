@@ -77,7 +77,7 @@ void	translate_d_quotes_env(char **split, t_varenv *ve)
 			if (var)
 				split[i] = var[0];
 			else
-				split[i] = ft_strdup("");
+				split[i] = NULL;
 			free(tmp);
 		}
 	}
@@ -87,14 +87,20 @@ char	*join_d_quotes(char **to_join)
 {
 	int		i;
 	char	*join;
+	int		size;
 
 	i = 1;
+	size = str_table_size(to_join);
 	join = to_join[0];
-	while (to_join[i])
+	while (i < size)
 	{
-		join = ft_strjoin(join, to_join[i]);
+		if (to_join[i])
+			join = ft_strjoin(join, to_join[i]);
+		free(to_join[i]);
 		i++;
 	}
+	if (!join)
+		return (ft_strdup(""));
 	return (join);
 }
 
@@ -106,7 +112,7 @@ char	*env_transaltion_d_quotes(char *to_translate, t_varenv *ve)
 	split = split_d_quotes_env(to_translate);
 	translate_d_quotes_env(split, ve);
 	ret = join_d_quotes(split);
-	// free_str_table(split);
+	free(split);
 	return (ret);
 }
 
@@ -177,7 +183,7 @@ void	clean_section(t_list *to_clean, void *m)
 			if (var)
 				cast->value = var[0];
 			else
-				cast->value = ft_strdup("");
+				cast->value = NULL;
 		}
 		cursor = cursor->next;
 	}

@@ -23,7 +23,7 @@ int	count_cmd_size(t_list *to_count)
 	i = 0;
 	if (cast && cast->id == SEP)
 		to_count = to_count->next;
-	while (to_count && cast->id != SEP)
+	while (to_count && cast->value && cast->id != SEP)
 	{
 		cast = to_count->content;
 		if (cast->id == END_OF_ARG)
@@ -74,11 +74,12 @@ char	**create_cmd(t_list *to_translate)
 	i = 0;
 	if (to_translate)
 		cast = to_translate->content;
-	while (i < size && to_translate && cast->id != SEP)
+	while (/*i < size &&*/ to_translate && cast->id != SEP)
 	{
 		cast = to_translate->content;
 		cmd[i] = create_arg(&to_translate);
-		i++;
+		if (!(cast->id == ENV && !cmd[i]))
+			i++;
 	}
 	cmd[i] = NULL;
 	return (cmd);

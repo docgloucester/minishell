@@ -24,7 +24,7 @@ void	free_command_id_element(t_list **to_free)
 
 int	is_pipe(t_command_id *to_check)
 {
-	if (to_check->id == SEP && ft_strncmp(to_check->value, ";", 1))
+	if (to_check->id == SEP && ft_strncmp(to_check->value, ";", 1) && ft_strncmp(to_check->value, "<<", 2))
 		return (1);
 	return (0);
 }
@@ -36,6 +36,8 @@ int	set_pipe(t_list *to_proc)
 	cast = to_proc->content;
 	if (cast->id == SEP)
 	{
+		if (!ft_strncmp(cast->value, "<<", 2))
+			return (1);
 		to_proc = to_proc->next;
 		if (to_proc)
 			cast = to_proc->content;
