@@ -39,7 +39,7 @@ LIB_E =		${CTN}/exec/exec.a
 LIB_V =		${CTN}/varenv/varenv.a
 LIB_B =		${CTN}/builtin/builtin.a
 CC =		clang
-CFLAGS =	#-Wall -Werror -Wextra
+CFLAGS =	-g #-Wall -Werror -Wextra
 NAME =		minishell
 RM =		rm -f
 

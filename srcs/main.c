@@ -66,14 +66,15 @@ int	main(int argc, char **argv, char **env)
 	// char	*bin[] = {"cmd", "arg", NULL};
 	char *cat[] = {"cat", NULL};
 	/* (D)INPUT & (D)OUTPUT */
-	// char	*file = {"pathtofile", NULL};
+	char	*file[] = {"pathtofile", NULL};
 
 	m.ed = NULL;
 	m.ve = varenv_construct(&m, env);
 	m.ve.env_to_str = env_to_str(&m.ve);
 	line = "";
 
-	exec_builder(&m.ed, cat, BINARY, 0);
+	exec_builder(&m.ed, cat, BINARY, 1);
+	exec_builder(&m.ed, file, OUTPUT, 0);
 
 	m.ve.bin_return = exec_loop(m.ed, &m.ve);
 

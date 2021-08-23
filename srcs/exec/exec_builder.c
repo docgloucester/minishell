@@ -63,7 +63,7 @@ int	exec_killer(t_execdata *d)
 		// 	free(d->cmd[i]);
 		// 	i++;
 		// }
-		free(d->cmd);
+		// free(d->cmd);
 		if (d->pid)
 			kill(d->pid, SIGTERM);
 		ft_close(d->pipes, 2);
