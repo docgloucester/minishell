@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:10:46 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/23 14:29:45 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/23 16:02:46 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+int			ft_strlen(char *src);
 long		find_char_not_escaped(char *src, char c, int already_find);
-
+int			remove_spaces(char **src, int just_surround_spaces);
 
 # endif
