@@ -30,9 +30,8 @@ int	chunkadd(t_cmdchunk **chunklist, t_cmdchunk *new)
 {
 	t_cmdchunk	*chunk;
 
-	if (!(chunklist))
+	if (!(new))
 		return (0);
-printf("adding block with content %s\n", new->cmd);
 	if (*chunklist)
 	{
 		chunk = *chunklist;
@@ -42,6 +41,6 @@ printf("adding block with content %s\n", new->cmd);
 		chunk->next->prev = chunk;
 	}
 	else
-		*chunklist = new;
+		*chunklist = new;git 
 	return (1);
 }

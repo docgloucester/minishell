@@ -12,25 +12,29 @@
 
 #   include "parser.h"
 
-t_cmdchunk	*split_line(char *line)
+t_cmdchunk	*split_line_semicol(char *line)
 {
 	unsigned int	semicol_counter;
 	t_cmdchunk		*ret;
 	unsigned int	i;
-	long			a;
+	long			a[2];
 
 	semicol_counter = 0;
 	while (find_char_not_escaped(line, ';', semicol_counter) != -1)
 		semicol_counter++;
 	i = -1;
-	a = 0;
+	a[0] = 0;
+	ret = NULL;
 	while (++i < semicol_counter)
 	{
-		if (!(chunkadd(&ret, newchunk(ft_substr(line, a, find_char_not_escaped(&line[a], ';', 0)), SEMICO))))
+		a[1] = find_char_not_escaped(&line[a[0]], ';', 0);
+		if (!(chunkadd(&ret, newchunk(ft_substr(line, a[0] , a[1]), SEMICO))))
 			return (NULL);
-		a = find_char_not_escaped(&line[a], ';', 0) + 1;
+		a[0] += a[1] + 1;
 	}
-	if (!(chunkadd(&ret, newchunk(ft_substr(line, a, ft_strlen(line)), SEMICO))))
-			return (NULL);
+	a[1] = find_char_not_escaped(line, ';', semicol_counter - 1);
+	if (!(chunkadd(&ret,
+		newchunk(ft_substr(line, a[1] + 1, ft_strlen(line) - a[1]), SEMICO))))
+		return (NULL);
 	return ret;
 }
