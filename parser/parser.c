@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 		{
 			add_history(line);
 			//printf("%s\n%ld\n", line, find_char_not_escaped(line, '$', 4));
-			printf("[%s]\n%d\n", line, remove_spaces(&line, 0));
+			printf("[%s]\n%d\n", line, remove_spaces(&line, 1));
 		}
 	}
 	return (0);

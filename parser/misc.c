@@ -12,16 +12,6 @@
 
 #	include "parser.h"
 
-int		ft_strlen(char *src)
-{
-	int		i;
-
-	i = 0;
-	while (src[i])
-		i++;
-	return (i);
-}
-
 long	find_char_not_escaped(char *src, char c, int already_find)
 {
 	long	i;

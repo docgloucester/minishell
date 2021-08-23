@@ -103,8 +103,9 @@ int		remove_spaces(char **src, int just_surround_spaces)
 		return (-1);
 	new[ft_strlen(*src) - spaces] = 0;
 	wout_spaces_filler(new, *src, just_surround_spaces);
-	// printf("{%s}\n", new);
-	free(*src);
-	*src = new;
+	printf("{%s}\n", new);
+	free(new);
+	// free(*src);
+	// *src = new;
 	return (0);
 }

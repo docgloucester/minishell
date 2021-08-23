@@ -22,7 +22,7 @@ NAME = parser
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-			@${CC} ${FLAGS} -o ${NAME} ${OBJS} -lreadline
+			@${CC} ${FLAGS} -o ${NAME} ${OBJS} ../_libft/libft.a -lreadline
 			@echo "DONE"
 
 clean:
