@@ -51,18 +51,18 @@ int	exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe)
 
 int	exec_killer(t_execdata *d)
 {
-	int			i;
+	// int			i;
 	t_execdata	*next;
 
 	next = NULL;
 	while (d)
 	{
-		i = 0;
-		while (d->cmd && d->cmd[i])
-		{
-			free(d->cmd[i]);
-			i++;
-		}
+		// i = 0;
+		// while (d->cmd && d->cmd[i])
+		// {
+		// 	free(d->cmd[i]);
+		// 	i++;
+		// }
 		free(d->cmd);
 		if (d->pid)
 			kill(d->pid, SIGTERM);
