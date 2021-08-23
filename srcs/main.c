@@ -23,36 +23,7 @@ void sig_reset_prompt(int signal)
 
 int	exec_maker(t_minishell *m, char *line)
 {
-	t_cmd_cont		*parsed;
-	t_list			**tmp;
-	t_list			*translated;
-	t_proc_command	*pc;
-	t_list			*cursor;
-
-	parsed = command_parsing(line);
-	if (error_token(parsed->parsed_command))
-	{
-		printf("SHIIIT\n");
-		free_cmd(parsed);
-		return (1);
-	}
-	tmp = process_parsed_command(parsed);
-	// int i = -1;
-	// while (tmp[++i])
-	// 	print_conmmand_id_lst(tmp[i]);
-	// ft_lstclear(&(parsed->parsed_command), &free_command_id);
-	translated = translate_cmd(tmp);
-	// print_proc_cmd_lst(translated);
-	cursor = translated;
-	while (cursor)
-	{
-		pc = cursor->content;
-		// print_conmmand_id_lst(pc->subsection);
-		exec_builder(&m->ed, pc->subsection, pc->type, pc->pipe);
-		// print_proc_cmd_lst(m->ed->stocked_list);
-		cursor = cursor->next;
-	}
-	// free_lst_lst(tmp);
+	/* fnct premier parsing */
 	return (0);
 }
 
@@ -77,7 +48,6 @@ int	main(int argc, char **argv, char **env)
 			add_history(line);
 			debug_execdata(m.ed);
 			m.ve.bin_return = exec_loop(m.ed, &m.ve);
-
 			exec_killer(m.ed);
 			m.ed = NULL;
 		}

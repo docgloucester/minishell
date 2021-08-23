@@ -48,7 +48,7 @@ typedef struct s_execdata
 	struct s_execdata	*next;
 }				t_execdata;
 
-int		exec_builder(t_execdata **d, t_list *parsed, t_exectype type, char pipe);
+int		exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe);
 int		close_fd(int fd);
 int		ft_kill(t_execdata *d, int sig, int retval);
 int		var_setter(t_execdata *d, t_varenv *ve);

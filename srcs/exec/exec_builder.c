@@ -19,7 +19,7 @@ int	close_fd(int fd)
 	return (0);
 }
 
-int	exec_builder(t_execdata **d, t_list *parsed, t_exectype type, char pipe)
+int	exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe)
 {
 	t_execdata	*new;
 	t_execdata	*current;
@@ -31,11 +31,10 @@ int	exec_builder(t_execdata **d, t_list *parsed, t_exectype type, char pipe)
 	while (current && current->next)
 		current = current->next;
 	new->type = type;
-	new->cmd = NULL;
+	new->cmd = cmd;
 	new->pipes[0] = 0;
 	new->pipes[1] = 0;
 	ft_close(new->pipes, 2);
-	new->stocked_list = parsed;
 	new->pipe_on = pipe;
 	new->pid = 0;
 	new->prec = NULL;

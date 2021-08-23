@@ -40,7 +40,7 @@ int	ft_kill(t_execdata *d, int sig, int retval)
 
 int	var_setter(t_execdata *d, t_varenv *ve)
 {
-	exec_cleaner(ve->minishell_var, &d);
+	// fonction deuxieme parsing
 	if (d->type == BINARY && search_in_path(d, ve) == -1)
 		return(error_handler(NULL, d->cmd[0], -1));
 	if (d->pipe_on)
