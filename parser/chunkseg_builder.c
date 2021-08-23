@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   chunkseg_builder.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/23 14:11:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/23 17:33:35 by nouchata         ###   ########.fr       */
+/*   Created: 2021/08/23 16:44:43 by nouchata          #+#    #+#             */
+/*   Updated: 2021/08/23 17:14:44 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#   include "parser.h"
+#	include "parser.h"
 
-int main(int argc, char **argv)
+int		chunkseg_builder(t_chunkseg **cs, t_cmdchunk *cmdc)
 {
-    (void)argc;
-	(void)argv;
-	char	*line;
-	line = "";
-	while (line)
+	t_chunkseg	*new;
+	(void)cs;
+
+	new = malloc(sizeof(t_chunkseg) * 1);
+	if (!new)
+		return (-1);
+	new->sep_type = cmdc->sep_type;
+	if (remove_spaces(&cmdc->cmd, 1) == -1)
 	{
-		line = readline("prompt$ ");
-		if (line)
-		{
-			add_history(line);
-			//printf("%s\n%ld\n", line, find_char_not_escaped(line, '$', 4));
-			printf("[%s]\n%d\n", line, count_all_sep(line));
-		}
+		free(new);
+		return (-1);
 	}
 	return (0);
 }

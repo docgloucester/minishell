@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:14:29 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/23 16:03:35 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/23 17:09:39 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int		wout_spaces_filler(char *new, char *src, int type)
 	i[0] = 0;
 	i[1] = 0;
 	i[2] = ft_strlen(src) - count_spaces(src, 2);
-	while (src[i[0]] == ' ')
+	while (src && src[i[0]] == ' ')
 			i[0]++;
-	while (i[0] < i[2])
+	while (src && i[0] < i[2])
 	{
 		if (!type && src[i[0]] != ' ')
 		{
@@ -74,13 +74,23 @@ int		check_if_full_spaces(char *src)
 	int		i;
 
 	i = 0;
-	while (src[i])
+	while (src && src[i])
 	{
 		if (src[i] != ' ')
 			return (1);
 		i++;
 	}
 	return (0);
+}
+
+char	*to_next_char(char *src, char c)
+{
+	int		i;
+
+	i = 0;
+	while (src && src[i] && src[i] == c)
+		i++;
+	return (&src[i]);
 }
 
 int		remove_spaces(char **src, int just_surround_spaces)

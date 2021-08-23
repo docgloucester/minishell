@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgilles <rgilles@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:36:00 by rgilles           #+#    #+#             */
-/*   Updated: 2021/08/23 15:36:01 by rgilles          ###   ########.fr       */
+/*   Updated: 2021/08/23 17:53:11 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ int	chunkadd(t_cmdchunk **chunklist, t_cmdchunk *new)
 		chunk->next->prev = chunk;
 	}
 	else
-		*chunklist = new;git 
+		*chunklist = new;
 	return (1);
 }
