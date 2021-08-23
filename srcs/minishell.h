@@ -16,7 +16,6 @@
 # include "exec/exec.h"
 # include "varenv/varenv.h"
 # include "builtin/builtin.h"
-# include "parsing/command_parsing.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <term.h>
