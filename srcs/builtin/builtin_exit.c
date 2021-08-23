@@ -89,3 +89,14 @@ int	builtin_exit(void *minishell, char **str)
 	exit(ret);
 	return (0);
 }
+
+int	fork_exit(void *minishell, int ret)
+{
+	t_minishell		*m;
+
+	m = minishell;
+	varenv_kill(&m->ve);
+	exec_killer(m->ed);
+	exit(ret);
+	return (0);
+}

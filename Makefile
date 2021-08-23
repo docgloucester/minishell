@@ -3,141 +3,91 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvinstudent.42.fr>              +#+  +:+       +#+         #
+#    By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 10:06:20 by nouchata          #+#    #+#              #
-#    Updated: 2021/08/08 13:19:56 by marvin           ###   ########.fr        #
+#    Updated: 2021/07/25 13:41:14 by nouchata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.SUFFIXES:
+CTN =		srcs
+SRCS_E =	${CTN}/exec/bin_wrapper.c \
+			${CTN}/exec/builtin_wrapper.c \
+			${CTN}/exec/exec_builder.c \
+			${CTN}/exec/exec_main.c \
+			${CTN}/exec/export_wrapper.c \
+			${CTN}/exec/import_wrapper.c \
+			${CTN}/exec/misc_wrapper.c
+SRCS_V = 	${CTN}/varenv/varenv_construct.c \
+			${CTN}/varenv/varenv_export.c \
+			${CTN}/varenv/varenv_finder.c \
+			${CTN}/varenv/varenv_utils_supp.c \
+			${CTN}/varenv/varenv_utils.c
+SRCS_B =	${CTN}/builtin/builtin.c \
+			${CTN}/builtin/builtin_cd.c \
+			${CTN}/builtin/builtin_export.c \
+			${CTN}/builtin/builtin_export_misc.c \
+			${CTN}/builtin/builtin_echo.c \
+			${CTN}/builtin/builtin_exit.c \
+			${CTN}/builtin/builtin_var.c
+SRCS_M =	${CTN}/main.c ${CTN}/error_handler.c
+OBJS_E =	${SRCS_E:.c=.o}
+OBJS_V =	${SRCS_V:.c=.o}
+OBJS_M =	${SRCS_M:.c=.o}
+OBJS_B =	${SRCS_B:.c=.o}
+LIB_E =		${CTN}/exec/exec.a
+LIB_V =		${CTN}/varenv/varenv.a
+LIB_B =		${CTN}/builtin/builtin.a
+CC =		clang
+CFLAGS =	#-Wall -Werror -Wextra
+NAME =		minishell
+RM =		rm -f
 
-CC	=		gcc
-CFLAGS	=	-Wall -Werror -Wextra -MMD -g3
-NAME	=		minishell
-RM	=		rm -rf
+.c.o:
+			@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-SRCS_PATH = srcs
-
-SRCS_E_PATH	=	exec/
-SRCS_V_PATH	=	varenv/
-SRCS_B_PATH	=	builtin/
-SRCS_P_PATH	=	parsing/
-
-OBJ_PATH = ./obj/
-
-LIBS = -lreadline
-
-LIBFT_PATH	=	_libft
-LIBFT_MAKE	= $(MAKE) -C $(LIBFT_PATH)
-LIBFT_LIB	=	-L$(LIBFT_PATH) -lft
-
-SRCS_E_LIST	=	$(addprefix $(SRCS_E_PATH), \
-					bin_wrapper.c \
-					builtin_wrapper.c \
-					exec_builder.c \
-					exec_main.c \
-					export_wrapper.c \
-					import_wrapper.c \
-					misc_wrapper.c \
-				)
-SRCS_V_LIST	=	$(addprefix $(SRCS_V_PATH), \
-					varenv_construct.c \
-					varenv_export.c \
-					varenv_finder.c \
-					varenv_utils_supp.c \
-					varenv_utils.c \
-				)
-SRCS_B_LIST	=	$(addprefix $(SRCS_B_PATH), \
-					builtin.c \
-					builtin_cd.c \
-					builtin_export.c \
-					builtin_export_misc.c \
-					builtin_echo.c \
-					builtin_exit.c \
-					builtin_var.c \
-				)
-SRCS_P_LIST	=	$(addprefix $(SRCS_P_PATH), \
-					clean_section.c \
-					command_parsing.c \
-					create_cmd.c \
-					error_parsing.c \
-					exec_cleaner.c \
-					ft_split_str.c \
-					process_parsed_command_utils.c \
-					process_parsed_command.c \
-					quotes_split_utils.c \
-					split_functions.c \
-					struct_command_id.c \
-					translate_utils.c \
-					translate.c \
-					utils_lst.c \
-					utils_minishell.c \
-					utils_struct_debug.c \
-					utils.c \
-					free_lst.c\
-					create_cmd_lst.c \
-				)
-SRCS_M_LIST	=		main.c \
-					error_handler.c
-
-SRCS	=	$(SRCS_E_LIST) \
-			$(SRCS_P_LIST) \
-			$(SRCS_M_LIST) \
-			$(SRCS_V_LIST) \
-			$(SRCS_B_LIST)
-
-OBJS	=	$(addprefix $(OBJ_PATH), $(SRCS:.c=.o))
-
-$(OBJ_PATH)%.o:		$(SRCS_PATH)/%.c
-					$(CC) $(CFLAGS) -c $< -o $@
-
-
-DEPS	=	$(OBJS:.o=.d)
-
-all:		libft
-			@mkdir -p obj/exec obj/builtin obj/parsing obj/explorer obj/varenv
-			$(MAKE) ${NAME}
-			@echo "✓ Builtin"
-			@echo "✓ Parsing"
-			@echo "✓ Explorer"
-			@echo "✓ Varenv"
+all:		${NAME}
 
 libft:
-			$(LIBFT_MAKE)
+			@cd _libft && ${MAKE}
 			@echo "✓ Libft"
 
-${NAME}:	$(OBJS)
-			$(CC) $(OBJS) $(LIBS) $(LIBFT_LIB) -o $(NAME)
+varenv:		libft ${OBJS_V}
+			@ar rc ${LIB_V} ${OBJS_V}
+			@ranlib ${LIB_V}
+			@echo "✓ Env container"
+
+exec:		libft varenv ${OBJS_E}
+			@ar rc ${LIB_E} ${OBJS_E}
+			@ranlib ${LIB_E}
+			@echo "✓ Exec container"
+
+builtin:	libft ${OBJS_B}
+			@ar rc ${LIB_B} ${OBJS_B}
+			@ranlib ${LIB_B}
+			@echo "✓ Built-in container"		
+
+${NAME}:	libft varenv builtin exec ${OBJS_M}
+			@${CC} ${CFLAGS} ${OBJS_M} -o ${NAME} \
+			${LIB_V} ${LIB_B} ${LIB_E} ${LIB_B} ${LIB_V} _libft/libft.a -lreadline
 			@echo "✨✨ minishell is compiled ! ✨✨"
 
 clean:
-			$(RM) $(OBJS)
-			$(LIBFT_MAKE) clean
-			$(RM) $(DEPS)
+			@${RM} ${OBJS_V}
+			@${RM} ${OBJS_E}
+			@${RM} ${OBJS_M}
+			@${RM} ${OBJS_B}
+			@cd _libft && ${MAKE} clean
 			@echo "✨✨ .o cleaned ✨✨"
 
 fclean:		clean
-			$(LIBFT_MAKE) fclean
-			$(RM) $(NAME)
-			$(RM) $(OBJ_PATH)
-			$(RM) $(DEPS)
+			@${RM} ${LIB_V}
+			@${RM} ${LIB_E}
+			@${RM} ${LIB_B}
+			@${RM} ${NAME}
+			@cd _libft && ${MAKE} fclean
 			@echo "✨✨ all cleaned ✨✨"
-
-run:		$(NAME)
-			./minishell
-
-run_s:		$(NAME)
-			sudo ./minishell
-
-vg:			$(NAME)
-			valgrind --track-origins=yes ./minishell
 
 re:			fclean all
 
-readline:	
-			sudo apt update && sudo apt install libreadline-dev
-
-.PHONY:		all clean fclean libft re rn vg readline run
-
--include $(DEPS)
+.PHONY:		all clean fclean varenv exec builtin libft re

@@ -70,10 +70,10 @@ int	export_wrapper(t_execdata *d, t_varenv *ve)
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		if (pipe_setter(d, 1) == -1)
-			exit(EXIT_FAILURE);
+			fork_exit(ve->minishell_var, EXIT_FAILURE);
 		if (export_loop(d) == -1)
-			exit(ft_kill(d, SIGTERM, EXIT_FAILURE));
-		exit(EXIT_SUCCESS);
+			fork_exit(ve->minishell_var, ft_kill(d, SIGTERM, EXIT_FAILURE));
+		fork_exit(ve->minishell_var, EXIT_SUCCESS);
 	}
 	return (0);
 }

@@ -22,7 +22,6 @@
 
 typedef struct s_minishell
 {
-	char		nameofshell[30];
 	t_varenv	ve;
 	t_execdata	*ed;
 }				t_minishell;

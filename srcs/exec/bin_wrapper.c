@@ -89,9 +89,9 @@ int	bin_wrapper(t_execdata *d, t_varenv *ve)
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		if (pipe_setter(d, 1) == -1)
-			exit(EXIT_FAILURE);
+			fork_exit(ve->minishell_var, EXIT_FAILURE);
 		if (execve(d->cmd[0], d->cmd, ve->env_to_str) == -1)
-			exit(error_handler(NULL, d->cmd[0], EXIT_FAILURE));
+			fork_exit(ve->minishell_var, error_handler(NULL, d->cmd[0], EXIT_FAILURE));
 	}
 	return (0);
 }
