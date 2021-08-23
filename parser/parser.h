@@ -38,6 +38,18 @@ typedef struct s_chunkseg
 	struct s_chunkseg	*prev;
 }				t_chunkseg;
 
+/*struct	s_heuristics
+{
+//	char					*to_export;
+	char					*prog;
+	char					**args;
+	char					*input_path;
+	char					*output_path;
+	int						is_passing_output;
+	struct	s_heuristics	*next;
+	struct	s_heuristics	*previous;
+}		t_heuristics;
+*/
 
 
 long		find_char_not_escaped(char *src, char c, int already_find);
