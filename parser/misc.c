@@ -6,11 +6,21 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:16:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 14:54:13 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/24 18:01:02 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "parser.h"
+
+int		count_strs(char **strs)
+{
+	int		i;
+
+	i = 0;
+	while (strs[i])
+		i++;
+	return (i);
+}
 
 int		find_size_of_current_block(char *src)
 {

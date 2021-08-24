@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:10:46 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 16:37:29 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/24 18:00:23 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <readline/history.h>
 #include "../_libft/libft.h"
 
-enum {PIPE, SEMICO};
+enum {DIN, IN, DOUT, OUT};
 
 typedef struct s_cmdchunk
 {
@@ -34,16 +34,23 @@ typedef struct s_chunkseg
 {
 	char				**segments;
 	int					sep_type;
+	char				segs_count;
 	struct s_chunkseg	*next;
 	struct s_chunkseg	*prev;
 }				t_chunkseg;
 
+typedef struct s_ioinfo
+{
+	char				type;
+	char				*name;
+	struct s_ioinfo		*next;
+	struct s_ioinfo		*prev;
+}				t_ioinfo;
+
 typedef struct s_cmdcontent
 {
-	char				*ifile;
-	char				*ofile;
-	char				ofile_type;
-	char				**dinput;
+	struct s_ioinfo		*inputs;
+	struct s_ioinfo		*outputs;
 	char				**cmd;
 	struct s_cmdcontent	*next;
 	struct s_cmdcontent	*prev;
@@ -71,6 +78,9 @@ int			find_size_of_current_block(char *src);
 int			count_all_segments(char *src);
 char		**extract_segments(char *src);
 char		**kill_segments(char **segs);
+int			count_strs(char **strs);
+int			chunkseg_builder(t_chunkseg **cs, t_cmdchunk *cmdc);
+int			chunkseg_killer(t_chunkseg *cs);
 
 t_cmdchunk *chunk_list_creator(char *str);
 
