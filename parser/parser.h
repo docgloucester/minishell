@@ -59,10 +59,10 @@ int			find_next_sep(char *src);
 int			find_size_of_current_block(char *src);
 int			count_all_segments(char *src);
 
-t_cmdchunk	*split_line(char *line);
+t_cmdchunk	*perform_split(char *line);
 
 t_cmdchunk	*newchunk(char *str, int sep);
 int	chunkadd(t_cmdchunk **chunklist, t_cmdchunk *new);
-t_cmdchunk	*split_line(char *line);
+void	replace_node_by_list(t_cmdchunk **node, t_cmdchunk **list);
 
 # endif
