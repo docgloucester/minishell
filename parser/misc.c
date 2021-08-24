@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:16:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 14:09:26 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/24 14:54:13 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int		count_all_segments(char *src)
 	{
 		tnc = &src[i];
 		i += to_next_char(&tnc, ' ', 0);
+		if (!src[i])
+			break;
 		i += find_size_of_current_block(&src[i]);
 		seg++;
 	}

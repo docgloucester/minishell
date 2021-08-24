@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:10:46 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 14:21:49 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/24 16:37:29 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ typedef struct s_chunkseg
 	struct s_chunkseg	*prev;
 }				t_chunkseg;
 
+typedef struct s_cmdcontent
+{
+	char				*ifile;
+	char				*ofile;
+	char				ofile_type;
+	char				**dinput;
+	char				**cmd;
+	struct s_cmdcontent	*next;
+	struct s_cmdcontent	*prev;
+}				t_cmdcontent;
+
 /*struct	s_heuristics
 {
 //	char					*to_export;
@@ -58,6 +69,8 @@ int			to_next_char(char **src, char c, int edit_str);
 int			find_next_sep(char *src);
 int			find_size_of_current_block(char *src);
 int			count_all_segments(char *src);
+char		**extract_segments(char *src);
+char		**kill_segments(char **segs);
 
 t_cmdchunk	*perform_split(char *line);
 

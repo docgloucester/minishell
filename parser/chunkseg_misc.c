@@ -6,11 +6,25 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:54:28 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 14:09:20 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/24 14:56:32 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "parser.h"
+
+char	**kill_segments(char **segs)
+{
+	int		i;
+
+	i = 0;
+	while (segs[i])
+	{
+		free(segs[i]);
+		i++;
+	}
+	free(segs);
+	return (NULL);
+}
 
 char	*extract_chunkseg_data(char *src, int length)
 {
@@ -27,11 +41,31 @@ char	*extract_chunkseg_data(char *src, int length)
 		res[i] = src[i];
 		i++;
 	}
-	if (remove_spaces(&res, 1) == -1)
-	{
-		free(res);
-		return (NULL);
-	}
 	return (res);
 }
 
+char	**extract_segments(char *src)
+{
+	char	**segs;
+	int		segs_num;
+	int		i[2];
+
+	segs_num = count_all_segments(src);
+	i[1] = 0;
+	i[0] = 0;
+	segs = malloc(sizeof(char *) * (segs_num + 1));
+	if (!segs)
+		return (NULL);
+	ft_memset(segs, 0, sizeof(char *) * (segs_num + 1));
+	while (i[1] < segs_num)
+	{
+		src = &src[to_next_char(&src, ' ', 0)];
+		i[0] = find_size_of_current_block(src);
+		segs[i[1]] = extract_chunkseg_data(src, i[0]);
+		if (!segs[i[1]])
+			return (kill_segments(segs));
+		src = &src[i[0]];
+		i[1]++;
+	}
+	return (segs);
+}
