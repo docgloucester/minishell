@@ -46,11 +46,15 @@ int	chunkadd(t_cmdchunk **chunklist, t_cmdchunk *new)
 	return (1);
 }
 
-void	chunkdel(t_cmdchunk *node_to_del)
+void	chunksdel(t_cmdchunk *list_to_del)
 {
-	if (node_to_del)
+	t_cmdchunk *next;
+
+	while(list_to_del)
 	{
-		free(node_to_del->cmd);
-		free(node_to_del);
+		next = list_to_del->next;
+		free(list_to_del->cmd);
+		free(list_to_del);
+		list_to_del = next;
 	}
 }

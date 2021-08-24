@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 				chunkseg_builder(&cs, tmp);
 				tmp = tmp->next;
 			}
-			// free cmdc
+			chunksdel(cmdc);
 			tmp2 = cs;
 			while (tmp2)
 			{
