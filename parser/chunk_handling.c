@@ -12,7 +12,7 @@
 
 #include "parser.h"
 
-t_cmdchunk	*newchunk(char *str, int sep)
+t_cmdchunk	*newchunk(char *str, char sep)
 {
 	t_cmdchunk	*new;
 
@@ -20,9 +20,11 @@ t_cmdchunk	*newchunk(char *str, int sep)
 	if (!new)
 		return (NULL);
 	new->cmd = str;
-	new->sep_type = sep;
+	if (sep)
+		new->sep_type = sep;
+	else
+		new->sep_type = ';';
 	new->next = NULL;
-	new->prev = NULL;
 	return (new);
 }
 
@@ -38,7 +40,6 @@ int	chunkadd(t_cmdchunk **chunklist, t_cmdchunk *new)
 		while (chunk->next)
 			chunk = chunk->next;
 		chunk->next = new;
-		chunk->next->prev = chunk;
 	}
 	else
 		*chunklist = new;
@@ -52,21 +53,4 @@ void	chunkdel(t_cmdchunk *node_to_del)
 		free(node_to_del->cmd);
 		free(node_to_del);
 	}
-}
-
-void	replace_node_by_list(t_cmdchunk **node, t_cmdchunk **list)
-{
-	t_cmdchunk *prev;
-	t_cmdchunk *next;
-	t_cmdchunk *curr;
-
-	prev = (*node)->prev;
-	next = (*node)->next;
-	chunkdel(*node);
-	*node = *list;
-	curr = *node;
-	curr->prev = prev;
-	while (curr->next)
-		curr = curr->next;
-	curr->next = next;
 }

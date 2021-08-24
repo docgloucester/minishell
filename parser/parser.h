@@ -24,7 +24,7 @@ enum {PIPE, SEMICO};
 typedef struct s_cmdchunk
 {
 	char				*cmd;
-	int					sep_type;
+	char				sep_type;
 	struct s_cmdchunk	*next;
 	struct s_cmdchunk	*prev;
 	
@@ -72,10 +72,9 @@ int			count_all_segments(char *src);
 char		**extract_segments(char *src);
 char		**kill_segments(char **segs);
 
-t_cmdchunk	*perform_split(char *line);
+t_cmdchunk *chunk_list_creator(char *str);
 
-t_cmdchunk	*newchunk(char *str, int sep);
+t_cmdchunk	*newchunk(char *str, char sep);
 int	chunkadd(t_cmdchunk **chunklist, t_cmdchunk *new);
-void	replace_node_by_list(t_cmdchunk **node, t_cmdchunk **list);
 
 # endif
