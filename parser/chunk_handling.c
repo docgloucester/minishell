@@ -16,9 +16,14 @@ t_cmdchunk	*newchunk(char *str, char sep)
 {
 	t_cmdchunk	*new;
 
+	if (!str)
+		return (NULL);
 	new = malloc(sizeof(t_cmdchunk));
 	if (!new)
+	{
+		free(str);
 		return (NULL);
+	}
 	new->cmd = str;
 	if (sep)
 		new->sep_type = sep;

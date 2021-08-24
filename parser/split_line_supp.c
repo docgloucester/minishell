@@ -12,6 +12,23 @@
 
 #include "parser.h"
 
+int	error_handler(char *cmd, char *arg, int retval)
+{
+	write(2, "bash: ", 6);
+	if (cmd)
+	{
+		write(2, cmd, ft_strlen(cmd));
+		write(2, ": ", 2);
+	}
+	if (arg)
+	{
+		write(2, arg, ft_strlen(arg));
+		write(2, ": ", 2);
+	}
+	perror("");
+	return (retval);
+}
+
 int	is_valid_separator(char *str, int i)
 {
 	unsigned int	dbqcount;
@@ -45,16 +62,35 @@ int	sep_detector(char *str)
 	return (i + 1);
 }
 
+int	is_finished_by_pipe(t_cmdchunk *list)
+{
+	while (list && list->next)
+		list = list->next;
+	if (list->sep_type == '|')
+		return (1);
+	return (0);
+}
+
+t_cmdchunk *chunk_list_creator_supp(t_cmdchunk *lst)
+{
+	if (is_finished_by_pipe(lst))
+	{
+		chunksdel(lst);
+		return ((t_cmdchunk *)(long)error_handler(NULL, "syntax error", 0)); // a refaire
+	}
+	return (lst);
+}
+
 t_cmdchunk *chunk_list_creator(char *str)
 {
 	int		i;
 	int		y;
-	t_cmdchunk *list;
+	t_cmdchunk *lst;
 	char *cstr;
 
 	i = 0;
 	y = 0;
-	list = NULL;
+	lst = NULL;
 	while (i < (int)ft_strlen(str))
 	{
 		cstr = &str[i];
@@ -62,8 +98,12 @@ t_cmdchunk *chunk_list_creator(char *str)
 		if (!str[i])
 			break ;
 		y = sep_detector(&str[i]);
-		chunkadd(&list, newchunk(ft_substr(str, i, y - 1), str[i + y - 1]));
+		if (!chunkadd(&lst, newchunk(ft_substr(str, i, y - 1), str[i + y - 1])))
+		{
+			chunksdel(lst);	
+			return ((t_cmdchunk *)(long)error_handler(NULL, NULL, 0));
+		}
 		i += y;
 	}
-	return (list);
+	return (chunk_list_creator_supp(lst));
 }

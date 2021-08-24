@@ -34,6 +34,8 @@ int main(int argc, char **argv)
 			//printf("%s\n%ld\n", line, fchar_nesc(line, '$', 4));
 			printf("[%s]\n%d\n", line, count_all_segments(line));
 			cmdc = chunk_list_creator(line);
+			if (!cmdc)
+				continue ;
 			tmp = cmdc;
 			cs = NULL;
 			while (tmp)
