@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:11:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/23 17:33:35 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/24 14:05:43 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int main(int argc, char **argv)
 		if (line)
 		{
 			add_history(line);
-			//printf("%s\n%ld\n", line, find_char_not_escaped(line, '$', 4));
-			printf("[%s]\n%d\n", line, count_all_sep(line));
+			//printf("%s\n%ld\n", line, fchar_nesc(line, '$', 4));
+			printf("[%s]\n%d\n", line, count_all_segments(line));
 		}
 	}
 	return (0);

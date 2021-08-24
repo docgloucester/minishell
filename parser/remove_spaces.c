@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:14:29 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/23 17:09:39 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/24 12:58:47 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,16 @@ int		check_if_full_spaces(char *src)
 	return (0);
 }
 
-char	*to_next_char(char *src, char c)
+int		to_next_char(char **src, char c, int edit_str)
 {
 	int		i;
 
 	i = 0;
-	while (src && src[i] && src[i] == c)
+	while (src[0] && src[0][i] && src[0][i] == c)
 		i++;
-	return (&src[i]);
+	if (edit_str)
+		*src = &src[0][i];
+	return (i);
 }
 
 int		remove_spaces(char **src, int just_surround_spaces)

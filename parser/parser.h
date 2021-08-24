@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:10:46 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/23 17:33:47 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/24 14:21:49 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ typedef struct s_chunkseg
 */
 
 
-long		find_char_not_escaped(char *src, char c, int already_find);
+long		fchar_nesc(char *src, char c, int already_find);
 int			remove_spaces(char **src, int just_surround_spaces);
-char		*to_next_char(char *src, char c);
+int			to_next_char(char **src, char c, int edit_str);
 int			find_next_sep(char *src);
-int			count_all_sep(char *src);
+int			find_size_of_current_block(char *src);
+int			count_all_segments(char *src);
 
 t_cmdchunk	*split_line(char *line);
 

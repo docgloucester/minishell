@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgilles <rgilles@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:08:33 by rgilles           #+#    #+#             */
-/*   Updated: 2021/08/23 16:08:35 by rgilles          ###   ########.fr       */
+/*   Updated: 2021/08/24 14:22:27 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@
 	{
 printf("splitting \"%s\"...\n", (*split)->cmd);
 		pipe_counter = 0;
-		while (find_char_not_escaped((*split)->cmd, '|', pipe_counter) != -1)
+		while (fchar_ne((*split)->cmd, '|', pipe_counter) != -1)
 			pipe_counter++;
 		i = -1;
 		a[0] = 0;
 		to_insert = NULL;
 		while (++i < pipe_counter)
 		{
-			a[1] = find_char_not_escaped(&(*split)->cmd[a[0]], '|', 0);
+			a[1] = fchar_ne(&(*split)->cmd[a[0]], '|', 0);
 			if (!(chunkadd(&to_insert, newchunk(ft_substr((*split)->cmd, a[0] , a[1]), PIPE))))
 				return (0);
 			a[0] += a[1] + 1;
 		}
-		a[1] = find_char_not_escaped((*split)->cmd, '|', pipe_counter - 1);
+		a[1] = fchar_ne((*split)->cmd, '|', pipe_counter - 1);
 		if (!(chunkadd(&to_insert,
 			newchunk(ft_substr((*split)->cmd, a[1] + 1, ft_strlen((*split)->cmd) - a[1]), PIPE))))
 			return (0);
@@ -59,19 +59,19 @@ t_cmdchunk	*split_line(char *line, char sep, int septype)
 	long			a[2];
 
 	semicol_counter = 0;
-	while (find_char_not_escaped(line, sep, semicol_counter) != -1)
+	while (fchar_ne(line, sep, semicol_counter) != -1)
 		semicol_counter++;
 	i = -1;
 	a[0] = 0;
 	ret = NULL;
 	while (++i < semicol_counter)
 	{
-		a[1] = find_char_not_escaped(&line[a[0]], sep, 0);
+		a[1] = fchar_ne(&line[a[0]], sep, 0);
 		if (!(chunkadd(&ret, newchunk(ft_substr(line, a[0] , a[1]), septype))))
 			return (NULL);
 		a[0] += a[1] + 1;
 	}
-	a[1] = find_char_not_escaped(line, sep, semicol_counter - 1);
+	a[1] = fchar_ne(line, sep, semicol_counter - 1);
 	if (!(chunkadd(&ret,
 		newchunk(ft_substr(line, a[1] + 1, ft_strlen(line) - a[1]), septype))))
 		return (NULL);
