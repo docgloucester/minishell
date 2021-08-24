@@ -6,21 +6,26 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:54:28 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 14:56:32 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/24 20:05:47 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "parser.h"
 
-char	**kill_segments(char **segs)
+char	**kill_segments(char **segs, int count)
 {
 	int		i;
 
 	i = 0;
-	while (segs[i])
+	while (count && i < count)
 	{
 		free(segs[i]);
 		i++;
+	}
+	while (!count && segs[i])
+	{
+		free(segs[i]);
+		i++;		
 	}
 	free(segs);
 	return (NULL);
@@ -63,7 +68,7 @@ char	**extract_segments(char *src)
 		i[0] = find_size_of_current_block(src);
 		segs[i[1]] = extract_chunkseg_data(src, i[0]);
 		if (!segs[i[1]])
-			return (kill_segments(segs));
+			return (kill_segments(segs, 0));
 		src = &src[i[0]];
 		i[1]++;
 	}

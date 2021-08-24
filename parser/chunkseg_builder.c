@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:44:43 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 18:01:37 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/24 21:19:25 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		chunkseg_builder(t_chunkseg **cs, t_cmdchunk *cmdc)
 		free(new);
 		return (-1);
 	}
-	new->segs_count = count_strs(new->segments);
+	new->segs_count = count_strs(new->segments, 0);
 	new->sep_type = cmdc->sep_type;
 	new->next = NULL;
 	new->prev = NULL;
@@ -60,7 +60,8 @@ int		chunkseg_killer(t_chunkseg *cs)
 	{
 		current = cs;
 		cs = cs->next;
-		current->segments = kill_segments(current->segments);
+		current->segments = kill_segments(current->segments, \
+		current->segs_count);
 		free(current);
 	}
 	return (0);
