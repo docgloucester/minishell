@@ -42,17 +42,42 @@ t_cmdchunk	*split_line(char *line, char sep, int septype)
 t_cmdchunk	*perform_split(char *line)
 {
 	t_cmdchunk	*split;
-	t_cmdchunk	*curr;
+	t_cmdchunk	*begin;
 	t_cmdchunk	*pipe_split;
+	int 			is_begin;
 
 	split = split_line(line, ';', SEMICO);
-	curr = split;
-	while (curr)
+	is_begin = 1;
+	while (split)
 	{
-		pipe_split = split_line(curr->cmd, '|', PIPE);
-		replace_node_by_list(&curr, &pipe_split);
-		while (curr && curr->sep_type == PIPE)
-			curr = curr->next;
+		printf("SEMICOLCMD: %s\n", split->cmd);
+
+		pipe_split = split_line(split->cmd, '|', PIPE);
+
+		t_cmdchunk *currpipe;
+		currpipe = pipe_split;
+		while (currpipe)
+		{
+			printf("\tPIPECMD : %s\n", currpipe->cmd);
+			currpipe = currpipe->next;
+		}
+		replace_node_by_list(&split, &pipe_split);
+		if (is_begin)
+			begin = split;
+		is_begin = 0;
+printf("BEGIN IS NOW %s\n", (begin)->cmd);
+		while (split && split->sep_type == PIPE)
+		{
+
+			printf("SKIPPING %s\n", split->cmd);
+
+			split = split->next;
+		}
+
+		if (split)
+			printf("NOW POINTING AT :%s\n", split->cmd);
+		else
+			printf("end reached\n");
 	}
-	return (split);
+	return (begin);
 }
