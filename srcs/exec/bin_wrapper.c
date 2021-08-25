@@ -38,7 +38,7 @@ int	file_path_creator(t_execdata *d, char *path)
 	if (!new)
 		return (-1);
 	free(newpath);
-	// free(d->cmd[0]);
+	free(d->cmd[0]);
 	d->cmd[0] = new;
 	return (0);
 }

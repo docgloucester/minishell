@@ -23,13 +23,13 @@ void sig_reset_prompt(int signal)
 	rl_redisplay();
 }
 
-int	exec_maker(t_minishell *m, char *line)
-{
+//int	exec_maker(t_minishell *m, char *line)
+//{
 	/* fnct premier parsing */
-	return (0);
-}
+//	return (0);
+//}
 
-int	mainb(int argc, char **argv, char **env)
+/*int	mainb(int argc, char **argv, char **env)
 {
 	t_minishell		m;
 	char			*line;
@@ -55,7 +55,7 @@ int	mainb(int argc, char **argv, char **env)
 	}
 	builtin_exit(m.ve.minishell_var, NULL);
 	return (0);
-}
+}*/
 
 int	main(int argc, char **argv, char **env)
 {
