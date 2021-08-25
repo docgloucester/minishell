@@ -14,21 +14,21 @@
 
 int	finished_quote_set(char *str, int i)
 {
-	unsigned int	dbqcount;
+	unsigned int	dbqcnt;
 	unsigned int	qcount;
 	int				pos;
 
 	pos = -1;
-	dbqcount = 0;
+	dbqcnt = 0;
 	qcount = 0;
 	while (++pos < i)
 	{
-		if (str[pos - 1] != '\\' && str[pos] == '\"')
-			dbqcount++;
-		if (dbqcount % 2 != 0 && str[pos - 1] != '\\' && str[pos] == '\'')
+		if (str[i] == '\"' && (i == 0 || str[i - 1] != '\\') && qcount % 2 == 0)
+			dbqcnt++;
+		if (str[i] == '\'' && (i == 0 || str[i - 1] != '\\') && dbqcnt % 2 == 0)
 			qcount++;
 	}
-	if (qcount % 2 == 0 && dbqcount % 2 == 0)
+	if (qcount % 2 == 0 && dbqcnt % 2 == 0)
 		return (1);
 	return (0);
 }
