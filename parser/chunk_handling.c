@@ -53,9 +53,9 @@ int	chunkadd(t_cmdchunk **chunklist, t_cmdchunk *new)
 
 void	chunksdel(t_cmdchunk *list_to_del)
 {
-	t_cmdchunk *next;
+	t_cmdchunk	*next;
 
-	while(list_to_del)
+	while (list_to_del)
 	{
 		next = list_to_del->next;
 		free(list_to_del->cmd);

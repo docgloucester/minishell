@@ -87,5 +87,6 @@ t_cmdchunk	*chunk_list_creator(char *str);
 t_cmdchunk	*newchunk(char *str, char sep);
 int			chunkadd(t_cmdchunk **chunklist, t_cmdchunk *new);
 void		chunksdel(t_cmdchunk *list_to_del);
+int	error_handler(char *cmd, char *arg, int retval);
 
 # endif

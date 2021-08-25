@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-FILES = $(wildcard *.c)
+FILES = $(wildcard *.c) ../srcs/error_handler.c
 CC = clang
 FLAGS = -Wall -Werror -Wextra -g3
 OBJS = ${FILES:.c=.o}
