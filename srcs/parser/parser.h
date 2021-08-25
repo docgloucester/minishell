@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:10:46 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 13:23:03 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 14:40:52 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "../_libft/libft.h"
+#include "../minishell.h"
 
 enum {DIN, IN, DOUT, OUT};
 
@@ -63,10 +63,9 @@ long		fchar_nesc(char *src, char c, int already_find);
 int			remove_spaces(char **src, int just_surround_spaces);
 int			to_next_char(char **src, char c, int edit_str);
 int			find_next_sep(char *src);
-void		remove_char_from_str(char *str, char trm, \
-			int except_in_dbq, int x_in_q);
+void		remove_char_from_str(char *str, char trm, int except_in_dbq, int x_in_q);
 void		strip_quotes(char *str);
-char		**strtabdup(char **tab, int is_alone);
+char		**strtabdup(char **array, int is_alone);
 
 /* ******** CHUNKSEG */
 

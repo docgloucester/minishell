@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:11:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 14:08:18 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 14:34:13 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int leaks_test(char *line);
 int quotes_tests(char *str);
 
-int main(int argc, char **argv)
+int mainn(int argc, char **argv)
 {
     (void)argc;
 	(void)argv;
 	char		*line;
 	char		**segs;
-	line = "cat << x | ls | wc -l ;           ";
+	line = "    ";
 	segs = NULL;
 	while (line)
 	{
