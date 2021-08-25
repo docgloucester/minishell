@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:08:33 by rgilles           #+#    #+#             */
-/*   Updated: 2021/08/24 14:22:27 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:04:28 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#	include "../minishell.h"
 
 int	finished_quote_set(char *str, int i)
 {

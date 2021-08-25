@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:14:29 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 12:58:47 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:04:30 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "parser.h"
+#	include "../minishell.h"
 
 /* type : 0=all / 1=from_start / 2=from_end */
 int		count_spaces(char *src, int type)

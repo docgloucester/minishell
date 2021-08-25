@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:44:43 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 21:19:25 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:04:34 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "parser.h"
+#	include "../minishell.h"
 
 int		chunkset_list_setup(t_chunkseg **cs, t_chunkseg *new)
 {

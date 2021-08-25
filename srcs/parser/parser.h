@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:10:46 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 14:40:52 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:16:32 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "../minishell.h"
 
 enum {DIN, IN, DOUT, OUT};
 
@@ -67,6 +66,8 @@ void		remove_char_from_str(char *str, char trm, int except_in_dbq, int x_in_q);
 void		strip_quotes(char *str);
 char		**strtabdup(char **array, int is_alone);
 
+// int			ccon_to_exec(t_cmdcontent *ccon_full, struct s_minishell *m);
+
 /* ******** CHUNKSEG */
 
 int			find_size_of_current_block(char *src);
@@ -91,6 +92,5 @@ t_cmdchunk	*chunk_list_creator(char *str);
 t_cmdchunk	*newchunk(char *str, char sep);
 int			chunkadd(t_cmdchunk **chunklist, t_cmdchunk *new);
 void		chunksdel(t_cmdchunk *list_to_del);
-int	error_handler(char *cmd, char *arg, int retval);
 
 # endif

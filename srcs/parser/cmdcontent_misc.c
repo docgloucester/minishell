@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:56:07 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 12:11:30 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:04:33 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "parser.h"
+#	include "../minishell.h"
 
 int		cmdcontent_io_transfert(t_cmdcontent *curr, char **cmds, int i)
 {

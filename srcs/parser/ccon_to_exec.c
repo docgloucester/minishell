@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ccon_to_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgilles <rgilles@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 10:48:20 by rgilles           #+#    #+#             */
-/*   Updated: 2021/08/25 10:48:21 by rgilles          ###   ########.fr       */
+/*   Updated: 2021/08/25 15:12:58 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "parser.h"
-#	include "../srcs/minishell.h"
+#	include "../minishell.h"
 
 char	**strtabdup(char **array, int is_alone)
 {

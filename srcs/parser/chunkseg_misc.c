@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:54:28 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 20:05:47 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:04:34 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "parser.h"
+#	include "../minishell.h"
 
 char	**kill_segments(char **segs, int count)
 {

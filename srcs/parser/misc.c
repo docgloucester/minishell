@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:16:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 21:19:04 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:04:32 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "parser.h"
+#	include "../minishell.h"
 
 int		count_strs(char **strs, int count)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   varenv.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:51:40 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/11 15:11:32 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/25 15:09:17 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define VARENV_H
 # include <stdlib.h>
 # include <stdio.h>
-# include "../minishell.h"
 
 typedef struct s_envitem {
 	int			value_num;

@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:36:00 by rgilles           #+#    #+#             */
-/*   Updated: 2021/08/23 17:53:11 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:04:35 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#	include "../minishell.h"
 
 t_cmdchunk	*newchunk(char *str, char sep)
 {

@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:11:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 14:34:13 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:04:31 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#   include "parser.h"
+#	include "../minishell.h"
 
 int leaks_test(char *line);
 int quotes_tests(char *str);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgilles <rgilles@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 23:31:56 by rgilles           #+#    #+#             */
-/*   Updated: 2021/08/24 23:31:58 by rgilles          ###   ########.fr       */
+/*   Updated: 2021/08/25 15:04:30 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "parser.h"
+#	include "../minishell.h"
 
 void	remove_char_from_str(char *str, char trm, int except_in_dbq, int x_in_q)
 {

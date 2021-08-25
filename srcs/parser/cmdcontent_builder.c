@@ -6,11 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:55:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 14:03:17 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 15:04:33 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "parser.h"
+#	include "../minishell.h"
 
 int		ioitem_list_setup(t_cmdcontent *curr, t_ioitem *ioitem)
 {

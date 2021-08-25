@@ -6,7 +6,7 @@
 #    By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 10:06:20 by nouchata          #+#    #+#              #
-#    Updated: 2021/08/25 14:45:10 by nouchata         ###   ########.fr        #
+#    Updated: 2021/08/25 15:15:34 by nouchata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRCS_P =	${CTN}/parser/parser.c \
 			${CTN}/parser/cmdcontent_builder.c \
 			${CTN}/parser/cmdcontent_misc.c \
 			${CTN}/parser/misc.c \
-			${CTN}/parser/quotes_management.c
+			${CTN}/parser/quotes_management.c \
+			${CTN}/parser/ccon_to_exec.c
 SRCS_M =	${CTN}/main.c ${CTN}/error_handler.c
 OBJS_E =	${SRCS_E:.c=.o}
 OBJS_V =	${SRCS_V:.c=.o}
