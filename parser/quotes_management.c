@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#	include "parser.h"
+
 void	remove_char_from_str(char *str, char trm, int except_in_dbq, int x_in_q)
 {
 	int	i;
@@ -54,7 +56,7 @@ void	strip_quotes(char *str)
 			dbqcount++;
 		if (str[i - 1] != '\\' && str[i] == '\'' && dbqcount % 2 == 0)
 			qcount++;
-		if (dbqcount % 2 != 0 && str[i] == '$')
+		if (qcount % 2 != 0 && str[i] == '$')
 			str[j++] = '\\';
 		str[j] = str[i];
 		if (!((str[i] == '\'' && dbqcount % 2 == 0)
@@ -65,11 +67,3 @@ void	strip_quotes(char *str)
 	while (j <= i)
 		str[j++] = 0;
 }
-
-/*int	main(void)
-{
-	char *str = strdup("\"\"hel\'l\'o\'\"\"\'");
-	remove_char_from_str(str, '\\', 0, 0);
-	strip_quotes(str);
-	printf("%s\n", str);
-}*/

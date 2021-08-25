@@ -63,6 +63,10 @@ long		fchar_nesc(char *src, char c, int already_find);
 int			remove_spaces(char **src, int just_surround_spaces);
 int			to_next_char(char **src, char c, int edit_str);
 int			find_next_sep(char *src);
+void		remove_char_from_str(char *str, char trm, \
+			int except_in_dbq, int x_in_q);
+void		strip_quotes(char *str);
+char		**strtabdup(char **tab, int is_alone);
 
 /* ******** CHUNKSEG */
 

@@ -13,6 +13,7 @@
 #   include "parser.h"
 
 int leaks_test(char *line);
+int quotes_tests(char *str);
 
 int main(int argc, char **argv)
 {
@@ -29,9 +30,19 @@ int main(int argc, char **argv)
 		{
 			add_history(line);
 			//printf("%s\n%ld\n", line, fchar_nesc(line, '$', 4));
-			leaks_test(line);
+			//leaks_test(line);
+			quotes_tests(line);
 		}
 	}
+	return (0);
+}
+
+int quotes_tests(char *str)
+{
+	strip_quotes(str);
+	
+	//remove_char_from_str(str, '\\', 1, 1);
+	printf("%s\n", str);
 	return (0);
 }
 
