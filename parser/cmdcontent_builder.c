@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:55:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 13:31:49 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 14:03:17 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	cmdcontent_killer(t_cmdcontent *ccon)
 	tmp = NULL;
 	while (ccon)
 	{
-		printf("zzzz\n");
 		tmp = ccon;
 		kill_segments(tmp->cmd, 0);
 		while (ccon->inputs)
@@ -97,11 +96,30 @@ void	cmdcontent_killer(t_cmdcontent *ccon)
 	}
 }
 
+int		cmdcontent_list_setup(t_cmdcontent **ccon, t_cmdcontent *new)
+{
+	t_cmdcontent	*tmp;
+
+	tmp = *ccon;
+	while (tmp && tmp->next)
+		tmp = tmp->next;
+	if (!tmp)
+		*ccon = new;
+	else
+	{
+		tmp->next = new;
+		new->prev = tmp;
+	}
+	return (0);
+}
+
 int		cmdcontent_builder(t_cmdcontent **ccon, t_chunkseg *cs)
 {
 	t_cmdcontent	*new;
 	t_cmdcontent	*tmp;
 
+	if (!cs)
+		return (0);
 	tmp = *ccon;
 	new = malloc(sizeof(t_cmdcontent) * 1);
 	if (!new)
@@ -112,6 +130,12 @@ int		cmdcontent_builder(t_cmdcontent **ccon, t_chunkseg *cs)
 	new->outputs = NULL;
 	new->sep_type = cs->sep_type;
 	new->cmd = NULL;
-	*ccon = new;
+	if (cmdcontent_extract_iothings(new, cs) == -1 || \
+	cmdcontent_extract_cmd(new, cs) == -1)
+	{
+		cmdcontent_killer(new);
+		return (-1);
+	}
+	cmdcontent_list_setup(ccon, new);
 	return (0);
 }
