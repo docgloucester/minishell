@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:56:07 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 15:04:33 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 16:25:42 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int		cmdcontent_io_transfert(t_cmdcontent *curr, char **cmds, int i)
 {
 	if (!cmds[i + 1])
-		return (-1);
+		return (error_syntax_handler(cmds[i], 0, -1));
 	if (!ft_strncmp(cmds[i + 1], "<", 1) || \
 	!ft_strncmp(cmds[i + 1], "<<", 1) || \
 	!ft_strncmp(cmds[i + 1], ">", 1) || \
 	!ft_strncmp(cmds[i + 1], ">>", 1))
-		return (-1); // error_handler
+		return (error_syntax_handler(cmds[i], 0, -1));
 	if (ioitem_builder(curr, cmds[i], cmds[i + 1]) == -1)
 		return (-1);
 	free(cmds[i]);
@@ -61,10 +61,10 @@ int		cmdcontent_extract_cmd(t_cmdcontent *ccon, t_chunkseg *cs)
 	i = 0;
 	y = count_strs(cs->segments, cs->segs_count);
 	if (!y)
-		return (-1); // error_handler
+		return (error_syntax_handler(NULL, 0, -1));
 	cmd = malloc(sizeof(char *) * (y + 1));
 	if (!cmd)
-		return (-1);
+		return (error_handler(NULL, NULL, -1));
 	ft_memset(cmd, 0, sizeof(char *) * (y + 1));
 	y = 0;
 	while (i < cs->segs_count)
@@ -75,7 +75,7 @@ int		cmdcontent_extract_cmd(t_cmdcontent *ccon, t_chunkseg *cs)
 			if (!cmd[y])
 			{
 				cmd = kill_segments(cmd, 0);
-				return (-1);
+				return (error_handler(NULL, NULL, -1));
 			}
 			free(cs->segments[i]);
 			cs->segments[i] = NULL;

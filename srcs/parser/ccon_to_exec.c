@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 10:48:20 by rgilles           #+#    #+#             */
-/*   Updated: 2021/08/25 15:12:58 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 16:35:59 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	exec_inputs(t_cmdcontent *ccon, t_minishell *m)
 	{
 		content = strtabdup(&curr->name, 1);
 		if (!content)
-			return (-1);
+			return (error_handler(NULL, NULL, -1));
 		if (curr->type == IN)
 			exec_builder(&m->ed, content, INPUT, 1);
 		else
@@ -84,7 +84,7 @@ int	exec_outputs(t_cmdcontent *ccon, t_minishell *m)
 			is_pipe = 0;
 		cnt = strtabdup(&curr->name, 1);
 		if (!cnt)
-			return (-1);
+			return (error_handler(NULL, NULL, -1));
 		if (curr->type == OUT)
 			exec_builder(&m->ed, cnt, OUTPUT, is_pipe);
 		else
@@ -107,7 +107,7 @@ int	ccon_to_exec(t_cmdcontent *ccon_full, t_minishell *m)
 			return (-1);
 		content = strtabdup(ccon->cmd, 0);
 		if (!content)
-			return (-1);
+			return (error_handler(NULL, NULL, -1));
 		binbuiltin = BINARY;
 		if (is_builtin(content))
 			binbuiltin = BUILTIN;

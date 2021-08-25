@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:10:46 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 15:16:32 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 17:12:59 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ int			find_next_sep(char *src);
 void		remove_char_from_str(char *str, char trm, int except_in_dbq, int x_in_q);
 void		strip_quotes(char *str);
 char		**strtabdup(char **array, int is_alone);
-
-// int			ccon_to_exec(t_cmdcontent *ccon_full, struct s_minishell *m);
 
 /* ******** CHUNKSEG */
 

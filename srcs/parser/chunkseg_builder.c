@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:44:43 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 15:04:34 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 16:12:35 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		chunkseg_builder(t_chunkseg **cs, t_cmdchunk *cmdc)
 	i = 0;
 	new = malloc(sizeof(t_chunkseg) * 1);
 	if (!new)
-		return (-1);
+		return (error_handler(NULL, NULL, -1));
 	new->segments = extract_segments(cmdc->cmd);
 	if (!new->segments)
 	{

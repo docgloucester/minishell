@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:08:33 by rgilles           #+#    #+#             */
-/*   Updated: 2021/08/25 15:04:28 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 16:57:12 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_cmdchunk	*chunk_list_creator_supp(t_cmdchunk *lst)
 	if (is_finished_by_pipe(lst))
 	{
 		chunksdel(lst);
-		return ((t_cmdchunk *)(long)error_handler(NULL, "syntax error", 0)); // a refaire
+		return ((t_cmdchunk *)(long)error_syntax_handler("|", 1, 0));
 	}
 	curr = lst;
 	while (curr)
@@ -69,7 +69,7 @@ t_cmdchunk	*chunk_list_creator_supp(t_cmdchunk *lst)
 		if (!finished_quote_set(curr->cmd, ft_strlen(curr->cmd)))
 		{
 			chunksdel(lst);
-			return ((t_cmdchunk *)(long)error_handler(NULL, "syntax error", 0)); // a refaire
+			return ((t_cmdchunk *)(long)error_syntax_handler("quotes", 7, 0));
 		}
 		curr = curr->next;
 	}

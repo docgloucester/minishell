@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:54:28 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 15:04:34 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 16:30:48 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,18 @@ char	**kill_segments(char **segs, int count)
 	int		i;
 
 	i = 0;
-	while (count && i < count)
+	while (segs && count && i < count)
 	{
 		free(segs[i]);
 		i++;
 	}
-	while (!count && segs[i])
+	while (segs && !count && segs[i])
 	{
 		free(segs[i]);
 		i++;		
 	}
-	free(segs);
+	if (segs)
+		free(segs);
 	return (NULL);
 }
 

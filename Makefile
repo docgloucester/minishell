@@ -6,7 +6,7 @@
 #    By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 10:06:20 by nouchata          #+#    #+#              #
-#    Updated: 2021/08/25 15:15:34 by nouchata         ###   ########.fr        #
+#    Updated: 2021/08/25 17:13:22 by nouchata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS_B =	${CTN}/builtin/builtin.c \
 			${CTN}/builtin/builtin_echo.c \
 			${CTN}/builtin/builtin_exit.c \
 			${CTN}/builtin/builtin_var.c
-SRCS_P =	${CTN}/parser/parser.c \
+SRCS_P =	${CTN}/parser/first_parser.c \
 			${CTN}/parser/remove_spaces.c \
 			${CTN}/parser/split_line_supp.c \
 			${CTN}/parser/chunk_handling.c \
@@ -52,7 +52,7 @@ LIB_V =		${CTN}/varenv/varenv.a
 LIB_B =		${CTN}/builtin/builtin.a
 LIB_P =		${CTN}/parser/parser.a
 CC =		clang
-CFLAGS =	-g #-Wall -Werror -Wextra
+CFLAGS =	-g -fsanitize=address #-Wall -Werror -Wextra
 NAME =		minishell
 RM =		rm -f
 

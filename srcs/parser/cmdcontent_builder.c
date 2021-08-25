@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:55:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 15:04:33 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 16:14:11 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		ioitem_builder(t_cmdcontent *curr, char *str, char *content)
 
 	ioitem = malloc(sizeof(t_ioitem) * 1);
 	if (!ioitem)
-		return (-1);
+		return (error_handler(NULL, NULL, -1));
 	ioitem->next = NULL;
 	ioitem->prev = NULL;
 	if (!ft_strncmp(str, "<<", 2))
@@ -61,7 +61,7 @@ int		ioitem_builder(t_cmdcontent *curr, char *str, char *content)
 	if (!ioitem->name)
 	{
 		free(ioitem);
-		return (-1);
+		return (error_handler(NULL, NULL, -1));
 	}
 	ioitem_list_setup(curr, ioitem);
 	return (0);
@@ -123,7 +123,7 @@ int		cmdcontent_builder(t_cmdcontent **ccon, t_chunkseg *cs)
 	tmp = *ccon;
 	new = malloc(sizeof(t_cmdcontent) * 1);
 	if (!new)
-		return (-1);
+		return (error_handler(NULL, NULL, -1));
 	new->next = NULL;
 	new->prev = NULL;
 	new->inputs = NULL;
