@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:55:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 20:56:31 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 13:31:49 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,51 @@ int		ioitem_builder(t_cmdcontent *curr, char *str, char *content)
 	return (0);
 }
 
+void	cmdcontent_killer(t_cmdcontent *ccon)
+{
+	t_cmdcontent	*tmp;
+	t_ioitem		*tmpio;
+
+	tmp = NULL;
+	while (ccon)
+	{
+		printf("zzzz\n");
+		tmp = ccon;
+		kill_segments(tmp->cmd, 0);
+		while (ccon->inputs)
+		{
+			tmpio = ccon->inputs;
+			free(tmpio->name);
+			ccon->inputs = tmpio->next;
+			free(tmpio);
+		}
+		while (ccon->outputs)
+		{
+			tmpio = ccon->outputs;
+			free(tmpio->name);
+			ccon->outputs = tmpio->next;
+			free(tmpio);
+		}
+		ccon = tmp->next;
+		free(tmp);
+	}
+}
+
 int		cmdcontent_builder(t_cmdcontent **ccon, t_chunkseg *cs)
 {
 	t_cmdcontent	*new;
+	t_cmdcontent	*tmp;
 
-	(void)cs; //
-	(void)ccon; //
+	tmp = *ccon;
 	new = malloc(sizeof(t_cmdcontent) * 1);
 	if (!new)
 		return (-1);
-	new->inputs = NULL;
-	new->outputs = NULL;
-	new->cmd = NULL;
-	new->sep_type = cs->sep_type;
 	new->next = NULL;
 	new->prev = NULL;
+	new->inputs = NULL;
+	new->outputs = NULL;
+	new->sep_type = cs->sep_type;
+	new->cmd = NULL;
 	*ccon = new;
 	return (0);
 }

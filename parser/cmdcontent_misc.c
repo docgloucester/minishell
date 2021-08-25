@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:56:07 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 21:31:32 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 12:11:30 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		cmdcontent_io_transfert(t_cmdcontent *curr, char **cmds, int i)
 	!ft_strncmp(cmds[i + 1], "<<", 1) || \
 	!ft_strncmp(cmds[i + 1], ">", 1) || \
 	!ft_strncmp(cmds[i + 1], ">>", 1))
-		return (-1);
+		return (-1); // error_handler
 	if (ioitem_builder(curr, cmds[i], cmds[i + 1]) == -1)
 		return (-1);
 	free(cmds[i]);
@@ -60,6 +60,8 @@ int		cmdcontent_extract_cmd(t_cmdcontent *ccon, t_chunkseg *cs)
 
 	i = 0;
 	y = count_strs(cs->segments, cs->segs_count);
+	if (!y)
+		return (-1); // error_handler
 	cmd = malloc(sizeof(char *) * (y + 1));
 	if (!cmd)
 		return (-1);

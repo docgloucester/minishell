@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:11:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 21:34:11 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 13:27:10 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,19 @@ int main(int argc, char **argv)
 	(void)argv;
 	char		*line;
 	char		**segs;
-	line = "";
+	line = "cat << x";
 	segs = NULL;
 	while (line)
 	{
-		line = readline("prompt$ ");
+		// line = readline("prompt$ ");
 		if (line)
 		{
-			add_history(line);
-			//printf("%s\n%ld\n", line, fchar_nesc(line, '$', 4));
-			//leaks_test(line);
-			quotes_tests(line);
+			// add_history(line);
+			// printf("%s\n%ld\n", line, fchar_nesc(line, '$', 4));
+			leaks_test(line);
+			// quotes_tests(line);
 		}
+		break ;
 	}
 	return (0);
 }
@@ -41,7 +42,7 @@ int quotes_tests(char *str)
 {
 	strip_quotes(str);
 	
-	//remove_char_from_str(str, '\\', 1, 1);
+	// remove_char_from_str(str, '\\', 1, 1);
 	printf("%s\n", str);
 	return (0);
 }
@@ -114,5 +115,6 @@ int leaks_test(char *line)
 		i++;
 	}
 	chunkseg_killer(cs);
+	cmdcontent_killer(ccon);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:10:46 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/24 21:31:03 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/25 13:23:03 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int			chunkseg_killer(t_chunkseg *cs);
 /* ******** CMDCONTENT */
 
 int			cmdcontent_builder(t_cmdcontent **ccon, t_chunkseg *cs);
+void		cmdcontent_killer(t_cmdcontent *ccon);
 int			ioitem_builder(t_cmdcontent *curr, char *str, char *content);
 int			cmdcontent_extract_iothings(t_cmdcontent *ccon, t_chunkseg *cs);
 int			cmdcontent_extract_cmd(t_cmdcontent *ccon, t_chunkseg *cs);
