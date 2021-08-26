@@ -19,7 +19,6 @@ int	builtin_wrapper(t_execdata *d, t_varenv *ve)
 			return (error_handler(NULL, d->cmd[0], -1));
 	if (d->prec && d->prec->pipe_on)
 		ft_close(&d->prec->pipes[0], 1);
-	// fonction deuxieme parsing
 	d->return_v = builtin_dispatcher(d, ve) << 8;
 	if (d->pipe_on)
 		ft_close(&d->pipes[1], 1);

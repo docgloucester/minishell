@@ -29,6 +29,17 @@ int	error_handler(char *cmd, char *arg, int retval)
 	return (retval);
 }
 
+int	error_handler_p(char *cmd, int retval)
+{
+	write(2, "bâche: ", 9);
+	if (cmd)
+	{
+		write(2, cmd, ft_strlen(cmd));
+		write(2, "\n", 1);
+	}
+	return (retval);
+}
+
 int	error_syntax_handler(char *str, int len, int retval)
 {
 	if (!str)

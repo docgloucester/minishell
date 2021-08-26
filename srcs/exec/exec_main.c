@@ -14,6 +14,7 @@
 
 int	cmd_dispatcher(t_execdata *d, t_varenv *ve)
 {
+	// fonction resolution variables & determination type BIN/BUILTIN
 	if (d && d->type == BINARY)
 		if (bin_wrapper(d, ve) < 0)
 			return (-1);

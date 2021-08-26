@@ -49,6 +49,8 @@ int	search_in_path(t_execdata *d, t_varenv *ve)
 	int		i;
 	DIR		*dir;
 
+	if (!d->cmd || !d->cmd[0])
+		return (0);
 	if (ft_strchr(d->cmd[0], '/'))
 		return (0);
 	paths = var_value_finder(ve, "PATH", 0);
@@ -88,6 +90,8 @@ int	bin_wrapper(t_execdata *d, t_varenv *ve)
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
+		if (!d->cmd || !d->cmd[0])
+			return (fork_exit(ve->minishell_var, EXIT_SUCCESS));
 		if (pipe_setter(d, 1) == -1)
 			fork_exit(ve->minishell_var, EXIT_FAILURE);
 		if (execve(d->cmd[0], d->cmd, ve->env_to_str) == -1)

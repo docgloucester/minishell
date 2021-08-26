@@ -30,6 +30,8 @@ int	export_loop(t_execdata *d)
 	int		ret;
 	char	buffer[30];
 
+	if (!d->cmd || !d->cmd[0])
+		return (error_handler_p("ambiguous redirect", -1));
 	if (export_fd(d, &fd, &ret) == -1)
 		return (-1);
 	while (ret)

@@ -42,6 +42,8 @@ int	import_loop(t_execdata *d)
 	int		ret;
 	char	buffer[100];
 
+	if (!d->cmd || !d->cmd[0])
+		return (error_handler_p("ambiguous redirect", -1));
 	fd = open(d->cmd[0], O_RDONLY);
 	if (fd == -1)
 		return(error_handler(NULL, d->cmd[0], -1));

@@ -29,6 +29,7 @@ typedef struct s_minishell
 
 int		error_handler(char *cmd, char *arg, int retval);
 int		error_syntax_handler(char *str, int len, int retval);
+int		error_handler_p(char *cmd, int retval);
 int		ccon_to_exec(t_cmdcontent *ccon_full, struct s_minishell *m);
 int		first_parser(t_minishell *m, char *line);
 
