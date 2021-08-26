@@ -12,7 +12,7 @@
 
 #	include "../minishell.h"
 
-void	remove_char_from_str(char *str, char trm, int except_in_dbq, int x_in_q)
+void	remove_char_from_str(char *s, char trm, int except_in_dbq, int x_in_q)
 {
 	int	i;
 	int	j;
@@ -23,23 +23,23 @@ void	remove_char_from_str(char *str, char trm, int except_in_dbq, int x_in_q)
 	j = 0;
 	dbqcnt = 0;
 	qcount = 0;
-	while (str && str[i])
+	while (s && s[i])
 	{
-		if ((i == 0 || str[i - 1] != '\\') && str[i] == '\"' && qcount % 2 == 0)
+		if ((i == 0 || s[i - 1] != '\\') && s[i] == '\"' && qcount % 2 == 0)
 			dbqcnt++;
-		if ((i == 0 || str[i - 1] != '\\') && str[i] == '\'' && dbqcnt % 2 == 0)
+		if ((i == 0 || s[i - 1] != '\\') && s[i] == '\'' && dbqcnt % 2 == 0)
 			qcount++;
-		str[j] = str[i];
+		s[j] = s[i];
 		i++;
-		if (str[j] != trm || (except_in_dbq && dbqcnt % 2 != 0)
+		if (s[j] != trm || (except_in_dbq && dbqcnt % 2 != 0)
 			|| (x_in_q && qcount % 2 != 0))
 			j++;
 	}
 	while (j <= i)
-		str[j++] = 0;
+		s[j++] = 0;
 }
 
-void	strip_quotes(char *str)
+void	strip_quotes(char *s)
 {
 	int	i;
 	int	j;
@@ -50,20 +50,20 @@ void	strip_quotes(char *str)
 	j = 0;
 	dbqcnt = 0;
 	qcnt = 0;
-	while (str && str[i])
+	while (s && s[i])
 	{
-		if ((i == 0 || str[i - 1] != '\\') && str[i] == '\"' && qcnt % 2 == 0)
+		if ((i == 0 || s[i - 1] != '\\') && s[i] == '\"' && qcnt % 2 == 0)
 			dbqcnt++;
-		if ((i == 0 || str[i - 1] != '\\') && str[i] == '\'' && dbqcnt % 2 == 0)
+		if ((i == 0 || s[i - 1] != '\\') && s[i] == '\'' && dbqcnt % 2 == 0)
 			qcnt++;
-		str[j] = str[i];
-		if (!((str[i] == '\'' && dbqcnt % 2 == 0)
-				|| (str[i] == '\"' && qcnt % 2 == 0)))
+		s[j] = s[i];
+		if (!((s[i] == '\'' && dbqcnt % 2 == 0)
+				|| (s[i] == '\"' && qcnt % 2 == 0)))
 			j++;
 		i++;
 	}
 	while (j <= i)
-		str[j++] = 0;
+		s[j++] = 0;
 }
 
 void	remove_nullspaces(char **arr, int cmdcount)

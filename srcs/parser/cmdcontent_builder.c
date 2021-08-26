@@ -12,7 +12,7 @@
 
 #	include "../minishell.h"
 
-int		ioitem_list_setup(t_cmdcontent *curr, t_ioitem *ioitem)
+int	ioitem_list_setup(t_cmdcontent *curr, t_ioitem *ioitem)
 {
 	t_ioitem	*tmp;
 
@@ -40,7 +40,7 @@ int		ioitem_list_setup(t_cmdcontent *curr, t_ioitem *ioitem)
 	return (0);
 }
 
-int		ioitem_builder(t_cmdcontent *curr, char *str, char *content)
+int	ioitem_builder(t_cmdcontent *curr, char *str, char *content)
 {
 	t_ioitem	*ioitem;
 
@@ -96,7 +96,7 @@ void	cmdcontent_killer(t_cmdcontent *ccon)
 	}
 }
 
-int		cmdcontent_list_setup(t_cmdcontent **ccon, t_cmdcontent *new)
+int	cmdcontent_list_setup(t_cmdcontent **ccon, t_cmdcontent *new)
 {
 	t_cmdcontent	*tmp;
 
@@ -113,7 +113,7 @@ int		cmdcontent_list_setup(t_cmdcontent **ccon, t_cmdcontent *new)
 	return (0);
 }
 
-int		cmdcontent_builder(t_cmdcontent **ccon, t_chunkseg *cs)
+int	cmdcontent_builder(t_cmdcontent **ccon, t_chunkseg *cs)
 {
 	t_cmdcontent	*new;
 	t_cmdcontent	*tmp;

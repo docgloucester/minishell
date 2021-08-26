@@ -13,7 +13,7 @@
 #	include "../minishell.h"
 
 /* type : 0=all / 1=from_start / 2=from_end */
-int		count_spaces(char *src, int type)
+int	count_spaces(char *src, int type)
 {
 	int		i[2];
 
@@ -43,15 +43,15 @@ int		count_spaces(char *src, int type)
 }
 
 /* type : 0=all / 1=surrond_spaces */
-int		wout_spaces_filler(char *new, char *src, int type)
+int	wout_spaces_filler(char *new, char *src, int type)
 {
 	int		i[3];
-	
+
 	i[0] = 0;
 	i[1] = 0;
 	i[2] = ft_strlen(src) - count_spaces(src, 2);
 	while (src && src[i[0]] == ' ')
-			i[0]++;
+		i[0]++;
 	while (src && i[0] < i[2])
 	{
 		if (!type && src[i[0]] != ' ')
@@ -69,7 +69,7 @@ int		wout_spaces_filler(char *new, char *src, int type)
 	return (0);
 }
 
-int		check_if_full_spaces(char *src)
+int	check_if_full_spaces(char *src)
 {
 	int		i;
 
@@ -83,7 +83,7 @@ int		check_if_full_spaces(char *src)
 	return (0);
 }
 
-int		to_next_char(char **src, char c, int edit_str)
+int	to_next_char(char **src, char c, int edit_str)
 {
 	int		i;
 
@@ -95,7 +95,7 @@ int		to_next_char(char **src, char c, int edit_str)
 	return (i);
 }
 
-int		remove_spaces(char **src, int just_surround_spaces)
+int	remove_spaces(char **src, int just_surround_spaces)
 {
 	char	*new;
 	int		spaces;

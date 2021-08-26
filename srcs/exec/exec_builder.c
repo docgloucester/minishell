@@ -26,7 +26,7 @@ int	exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe)
 
 	new = malloc(sizeof(t_execdata) * 1);
 	if (!new)
-		return(error_handler(NULL, NULL, -1));
+		return (error_handler(NULL, NULL, -1));
 	current = *d;
 	while (current && current->next)
 		current = current->next;

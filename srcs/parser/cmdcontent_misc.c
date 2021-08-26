@@ -12,7 +12,7 @@
 
 #	include "../minishell.h"
 
-int		cmdcontent_io_transfert(t_cmdcontent *curr, char **cmds, int i)
+int	cmdcontent_io_transfert(t_cmdcontent *curr, char **cmds, int i)
 {
 	if (!cmds[i + 1])
 		return (error_syntax_handler(cmds[i], 0, -1));
@@ -30,7 +30,7 @@ int		cmdcontent_io_transfert(t_cmdcontent *curr, char **cmds, int i)
 	return (0);
 }
 
-int		cmdcontent_extract_iothings(t_cmdcontent *ccon, t_chunkseg *cs)
+int	cmdcontent_extract_iothings(t_cmdcontent *ccon, t_chunkseg *cs)
 {
 	int		i;
 
@@ -52,7 +52,7 @@ int		cmdcontent_extract_iothings(t_cmdcontent *ccon, t_chunkseg *cs)
 	return (0);
 }
 
-int		cmdcontent_extract_cmd(t_cmdcontent *ccon, t_chunkseg *cs)
+int	cmdcontent_extract_cmd(t_cmdcontent *ccon, t_chunkseg *cs)
 {
 	char	**cmd;
 	int		i;

@@ -91,7 +91,7 @@ t_cmdchunk	*chunk_list_creator(char *str)
 	y = 0;
 	lst = NULL;
 	if (!str[to_next_char(&str, ' ', 0)])
-  		return (NULL);
+		return (NULL);
 	while (i < (int)ft_strlen(str))
 	{
 		cstr = &str[i];

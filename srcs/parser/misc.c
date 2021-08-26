@@ -12,7 +12,7 @@
 
 #	include "../minishell.h"
 
-int		count_strs(char **strs, int count)
+int	count_strs(char **strs, int count)
 {
 	int		i;
 	int		y;
@@ -34,7 +34,7 @@ int		count_strs(char **strs, int count)
 	return (y);
 }
 
-int		find_size_of_current_block(char *src)
+int	find_size_of_current_block(char *src)
 {
 	int		i;
 	char	quotes;
@@ -62,7 +62,7 @@ int		find_size_of_current_block(char *src)
 	return (i);
 }
 
-int		count_all_segments(char *src)
+int	count_all_segments(char *src)
 {
 	int		i;
 	int		seg;
@@ -77,7 +77,7 @@ int		count_all_segments(char *src)
 		tnc = &src[i];
 		i += to_next_char(&tnc, ' ', 0);
 		if (!src[i])
-			break;
+			break ;
 		i += find_size_of_current_block(&src[i]);
 		seg++;
 	}
@@ -92,6 +92,7 @@ long	fchar_nesc(char *src, char c, int already_find)
 	i = -1;
 	y = 0;
 	while (src[++i])
+	{
 		if (src[i] == c)
 		{
 			if (i && src[i - 1] == '\\')
@@ -106,5 +107,6 @@ long	fchar_nesc(char *src, char c, int already_find)
 			else
 				return (i);
 		}
+	}
 	return (-1);
 }

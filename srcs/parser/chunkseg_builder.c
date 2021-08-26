@@ -12,7 +12,7 @@
 
 #	include "../minishell.h"
 
-int		chunkset_list_setup(t_chunkseg **cs, t_chunkseg *new)
+int	chunkset_list_setup(t_chunkseg **cs, t_chunkseg *new)
 {
 	t_chunkseg	*old;
 
@@ -29,7 +29,7 @@ int		chunkset_list_setup(t_chunkseg **cs, t_chunkseg *new)
 	return (0);
 }
 
-int		chunkseg_builder(t_chunkseg **cs, t_cmdchunk *cmdc)
+int	chunkseg_builder(t_chunkseg **cs, t_cmdchunk *cmdc)
 {
 	t_chunkseg	*new;
 	int			i;
@@ -52,7 +52,7 @@ int		chunkseg_builder(t_chunkseg **cs, t_cmdchunk *cmdc)
 	return (0);
 }
 
-int		chunkseg_killer(t_chunkseg *cs)
+int	chunkseg_killer(t_chunkseg *cs)
 {
 	t_chunkseg	*current;
 

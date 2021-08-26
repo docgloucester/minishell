@@ -41,13 +41,13 @@ int	ft_kill(t_execdata *d, int sig, int retval)
 int	var_setter(t_execdata *d, t_varenv *ve)
 {
 	if (d->type == BINARY && search_in_path(d, ve) == -1)
-		return(error_handler(NULL, d->cmd[0], -1));
+		return (error_handler(NULL, d->cmd[0], -1));
 	if (d->pipe_on)
 		if (pipe(d->pipes) == -1)
-			return(error_handler(NULL, d->cmd[0], -1));
+			return (error_handler(NULL, d->cmd[0], -1));
 	d->pid = fork();
 	if (d->pid == -1)
-		return(error_handler(NULL, d->cmd[0], -1));
+		return (error_handler(NULL, d->cmd[0], -1));
 	return (0);
 }
 
@@ -57,13 +57,13 @@ int	pipe_setter(t_execdata *d, int child)
 	{
 		if (d->type != INPUT_D && child && \
 		(dup2(d->prec->pipes[0], STDIN_FILENO) == -1))
-			return(error_handler(NULL, d->cmd[0], -1));
+			return (error_handler(NULL, d->cmd[0], -1));
 		ft_close(&d->prec->pipes[0], 1);
 	}
 	if (d->pipe_on)
 	{
 		if (child && (dup2(d->pipes[1], STDOUT_FILENO) == -1))
-			return(error_handler(NULL, d->cmd[0], -1));
+			return (error_handler(NULL, d->cmd[0], -1));
 		if (child)
 			ft_close(&d->pipes[0], 1);
 		ft_close(&d->pipes[1], 1);

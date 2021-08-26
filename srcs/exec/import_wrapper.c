@@ -23,7 +23,7 @@ int	interactive_loop(t_execdata *d, int fdout)
 	{
 		ret = get_next_line(STDIN_FILENO, &str);
 		if (ret == -1)
-			return(error_handler(NULL, d->cmd[0], -1));
+			return (error_handler(NULL, d->cmd[0], -1));
 		if (!ft_strncmp(d->cmd[0], str, 0))
 			break ;
 		write(STDOUT_FILENO, str, ft_strlen(str));
@@ -46,14 +46,14 @@ int	import_loop(t_execdata *d)
 		return (error_handler_p("ambiguous redirect", -1));
 	fd = open(d->cmd[0], O_RDONLY);
 	if (fd == -1)
-		return(error_handler(NULL, d->cmd[0], -1));
+		return (error_handler(NULL, d->cmd[0], -1));
 	ret = 1;
 	while (ret)
 	{
 		ft_memset(buffer, 0, 100);
 		ret = read(fd, buffer, 99);
 		if (ret == -1)
-			return(error_handler(NULL, d->cmd[0], -1));
+			return (error_handler(NULL, d->cmd[0], -1));
 		write(STDOUT_FILENO, buffer, ft_strlen(buffer));
 	}
 	return (0);

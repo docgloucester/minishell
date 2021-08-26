@@ -12,7 +12,7 @@
 
 #	include "../minishell.h"
 
-int		exit_integrity(char *src)
+int	exit_integrity(char *src)
 {
 	int		i;
 
@@ -31,7 +31,7 @@ int		exit_integrity(char *src)
 	return (1);
 }
 
-int		exit_error(t_minishell *m, char *src)
+int	exit_error(t_minishell *m, char *src)
 {
 	write(2, "bash: exit: ", 12);
 	write(2, src, ft_strlen(src));

@@ -12,7 +12,7 @@
 
 #	include "../minishell.h"
 
-int		cmdcontent_filler(t_chunkseg **cs, t_cmdcontent **ccon)
+int	cmdcontent_filler(t_chunkseg **cs, t_cmdcontent **ccon)
 {
 	t_chunkseg		*tmp;
 
@@ -30,7 +30,7 @@ int		cmdcontent_filler(t_chunkseg **cs, t_cmdcontent **ccon)
 	return (1);
 }
 
-int		chunkseg_filler(t_cmdchunk **cmdc, t_chunkseg **cs)
+int	chunkseg_filler(t_cmdchunk **cmdc, t_chunkseg **cs)
 {
 	t_cmdchunk		*tmp;
 	t_chunkseg		*tmp2;
@@ -50,9 +50,9 @@ int		chunkseg_filler(t_cmdchunk **cmdc, t_chunkseg **cs)
 	return (1);
 }
 
-int		first_parser(t_minishell *m, char *line)
+int	first_parser(t_minishell *m, char *line)
 {
-	t_cmdchunk 		*cmdc;
+	t_cmdchunk		*cmdc;
 	t_chunkseg		*cs;
 	t_cmdcontent	*ccon;
 

@@ -64,7 +64,7 @@ char	**str_returnval(t_varenv *ve)
 	value[0] = ft_itoa((unsigned char)ve->bin_return);
 	value[1] = NULL;
 	return (value);
-} 
+}
 
 char	**var_value_finder(t_varenv *ve, char *var_name, char malloc_str)
 {

@@ -19,7 +19,7 @@ int	export_fd(t_execdata *d, int *fd, int *ret)
 	else
 		*fd = open(d->cmd[0], O_WRONLY | O_APPEND | O_CREAT, 0664);
 	if (*fd == -1)
-		return(error_handler(NULL, d->cmd[0], -1));
+		return (error_handler(NULL, d->cmd[0], -1));
 	*ret = 1;
 	return (0);
 }
@@ -41,7 +41,7 @@ int	export_loop(t_execdata *d)
 		if (ret == -1)
 		{
 			close(fd);
-			return(error_handler(NULL, d->cmd[0], -1));
+			return (error_handler(NULL, d->cmd[0], -1));
 		}
 		if (d->pipe_on)
 			write(STDOUT_FILENO, buffer, ft_strlen(buffer));

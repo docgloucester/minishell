@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef PARSER_H
-#define PARSER_H
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#ifndef PARSER_H
+# define PARSER_H
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 enum {DIN, IN, DOUT, OUT};
 
@@ -26,7 +26,6 @@ typedef struct s_cmdchunk
 	char				sep_type;
 	struct s_cmdchunk	*next;
 	struct s_cmdchunk	*prev;
-	
 }				t_cmdchunk;
 
 typedef struct s_chunkseg
@@ -62,7 +61,7 @@ long		fchar_nesc(char *src, char c, int already_find);
 int			remove_spaces(char **src, int just_surround_spaces);
 int			to_next_char(char **src, char c, int edit_str);
 int			find_next_sep(char *src);
-void		remove_char_from_str(char *str, char trm, int except_in_dbq, int x_in_q);
+void		remove_char_from_str(char *s, char trm, int ex_in_dbq, int x_in_q);
 void		strip_quotes(char *str);
 char		**strtabdup(char **array, int is_alone);
 int			unfinished_quote_set(char *s, size_t i);
@@ -92,4 +91,4 @@ t_cmdchunk	*newchunk(char *str, char sep);
 int			chunkadd(t_cmdchunk **chunklist, t_cmdchunk *new);
 void		chunksdel(t_cmdchunk *list_to_del);
 
-# endif
+#endif

@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#	include "minishell.h"
 
-int parsing_tests(t_minishell *m, char *line);
-
-void sig_reset_prompt(int signal)
+void	sig_reset_prompt(int signal)
 {
 	(void)signal;
 	printf("\n");

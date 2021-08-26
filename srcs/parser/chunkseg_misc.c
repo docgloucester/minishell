@@ -25,7 +25,7 @@ char	**kill_segments(char **segs, int count)
 	while (segs && !count && segs[i])
 	{
 		free(segs[i]);
-		i++;		
+		i++;
 	}
 	if (segs)
 		free(segs);

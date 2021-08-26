@@ -31,8 +31,6 @@ char	**strtabdup(char **array, int is_alone)
 	return (ret);
 }
 
-
-
 int	exec_inputs(t_cmdcontent *ccon, t_minishell *m)
 {
 	char		**content;
