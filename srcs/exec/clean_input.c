@@ -65,3 +65,40 @@ void	strip_quotes(char *str)
 	while (j <= i)
 		str[j++] = 0;
 }
+
+void	remove_nullspaces(char **arr, int cmdcount)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (arr && i < cmdcount)
+	{
+		arr[j] = arr[i];
+		i++;
+		if (arr[j] != NULL)
+			j++;
+	}
+	while (j <= i)
+		arr[j++] = NULL;
+}
+
+int	is_builtin(char **cmd)
+{
+	if (!ft_strncmp(cmd[0], "echo", 0))
+		return (1);
+	if (!ft_strncmp(cmd[0], "cd", 0))
+		return (1);
+	if (!ft_strncmp(cmd[0], "pwd", 0))
+		return (1);
+	if (!ft_strncmp(cmd[0], "export", 0))
+		return (1);
+	if (!ft_strncmp(cmd[0], "unset", 0))
+		return (1);
+	if (!ft_strncmp(cmd[0], "env", 0))
+		return (1);
+	if (!ft_strncmp(cmd[0], "exit", 0))
+		return (1);
+	return (0);
+}

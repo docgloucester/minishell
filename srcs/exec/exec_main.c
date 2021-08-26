@@ -14,15 +14,31 @@
 
 int	resolution(t_execdata *d, t_varenv *ve)
 {
+	int	i;
+	int	cmdcount;
+
 	// fonction qui resout toutes les variables
 	// fonction qui trim les guillemets et qui enlève les blackslashs
+	i = 0;
+	while (d->cmd[i])
+	{
+		remove_char_from_str(d->cmd[i], '\\', 1, 1);
+		strip_quotes(d->cmd[i]);
+		i++;
+	}
 	// fonction qui enlève les nulls dans la chaine
+	cmdcount = 2;
+	remove_nullspaces(d->cmd, cmdcount);
 	// fonction qui met builtin a la place de bin si il faut
+	if (is_builtin(d->cmd))
+		d->type = BUILTIN;
+	return (0);
 }
 
 int	cmd_dispatcher(t_execdata *d, t_varenv *ve)
 {
-	// fonction resolution variables & determination type BIN/BUILTIN
+	if (d && resolution(d, ve))
+		return (-1);
 	if (d && d->type == BINARY)
 		if (bin_wrapper(d, ve) < 0)
 			return (-1);

@@ -31,24 +31,7 @@ char	**strtabdup(char **array, int is_alone)
 	return (ret);
 }
 
-int	is_builtin(char **cmd)
-{
-	if (!ft_strncmp(cmd[0], "echo", 0))
-		return (1);
-	if (!ft_strncmp(cmd[0], "cd", 0))
-		return (1);
-	if (!ft_strncmp(cmd[0], "pwd", 0))
-		return (1);
-	if (!ft_strncmp(cmd[0], "export", 0))
-		return (1);
-	if (!ft_strncmp(cmd[0], "unset", 0))
-		return (1);
-	if (!ft_strncmp(cmd[0], "env", 0))
-		return (1);
-	if (!ft_strncmp(cmd[0], "exit", 0))
-		return (1);
-	return (0);
-}
+
 
 int	exec_inputs(t_cmdcontent *ccon, t_minishell *m)
 {
@@ -109,8 +92,6 @@ int	ccon_to_exec(t_cmdcontent *ccon_full, t_minishell *m)
 		if (!content)
 			return (error_handler(NULL, NULL, -1));
 		binbuiltin = BINARY;
-		// if (is_builtin(content))
-		// 	binbuiltin = BUILTIN;
 		if (!ccon->outputs && ccon->sep_type == ';')
 			exec_builder(&m->ed, content, binbuiltin, 0);
 		else

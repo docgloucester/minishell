@@ -64,4 +64,9 @@ void	ft_close(int *fd, int size);
 int		exec_killer(t_execdata *d);
 int		builtin_wrapper(t_execdata *d, t_varenv *ve);
 
+int		is_builtin(char **cmd);
+void	remove_nullspaces(char **arr, int cmdcount);
+void	strip_quotes(char *str);
+void	remove_char_from_str(char *str, char trm, int xpt_in_dbq, int x_in_q);
+
 #endif
