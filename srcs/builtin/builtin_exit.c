@@ -77,7 +77,7 @@ int	builtin_exit(void *minishell, char **str)
 		return (1);
 	}
 	varenv_kill(&m->ve);
-	if (!str)
+	if (!str || !str[0])
 	{
 		exec_killer(m->ed);
 		exit(EXIT_SUCCESS);
