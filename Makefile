@@ -52,7 +52,7 @@ LIB_V =		${CTN}/varenv/varenv.a
 LIB_B =		${CTN}/builtin/builtin.a
 LIB_P =		${CTN}/parser/parser.a
 CC =		clang
-CFLAGS =	-g -fsanitize=address #-Wall -Werror -Wextra
+CFLAGS =	-g #-Wall -Werror -Wextra
 NAME =		minishell
 RM =		rm -f
 

@@ -60,8 +60,8 @@ int		cmdcontent_extract_cmd(t_cmdcontent *ccon, t_chunkseg *cs)
 
 	i = 0;
 	y = count_strs(cs->segments, cs->segs_count);
-	if (!y)
-		return (error_syntax_handler(NULL, 0, -1));
+	// if (!y)
+	// 	return (error_syntax_handler(NULL, 0, -1));
 	cmd = malloc(sizeof(char *) * (y + 1));
 	if (!cmd)
 		return (error_handler(NULL, NULL, -1));

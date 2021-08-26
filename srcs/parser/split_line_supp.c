@@ -12,7 +12,7 @@
 
 #	include "../minishell.h"
 
-int	finished_quote_set(char *s, size_t i)
+int	unfinished_quote_set(char *s, size_t i)
 {
 	unsigned int	dbqcnt;
 	unsigned int	qcount;
@@ -28,8 +28,10 @@ int	finished_quote_set(char *s, size_t i)
 		if (s[p] == '\'' && (p == 0 || s[p - 1] != '\\') && dbqcnt % 2 == 0)
 			qcount++;
 	}
-	if (qcount % 2 == 0 && dbqcnt % 2 == 0)
-		return (1);
+	if (qcount % 2 != 0)
+		return ('\'');
+	if (dbqcnt % 2 != 0)
+		return ('\"');
 	return (0);
 }
 
@@ -40,7 +42,7 @@ int	sep_detector(char *str)
 	i = 0;
 	while (str[i] && !((str[i] == '|' || str[i] == ';')
 			&& str[i - 1] != '\\'
-			&& finished_quote_set(str, i)))
+			&& !unfinished_quote_set(str, i)))
 		i++;
 	return (i + 1);
 }
@@ -57,6 +59,7 @@ int	is_finished_by_pipe(t_cmdchunk *list)
 t_cmdchunk	*chunk_list_creator_supp(t_cmdchunk *lst)
 {
 	t_cmdchunk	*curr;
+	char		c;
 
 	if (is_finished_by_pipe(lst))
 	{
@@ -66,10 +69,11 @@ t_cmdchunk	*chunk_list_creator_supp(t_cmdchunk *lst)
 	curr = lst;
 	while (curr)
 	{
-		if (!finished_quote_set(curr->cmd, ft_strlen(curr->cmd)))
+		c = unfinished_quote_set(curr->cmd, ft_strlen(curr->cmd));
+		if (c)
 		{
 			chunksdel(lst);
-			return ((t_cmdchunk *)(long)error_syntax_handler("quotes", 7, 0));
+			return ((t_cmdchunk *)(long)error_syntax_handler(&c, 1, 0));
 		}
 		curr = curr->next;
 	}
@@ -86,6 +90,8 @@ t_cmdchunk	*chunk_list_creator(char *str)
 	i = 0;
 	y = 0;
 	lst = NULL;
+	if (!str[to_next_char(&str, ' ', 0)])
+  		return (NULL);
 	while (i < (int)ft_strlen(str))
 	{
 		cstr = &str[i];

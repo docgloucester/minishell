@@ -65,6 +65,7 @@ int			find_next_sep(char *src);
 void		remove_char_from_str(char *str, char trm, int except_in_dbq, int x_in_q);
 void		strip_quotes(char *str);
 char		**strtabdup(char **array, int is_alone);
+int			unfinished_quote_set(char *s, size_t i);
 
 /* ******** CHUNKSEG */
 

@@ -12,6 +12,14 @@
 
 #include	"../minishell.h"
 
+int	resolution(t_execdata *d, t_varenv *ve)
+{
+	// fonction qui resout toutes les variables
+	// fonction qui trim les guillemets et qui enlève les blackslashs
+	// fonction qui enlève les nulls dans la chaine
+	// fonction qui met builtin a la place de bin si il faut
+}
+
 int	cmd_dispatcher(t_execdata *d, t_varenv *ve)
 {
 	// fonction resolution variables & determination type BIN/BUILTIN

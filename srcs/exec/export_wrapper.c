@@ -15,7 +15,7 @@
 int	export_fd(t_execdata *d, int *fd, int *ret)
 {
 	if (d->type == OUTPUT)
-		*fd = open(d->cmd[0], O_WRONLY | O_CREAT, 0664);
+		*fd = open(d->cmd[0], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	else
 		*fd = open(d->cmd[0], O_WRONLY | O_APPEND | O_CREAT, 0664);
 	if (*fd == -1)

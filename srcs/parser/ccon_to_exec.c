@@ -109,8 +109,8 @@ int	ccon_to_exec(t_cmdcontent *ccon_full, t_minishell *m)
 		if (!content)
 			return (error_handler(NULL, NULL, -1));
 		binbuiltin = BINARY;
-		if (is_builtin(content))
-			binbuiltin = BUILTIN;
+		// if (is_builtin(content))
+		// 	binbuiltin = BUILTIN;
 		if (!ccon->outputs && ccon->sep_type == ';')
 			exec_builder(&m->ed, content, binbuiltin, 0);
 		else
