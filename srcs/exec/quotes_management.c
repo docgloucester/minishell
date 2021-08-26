@@ -43,24 +43,22 @@ void	strip_quotes(char *str)
 {
 	int	i;
 	int	j;
-	int	dbqcount;
-	int	qcount;
+	int	dbqcnt;
+	int	qcnt;
 
 	i = 0;
 	j = 0;
-	dbqcount = 0;
-	qcount = 0;
+	dbqcnt = 0;
+	qcnt = 0;
 	while (str && str[i])
 	{
-		if (str[i - 1] != '\\' && str[i] == '\"' && qcount % 2 == 0)
-			dbqcount++;
-		if (str[i - 1] != '\\' && str[i] == '\'' && dbqcount % 2 == 0)
-			qcount++;
-		if (qcount % 2 != 0 && str[i] == '$')
-			str[j++] = '\\';
+		if ((i == 0 || str[i - 1] != '\\') && str[i] == '\"' && qcnt % 2 == 0)
+			dbqcnt++;
+		if ((i == 0 || str[i - 1] != '\\') && str[i] == '\'' && dbqcnt % 2 == 0)
+			qcnt++;
 		str[j] = str[i];
-		if (!((str[i] == '\'' && dbqcount % 2 == 0)
-				|| (str[i] == '\"' && qcount % 2 == 0)))
+		if (!((str[i] == '\'' && dbqcnt % 2 == 0)
+				|| (str[i] == '\"' && qcnt % 2 == 0)))
 			j++;
 		i++;
 	}

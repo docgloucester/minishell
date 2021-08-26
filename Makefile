@@ -15,6 +15,7 @@ SRCS_E =	${CTN}/exec/bin_wrapper.c \
 			${CTN}/exec/builtin_wrapper.c \
 			${CTN}/exec/exec_builder.c \
 			${CTN}/exec/exec_main.c \
+			${CTN}/exec/quotes_management.c \
 			${CTN}/exec/export_wrapper.c \
 			${CTN}/exec/import_wrapper.c \
 			${CTN}/exec/misc_wrapper.c
@@ -39,7 +40,6 @@ SRCS_P =	${CTN}/parser/first_parser.c \
 			${CTN}/parser/cmdcontent_builder.c \
 			${CTN}/parser/cmdcontent_misc.c \
 			${CTN}/parser/misc.c \
-			${CTN}/parser/quotes_management.c \
 			${CTN}/parser/ccon_to_exec.c
 SRCS_M =	${CTN}/main.c ${CTN}/error_handler.c
 OBJS_E =	${SRCS_E:.c=.o}
