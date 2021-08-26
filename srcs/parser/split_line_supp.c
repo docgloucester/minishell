@@ -12,20 +12,20 @@
 
 #	include "../minishell.h"
 
-int	finished_quote_set(char *str, int i)
+int	finished_quote_set(char *s, size_t i)
 {
 	unsigned int	dbqcnt;
 	unsigned int	qcount;
-	int				pos;
+	size_t			p;
 
-	pos = -1;
+	p = -1;
 	dbqcnt = 0;
 	qcount = 0;
-	while (++pos < i)
+	while (++p < i)
 	{
-		if (str[i] == '\"' && (i == 0 || str[i - 1] != '\\') && qcount % 2 == 0)
+		if (s[p] == '\"' && (p == 0 || s[p - 1] != '\\') && qcount % 2 == 0)
 			dbqcnt++;
-		if (str[i] == '\'' && (i == 0 || str[i - 1] != '\\') && dbqcnt % 2 == 0)
+		if (s[p] == '\'' && (p == 0 || s[p - 1] != '\\') && dbqcnt % 2 == 0)
 			qcount++;
 	}
 	if (qcount % 2 == 0 && dbqcnt % 2 == 0)
