@@ -15,7 +15,7 @@ SRCS_E =	${CTN}/exec/bin_wrapper.c \
 			${CTN}/exec/builtin_wrapper.c \
 			${CTN}/exec/exec_builder.c \
 			${CTN}/exec/exec_main.c \
-			${CTN}/exec/quotes_management.c \
+			${CTN}/exec/clean_input.c \
 			${CTN}/exec/export_wrapper.c \
 			${CTN}/exec/import_wrapper.c \
 			${CTN}/exec/misc_wrapper.c
