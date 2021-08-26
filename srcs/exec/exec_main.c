@@ -30,7 +30,7 @@ int	resolution(t_execdata *d, t_varenv *ve)
 	cmdcount = 2;
 	remove_nullspaces(d->cmd, cmdcount);
 	// fonction qui met builtin a la place de bin si il faut
-	if (is_builtin(d->cmd))
+	if (d->type == BINARY && is_builtin(d->cmd))
 		d->type = BUILTIN;
 	return (0);
 }
