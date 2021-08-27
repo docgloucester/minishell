@@ -33,7 +33,7 @@ int		error_handler_p(char *cmd, int retval);
 int		ccon_to_exec(t_cmdcontent *ccon_full, struct s_minishell *m);
 int		first_parser(t_minishell *m, char *line);
 int		second_parser(t_execdata *d, t_varenv *ve);
-int 	var_resolver(char **cmd, t_varenv *ve);
-int 	var_concat(char *current, char **new, t_varenv *ve, int next_var);
+int		var_resolver(char **cmd, t_varenv *ve);
+int		var_concat(char *current, char **new, t_varenv *ve, int next_var);
 
 #endif

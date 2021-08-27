@@ -25,7 +25,7 @@ char	*evar_name(char *str, int just_count)
 	return (ft_substr(str, 0, i));
 }
 
-int	var_concat_before(char *current, char **new, t_varenv *ve, int i)
+int	var_concat_before(char *current, char **new, int i)
 {
 	char	*tmp;
 	char	*bvar;
@@ -67,12 +67,10 @@ int	var_concat_supp(char *current, char **new, t_varenv *ve)
 
 int	var_concat(char *current, char **new, t_varenv *ve, int next_var)
 {
-	char	*tmp;
-	char	*bvar;
 	int		i;
 
 	i = next_var;
-	if (var_concat_before(current, new, ve, i) == -1)
+	if (var_concat_before(current, new, i) == -1)
 		return (-1);
 	if (!current[i])
 		return (i);

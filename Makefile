@@ -54,7 +54,7 @@ LIB_V =		${CTN}/varenv/varenv.a
 LIB_B =		${CTN}/builtin/builtin.a
 LIB_P =		${CTN}/parser/parser.a
 CC =		clang
-CFLAGS =	-g #-Wall -Werror -Wextra
+CFLAGS =	-Wall -Werror -Wextra -g3
 NAME =		minishell
 RM =		rm -f
 
