@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 10:48:20 by rgilles           #+#    #+#             */
-/*   Updated: 2021/08/25 16:35:59 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/27 11:05:16 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	exec_inputs(t_cmdcontent *ccon, t_minishell *m)
 		content = strtabdup(&curr->name, 1);
 		if (!content)
 			return (error_handler(NULL, NULL, -1));
-		if (curr->type == IN)
+		if (curr->type == in)
 			exec_builder(&m->ed, content, INPUT, 1);
 		else
 			exec_builder(&m->ed, content, INPUT_D, 1);
@@ -66,7 +66,7 @@ int	exec_outputs(t_cmdcontent *ccon, t_minishell *m)
 		cnt = strtabdup(&curr->name, 1);
 		if (!cnt)
 			return (error_handler(NULL, NULL, -1));
-		if (curr->type == OUT)
+		if (curr->type == out)
 			exec_builder(&m->ed, cnt, OUTPUT, is_pipe);
 		else
 			exec_builder(&m->ed, cnt, OUTPUT_D, is_pipe);

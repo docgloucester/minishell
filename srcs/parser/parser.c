@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_parser.c                                     :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:11:31 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 17:28:08 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/27 11:33:37 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,28 @@ int	first_parser(t_minishell *m, char *line)
 	}
 	cmdcontent_killer(ccon);
 	return (1);
+}
+
+int	second_parser(t_execdata *d, t_varenv *ve)
+{
+	int	i;
+	int	cmdcount;
+
+	i = 0;
+	cmdcount = count_strs(d->cmd, 0);
+	while (d->cmd[i])
+	{
+		if (d->type != INPUT_D)
+			if (var_resolver(&d->cmd[i], ve) == -1)
+				return (error_handler(NULL, NULL, -1));
+		remove_char_from_str(d->cmd[i], '\\', 1, 1);
+		strip_quotes(d->cmd[i]);
+		i++;
+	}
+	remove_nullspaces(d->cmd, cmdcount);
+	if (d->type == BINARY && is_builtin(d->cmd))
+		d->type = BUILTIN;
+	return (0);
 }
 
 // int parsing_tests(t_minishell *m, char *line)

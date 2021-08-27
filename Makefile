@@ -6,7 +6,7 @@
 #    By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 10:06:20 by nouchata          #+#    #+#              #
-#    Updated: 2021/08/25 17:13:22 by nouchata         ###   ########.fr        #
+#    Updated: 2021/08/27 11:20:07 by nouchata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ SRCS_E =	${CTN}/exec/bin_wrapper.c \
 			${CTN}/exec/builtin_wrapper.c \
 			${CTN}/exec/exec_builder.c \
 			${CTN}/exec/exec_main.c \
-			${CTN}/exec/clean_input.c \
 			${CTN}/exec/export_wrapper.c \
 			${CTN}/exec/import_wrapper.c \
 			${CTN}/exec/misc_wrapper.c
@@ -31,8 +30,11 @@ SRCS_B =	${CTN}/builtin/builtin.c \
 			${CTN}/builtin/builtin_echo.c \
 			${CTN}/builtin/builtin_exit.c \
 			${CTN}/builtin/builtin_var.c
-SRCS_P =	${CTN}/parser/first_parser.c \
+SRCS_P =	${CTN}/parser/parser.c \
 			${CTN}/parser/remove_spaces.c \
+			${CTN}/parser/var_resolver.c \
+			${CTN}/parser/clean_input.c \
+			${CTN}/parser/var_resolver_misc.c \
 			${CTN}/parser/split_line_supp.c \
 			${CTN}/parser/chunk_handling.c \
 			${CTN}/parser/chunkseg_builder.c \

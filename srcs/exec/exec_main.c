@@ -3,41 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exec_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:23:43 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/12 16:17:25 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/27 10:28:55 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../minishell.h"
 
-int	resolution(t_execdata *d, t_varenv *ve)
-{
-	int	i;
-	int	cmdcount;
-
-	// fonction qui resout toutes les variables
-	// fonction qui trim les guillemets et qui enlève les blackslashs
-	i = 0;
-	while (d->cmd[i])
-	{
-		remove_char_from_str(d->cmd[i], '\\', 1, 1);
-		strip_quotes(d->cmd[i]);
-		i++;
-	}
-	// fonction qui enlève les nulls dans la chaine
-	cmdcount = 2;
-	remove_nullspaces(d->cmd, cmdcount);
-	// fonction qui met builtin a la place de bin si il faut
-	if (d->type == BINARY && is_builtin(d->cmd))
-		d->type = BUILTIN;
-	return (0);
-}
-
 int	cmd_dispatcher(t_execdata *d, t_varenv *ve)
 {
-	if (d && resolution(d, ve))
+	if (d && second_parser(d, ve))
 		return (-1);
 	if (d && d->type == BINARY)
 		if (bin_wrapper(d, ve) < 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 20:06:03 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/09 15:12:50 by marvin           ###   ########.fr       */
+/*   Updated: 2021/08/27 11:12:31 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef enum e_exectype
 
 typedef struct s_execdata
 {
-	t_list				*stocked_list;
 	t_exectype			type;
 	char				**cmd;
 	pid_t				pid;
@@ -63,10 +62,5 @@ int		exec_loop(t_execdata *d, t_varenv *ve);
 void	ft_close(int *fd, int size);
 int		exec_killer(t_execdata *d);
 int		builtin_wrapper(t_execdata *d, t_varenv *ve);
-
-int		is_builtin(char **cmd);
-void	remove_nullspaces(char **arr, int cmdcount);
-void	strip_quotes(char *str);
-void	remove_char_from_str(char *str, char trm, int xpt_in_dbq, int x_in_q);
 
 #endif

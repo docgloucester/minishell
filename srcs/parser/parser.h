@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:10:46 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 17:12:59 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/27 11:05:36 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-enum {DIN, IN, DOUT, OUT};
+enum {din, in, dout, out};
 
 typedef struct s_cmdchunk
 {
@@ -90,5 +90,15 @@ t_cmdchunk	*chunk_list_creator(char *str);
 t_cmdchunk	*newchunk(char *str, char sep);
 int			chunkadd(t_cmdchunk **chunklist, t_cmdchunk *new);
 void		chunksdel(t_cmdchunk *list_to_del);
+
+/* ******** SECOND PARSER (FOR QUOTES AND STUFF) */
+
+int			is_builtin(char **cmd);
+void		remove_nullspaces(char **arr, int cmdcount);
+void		strip_quotes(char *str);
+void		remove_char_from_str(char *str, char trm, \
+			int xpt_in_dbq, int x_in_q);
+int			get_next_var_start(char *current);
+char		*evar_name(char *str, int just_count);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes_management.c                                :+:      :+:    :+:   */
+/*   clean_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 23:31:56 by rgilles           #+#    #+#             */
-/*   Updated: 2021/08/25 15:04:30 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/27 11:22:34 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	remove_char_from_str(char *s, char trm, int except_in_dbq, int x_in_q)
 			|| (x_in_q && qcount % 2 != 0))
 			j++;
 	}
-	while (j <= i)
+	while (s && j <= i)
 		s[j++] = 0;
 }
 
@@ -62,7 +62,7 @@ void	strip_quotes(char *s)
 			j++;
 		i++;
 	}
-	while (j <= i)
+	while (s && j <= i)
 		s[j++] = 0;
 }
 
@@ -86,6 +86,8 @@ void	remove_nullspaces(char **arr, int cmdcount)
 
 int	is_builtin(char **cmd)
 {
+	if (!cmd || !cmd[0])
+		return (0);
 	if (!ft_strncmp(cmd[0], "echo", 0))
 		return (1);
 	if (!ft_strncmp(cmd[0], "cd", 0))

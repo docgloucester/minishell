@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 16:08:33 by rgilles           #+#    #+#             */
-/*   Updated: 2021/08/25 16:57:12 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/27 10:25:42 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@ int	unfinished_quote_set(char *s, size_t i)
 	unsigned int	qcount;
 	size_t			p;
 
-	p = -1;
+	p = 0;
 	dbqcnt = 0;
 	qcount = 0;
-	while (++p < i)
+	while (s && s[p] && p < i)
 	{
 		if (s[p] == '\"' && (p == 0 || s[p - 1] != '\\') && qcount % 2 == 0)
 			dbqcnt++;
 		if (s[p] == '\'' && (p == 0 || s[p - 1] != '\\') && dbqcnt % 2 == 0)
 			qcount++;
+		p++;
 	}
 	if (qcount % 2 != 0)
 		return ('\'');

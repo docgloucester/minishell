@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:56:07 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 16:25:42 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/27 10:57:57 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ int	cmdcontent_extract_cmd(t_cmdcontent *ccon, t_chunkseg *cs)
 
 	i = 0;
 	y = count_strs(cs->segments, cs->segs_count);
-	// if (!y)
-	// 	return (error_syntax_handler(NULL, 0, -1));
 	cmd = malloc(sizeof(char *) * (y + 1));
 	if (!cmd)
 		return (error_handler(NULL, NULL, -1));

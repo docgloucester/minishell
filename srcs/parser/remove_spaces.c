@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:14:29 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 15:04:30 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/27 10:58:37 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,8 @@ int	remove_spaces(char **src, int just_surround_spaces)
 		return (-1);
 	new[ft_strlen(*src) - spaces] = 0;
 	wout_spaces_filler(new, *src, just_surround_spaces);
-	printf("{%s}\n", new);
 	free(new);
-	// free(*src);
-	// *src = new;
+	free(*src);
+	*src = new;
 	return (0);
 }

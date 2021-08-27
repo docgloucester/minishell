@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:55:21 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/25 16:14:11 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/27 11:05:35 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	ioitem_list_setup(t_cmdcontent *curr, t_ioitem *ioitem)
 	t_ioitem	*tmp;
 
 	tmp = NULL;
-	if ((ioitem->type == IN || ioitem->type == DIN) && !curr->inputs)
+	if ((ioitem->type == in || ioitem->type == din) && !curr->inputs)
 		curr->inputs = ioitem;
-	else if ((ioitem->type == IN || ioitem->type == DIN) && curr->inputs)
+	else if ((ioitem->type == in || ioitem->type == din) && curr->inputs)
 	{
 		tmp = curr->inputs;
 		while (tmp && tmp->next)
@@ -27,9 +27,9 @@ int	ioitem_list_setup(t_cmdcontent *curr, t_ioitem *ioitem)
 		tmp->next = ioitem;
 		ioitem->prev = tmp;
 	}
-	if ((ioitem->type == OUT || ioitem->type == DOUT) && !curr->outputs)
+	if ((ioitem->type == out || ioitem->type == dout) && !curr->outputs)
 		curr->outputs = ioitem;
-	else if ((ioitem->type == OUT || ioitem->type == DOUT) && curr->outputs)
+	else if ((ioitem->type == out || ioitem->type == dout) && curr->outputs)
 	{
 		tmp = curr->outputs;
 		while (tmp && tmp->next)
@@ -50,13 +50,13 @@ int	ioitem_builder(t_cmdcontent *curr, char *str, char *content)
 	ioitem->next = NULL;
 	ioitem->prev = NULL;
 	if (!ft_strncmp(str, "<<", 2))
-		ioitem->type = DIN;
+		ioitem->type = din;
 	else if (!ft_strncmp(str, "<", 1))
-		ioitem->type = IN;
+		ioitem->type = in;
 	else if (!ft_strncmp(str, ">>", 2))
-		ioitem->type = DOUT;
+		ioitem->type = dout;
 	else if (!ft_strncmp(str, ">", 1))
-		ioitem->type = OUT;
+		ioitem->type = out;
 	ioitem->name = ft_strdup(content);
 	if (!ioitem->name)
 	{
