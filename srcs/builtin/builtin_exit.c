@@ -18,7 +18,7 @@ int	exit_error(t_minishell *m, char *src)
 	write(2, src, ft_strlen(src));
 	write(2, ": numeric argument required\n", 28);
 	exec_killer(m->ed);
-	exit(-1);
+	exit(2);
 }
 
 char	atoi_exit(char *src, char *stock)
