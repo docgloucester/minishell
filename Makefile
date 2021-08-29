@@ -6,7 +6,7 @@
 #    By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/15 10:06:20 by nouchata          #+#    #+#              #
-#    Updated: 2021/08/27 11:20:07 by nouchata         ###   ########.fr        #
+#    Updated: 2021/08/27 18:38:30 by nouchata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS_V = 	${CTN}/varenv/varenv_construct.c \
 			${CTN}/varenv/varenv_utils.c
 SRCS_B =	${CTN}/builtin/builtin.c \
 			${CTN}/builtin/builtin_cd.c \
+			${CTN}/builtin/builtin_pwd.c \
 			${CTN}/builtin/builtin_export.c \
 			${CTN}/builtin/builtin_export_misc.c \
 			${CTN}/builtin/builtin_echo.c \

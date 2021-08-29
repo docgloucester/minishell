@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 22:49:13 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/27 10:28:36 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/29 11:28:16 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 typedef struct s_minishell
 {
+	char		readline_prompt[301];
 	t_varenv	ve;
 	t_execdata	*ed;
 }				t_minishell;

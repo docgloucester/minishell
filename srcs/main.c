@@ -6,23 +6,29 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 10:52:45 by marvin            #+#    #+#             */
-/*   Updated: 2021/08/27 12:19:55 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/29 11:37:17 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "minishell.h"
 
-int	pimped_prompt(char **line)
+char	*pimped_prompt(t_minishell *m)
 {
-	char	pwd[81];
+	int		i;
+	char	pwd[151];
 
-	ft_memset(pwd, 0, 81);
-	if (!getcwd(pwd, 80))
-		pwd[0] = '?';
-	printf("✨ \033[1;33mbâche\033[1m:\033[1;35m%s\033[0m", pwd);
-	if (line)
-		*line = readline("$ ");
-	return (0);
+	i = 0;
+	ft_memset(m->readline_prompt, 0, 301);
+	ft_memcpy(&m->readline_prompt[i], \
+	"✨ \033[1;33mbâche\033[1m:\033[1;35m", 30);
+	i += 30;
+	ft_memset(pwd, 0, 151);
+	if (!getcwd(pwd, 150))
+		ft_memcpy(pwd, "(path too long)", 16);
+	ft_memcpy(&m->readline_prompt[i - 1], pwd, ft_strlen(pwd));
+	i += ft_strlen(pwd);
+	ft_memcpy(&m->readline_prompt[i - 1], "\033[0m$ ", 7);
+	return (m->readline_prompt);
 }
 
 void	sig_reset_prompt(int signal)
@@ -50,7 +56,7 @@ int	main(int argc, char **argv, char **env)
 	while (line)
 	{
 		signal(SIGINT, &sig_reset_prompt);
-		pimped_prompt(&line);
+		line = readline(pimped_prompt(&m));
 		if (line && line[0])
 		{
 			add_history(line);

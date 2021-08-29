@@ -6,30 +6,11 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 13:37:42 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/13 21:05:27 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/29 11:17:19 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	include "../minishell.h"
-
-int	exit_integrity(char *src)
-{
-	int		i;
-
-	i = -1;
-	while (src[++i])
-		if (src[i] != ' ')
-			break ;
-	i--;
-	while (src[++i])
-		if (src[i] < '0' || src[i] > '9')
-			break ;
-	i--;
-	while (src[++i])
-		if (src[i] != ' ')
-			return (0);
-	return (1);
-}
 
 int	exit_error(t_minishell *m, char *src)
 {
@@ -40,27 +21,30 @@ int	exit_error(t_minishell *m, char *src)
 	exit(-1);
 }
 
-char	atoi_exit(char *src)
+char	atoi_exit(char *src, char *stock)
 {
-	int		i;
-	int		neg;
-	long	ret;
+	int				i;
+	int				neg;
+	unsigned long	ret;
 
 	i = -1;
 	ret = 0;
-	neg = 0;
-	if (!ft_strncmp(src, "-9223372036854775808", 0))
-		return (0);
+	neg = 1;
 	if (src[0] == '-')
-		i = 0;
-	if (src[0] == '-')
-		neg = 1;
-	while (src[++i])
+	{
+		neg = -1;
+		src = &src[1];
+	}
+	while (src[++i] && (src[i] >= '0' && src[i] <= '9'))
 		if (src[i] != ' ')
 			ret = ret * 10 + (src[i] - '0');
-	if (neg)
-		ret *= -1;
-	return ((char)ret);
+	*stock = ret * neg;
+	if (!i || (src[i] && !(src[i] >= '0' && src[i] <= '9')) || i > 20)
+		return (0);
+	if ((neg == -1 && ret > (unsigned long)LONG_MIN) || \
+	(neg == 1 && ret > 9223372036854775807))
+		return (0);
+	return (1);
 }
 
 int	builtin_exit(void *minishell, char **str)
@@ -72,19 +56,15 @@ int	builtin_exit(void *minishell, char **str)
 	m = minishell;
 	write(2, "exit\n", 5);
 	if (str && str[0] && str[1])
-	{
-		write(2, "bash: exit: too many arguments\n", 31);
-		return (1);
-	}
+		error_handler_p("exit: too many arguments\n", 1);
 	varenv_kill(&m->ve);
 	if (!str || !str[0])
 	{
 		exec_killer(m->ed);
 		exit(EXIT_SUCCESS);
 	}
-	if (!exit_integrity(str[0]))
+	if (!atoi_exit(str[0], &ret))
 		exit_error(m, str[0]);
-	ret = atoi_exit(str[0]);
 	exec_killer(m->ed);
 	exit(ret);
 	return (0);
