@@ -43,6 +43,28 @@ void	sig_reset_prompt(int signal)
 	rl_redisplay();
 }
 
+void	set_shlvl(t_minishell *m)
+{
+	char			**lvl;
+	int				level;
+	char			*line;
+	int				i;
+
+	lvl = var_value_finder(&m->ve, "SHLVL", 0);
+	level = 1;
+	i = -1;
+	if (lvl && lvl[0])
+	{
+		while (lvl[0][++i] && ft_isdigit(lvl[0][i]))
+			;
+		if (lvl[0][i] == 0)
+			level = ft_atoi(lvl[0]) + 1;
+	}
+	line = ft_strjoin("SHLVL=", ft_itoa(level));
+	push_envitem(&m->ve, line);
+	free(line);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_minishell		m;
@@ -52,7 +74,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	m.ed = NULL;
 	m.ve = varenv_construct(&m, env);
-	// $SHLVL
+	set_shlvl(&m);
 	m.ve.env_to_str = env_to_str(&m.ve);
 	line = "";
 	signal(SIGQUIT, SIG_IGN);
