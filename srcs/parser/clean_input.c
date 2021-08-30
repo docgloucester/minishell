@@ -12,7 +12,7 @@
 
 #	include "../minishell.h"
 
-void	remove_char_from_str(char *s, char trm, int except_in_dbq, int x_in_q)
+void	remove_char_from_str(char *s, char trm, int x_in_dbq, int x_in_q)
 {
 	int	i;
 	int	j;
@@ -31,7 +31,7 @@ void	remove_char_from_str(char *s, char trm, int except_in_dbq, int x_in_q)
 			qcount++;
 		s[j] = s[i];
 		i++;
-		if (s[j] != trm || (except_in_dbq && dbqcnt % 2 != 0)
+		if (s[j] != trm || (x_in_dbq && dbqcnt % 2 != 0 && s[j + 1] != '$')
 			|| (x_in_q && qcount % 2 != 0))
 			j++;
 	}
