@@ -61,7 +61,8 @@ void	set_shlvl(t_minishell *m)
 			level = ft_atoi(lvl[0]) + 1;
 	}
 	line = ft_strjoin("SHLVL=", ft_itoa(level));
-	push_envitem(&m->ve, line);
+	if (line)
+		push_envitem(&m->ve, line);
 	free(line);
 }
 
@@ -76,11 +77,12 @@ int	main(int argc, char **argv, char **env)
 	m.ve = varenv_construct(&m, env);
 	set_shlvl(&m);
 	m.ve.env_to_str = env_to_str(&m.ve);
-	line = "";
+	line = ft_strdup("");
 	signal(SIGQUIT, SIG_IGN);
 	while (line)
 	{
 		signal(SIGINT, &sig_reset_prompt);
+		free(line);
 		line = readline(pimped_prompt(&m));
 		if (line && line[0])
 		{
