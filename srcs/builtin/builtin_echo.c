@@ -37,10 +37,11 @@ int	builtin_echo(t_execdata *d)
 
 	i = 1;
 	c = 1;
-	if (builtin_echo_check_option(d->cmd[1]))
+	while (builtin_echo_check_option(d->cmd[i]))
+	{
 		c = 0;
-	if (!c)
 		i++;
+	}
 	while (d->cmd[i])
 	{
 		print_builtin(d, d->cmd[i]);
