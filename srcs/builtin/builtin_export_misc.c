@@ -12,6 +12,19 @@
 
 #	include "../minishell.h"
 
+int	is_invalid_ident(char *str, int check_before_equal)
+{
+	int	i = 0;
+
+	i = -1;
+	if (str[0] == '\0' || !(str[++i] == '_' || ft_isalpha(str[i])))
+		return (1);
+	while (str[++i] && !(str[i] == '=' && check_before_equal))
+		if (!(str[i] == '_' || ft_isalnum(str[i])))
+			return (1);
+	return (0);
+}
+
 int	builtin_export_is_asorted(t_envitem **sorted, int count)
 {
 	int		i;

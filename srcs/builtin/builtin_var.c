@@ -28,8 +28,22 @@ int	builtin_envc(t_execdata *d, t_varenv *ve)
 
 int	builtin_unset(t_execdata *d, t_varenv *ve)
 {
-	if (!d->cmd[1] || !ft_strlen(d->cmd[1]))
-		return (0);
-	pop_envitem(ve, d->cmd[1], 0);
-	return (0);
+	int	i;
+	int	ret;
+
+	i = 0;
+	ret = 0;
+	while (d->cmd[++i])
+	{
+		if (is_invalid_ident(d->cmd[i], 0))
+		{
+			write(2, "bâche: export: `", 17);
+			write(2, d->cmd[i], ft_strlen(d->cmd[i]));
+			write(2, "': not a valid identifier\n", 26);
+			ret = 1;
+		}
+		else
+			pop_envitem(ve, d->cmd[i], 0);
+	}
+	return (ret);
 }

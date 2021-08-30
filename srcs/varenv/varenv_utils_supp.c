@@ -104,10 +104,7 @@ int	push_envitem(t_varenv *ve, char *src)
 	int		y;
 
 	y = search_char(src, '=', 1);
-	if (!ft_strlen(src) || src[0] == '=' || src[0] == ' ' || \
-	(search_char(src, ' ', 0) && y > search_char(src, ' ', 1)))
-		return (1);
-	if (src[0] >= '0' && src[0] <= '9')
+	if (is_invalid_ident(src, 1))
 		return (1);
 	if (!y)
 		return (blank_var(ve, src));

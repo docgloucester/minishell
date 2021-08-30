@@ -66,7 +66,7 @@ int	builtin_export(t_execdata *d, t_varenv *ve)
 		{
 			if (ret[0] == -1)
 				return (error_handler("export", NULL, 1));
-			write(2, "bash: export: `", 15);
+			write(2, "bâche: export: `", 17);
 			write(2, d->cmd[i], ft_strlen(d->cmd[i]));
 			write(2, "': not a valid identifier\n", 26);
 			ret[1] = 1;
