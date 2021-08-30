@@ -30,14 +30,15 @@ char	atoi_exit(char *src, char *stock)
 	i = -1;
 	ret = 0;
 	neg = 1;
+	while (src[0] == ' ')
+		src = &src[1];
 	if (src[0] == '-')
 	{
 		neg = -1;
 		src = &src[1];
 	}
 	while (src[++i] && (src[i] >= '0' && src[i] <= '9'))
-		if (src[i] != ' ')
-			ret = ret * 10 + (src[i] - '0');
+		ret = ret * 10 + (src[i] - '0');
 	*stock = ret * neg;
 	if (!i || (src[i] && !(src[i] >= '0' && src[i] <= '9')) || i > 20)
 		return (0);

@@ -17,9 +17,11 @@ char	*evar_name(char *str, int just_count)
 	int		i;
 
 	i = 0;
-	while (str[i] && (str[i] != '\\' && str[i] != '\'' && str[i] != '\"' && \
-	str[i] != ' ' && str[i] != '$'))
-		i++;
+	if (str[0] == '?')
+		i = 1;
+	if (!i)
+		while (str[i] == '_' || ft_isalnum(str[i]))
+			i++;
 	if (just_count)
 		return ((char *)(long)i);
 	return (ft_substr(str, 0, i));

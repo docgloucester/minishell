@@ -37,7 +37,6 @@ void	sig_reset_prompt(int signal)
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
-	pimped_prompt(NULL);
 	rl_redisplay();
 }
 
