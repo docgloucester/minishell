@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 13:37:42 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/29 11:17:19 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/30 13:51:32 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,31 @@ char	atoi_exit(char *src, char *stock)
 	return (1);
 }
 
+int	blank_return(t_execdata *d)
+{
+	int			ret;
+	t_execdata	*tmp;
+
+	ret = 0;
+	while (d)
+	{
+		tmp = d;
+		while (tmp)
+		{
+			if (tmp->type == BUILTIN || tmp->type == BINARY)
+				break ;
+			tmp = tmp->next;
+		}
+		if (!ft_strncmp(tmp->cmd[0], "exit", 0))
+			break ;
+		ret = exec_ret(d);
+		while (d && d->pipe_on)
+			d = d->next;
+		d = d->next;
+	}
+	return (ret);
+}
+
 int	builtin_exit(void *minishell, char **str)
 {
 	t_minishell		*m;
@@ -61,8 +86,9 @@ int	builtin_exit(void *minishell, char **str)
 	varenv_kill(&m->ve);
 	if (!str || !str[0])
 	{
+		ret = blank_return(m->ed);
 		exec_killer(m->ed);
-		exit(EXIT_SUCCESS);
+		exit(ret);
 	}
 	if (!atoi_exit(str[0], &ret))
 		exit_error(m, str[0]);

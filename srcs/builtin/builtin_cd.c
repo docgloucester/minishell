@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 15:34:12 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/29 10:43:33 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/30 12:54:26 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ int	builtin_cd_dash(char **path, t_execdata *d, t_varenv *ve)
 
 	i = 0;
 	ft_memset(dpath, 0, 501);
-	if (!getcwd(dpath, 500))
-		return (error_handler("cd", NULL, -1));
+	getcwd(dpath, 500);
 	if (!path)
 		return (error_handler_p("cd: OLDPWD not set", 1));
 	i = chdir(path[0]);
@@ -63,8 +62,7 @@ int	builtin_cd_home(char **path, t_varenv *ve)
 
 	i = 0;
 	ft_memset(dpath, 0, 501);
-	if (!getcwd(dpath, 500))
-		return (error_handler("cd", NULL, -1));
+	getcwd(dpath, 500);
 	if (!path)
 		return (error_handler_p("cd: HOME not set", 1));
 	i = chdir(path[0]);
@@ -84,8 +82,7 @@ int	builtin_cd(t_execdata *d, t_varenv *ve)
 	ret = 0;
 	ft_memset(dpath, 0, 501);
 	ft_memset(new_dpath, 0, 501);
-	if (!getcwd(dpath, 500))
-		return (error_handler("cd", NULL, -1));
+	getcwd(dpath, 500);
 	if (!d->cmd[1])
 		return (builtin_cd_home(var_value_finder(ve, "HOME", 0), ve));
 	if (d->cmd[1] && d->cmd[2])
@@ -97,8 +94,7 @@ int	builtin_cd(t_execdata *d, t_varenv *ve)
 	ret = chdir(d->cmd[1]);
 	if (ret == -1)
 		return (error_handler("cd", d->cmd[1], 1));
-	if (!getcwd(new_dpath, 500))
-		return (error_handler("cd", NULL, -1));
+	getcwd(new_dpath, 500);
 	if (builtin_cd_editoldpwd(dpath, new_dpath, ve) == -1)
 		return (-1);
 	return (0);

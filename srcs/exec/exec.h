@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 20:06:03 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/27 11:12:31 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/30 13:26:39 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_execdata
 }				t_execdata;
 
 int		exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe);
+int		exec_ret(t_execdata *d);
 int		close_fd(int fd);
 int		ft_kill(t_execdata *d, int sig, int retval);
 int		var_setter(t_execdata *d, t_varenv *ve);

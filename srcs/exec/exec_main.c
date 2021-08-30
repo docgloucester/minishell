@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:23:43 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/27 10:28:55 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/30 14:01:01 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	exec_loop(t_execdata *d, t_varenv *ve)
 		if (exec_ret(first) == 131)
 			printf("Quit (core dumped)\n");
 	}
+	// $_
 	signal(SIGINT, SIG_DFL);
 	return (exec_ret(first));
 }

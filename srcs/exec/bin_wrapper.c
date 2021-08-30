@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 21:29:34 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/12 20:28:52 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/30 13:58:28 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	bin_wrapper(t_execdata *d, t_varenv *ve)
 		if (pipe_setter(d, 1) == -1)
 			fork_exit(ve->minishell_var, EXIT_FAILURE);
 		if (execve(d->cmd[0], d->cmd, ve->env_to_str) == -1)
-			fork_exit(ve->minishell_var, error_handler(NULL, d->cmd[0], EXIT_FAILURE));
+			fork_exit(ve->minishell_var, error_handler(NULL, d->cmd[0], 127));
 	}
 	return (0);
 }

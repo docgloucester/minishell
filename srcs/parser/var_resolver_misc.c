@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:02:53 by nouchata          #+#    #+#             */
-/*   Updated: 2021/08/27 11:01:32 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/30 13:03:22 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*evar_name(char *str, int just_count)
 	int		i;
 
 	i = 0;
-	if (str[0] == '?')
+	if (str[0] == '?' || ft_isdigit(str[0]))
 		i = 1;
 	if (!i)
 		while (str[i] == '_' || ft_isalnum(str[i]))

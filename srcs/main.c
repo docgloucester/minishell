@@ -6,7 +6,7 @@
 /*   By: nouchata <nouchata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 10:52:45 by marvin            #+#    #+#             */
-/*   Updated: 2021/08/29 11:37:17 by nouchata         ###   ########.fr       */
+/*   Updated: 2021/08/30 14:00:41 by nouchata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ char	*pimped_prompt(t_minishell *m)
 	"✨ \033[1;33mbâche\033[1m:\033[1;35m", 30);
 	i += 30;
 	ft_memset(pwd, 0, 151);
-	if (!getcwd(pwd, 150))
+	getcwd(pwd, 150);
+	if (errno == ERANGE)
 		ft_memcpy(pwd, "(path too long)", 16);
+	if (errno == ENOENT)
+		ft_memcpy(pwd, "(deleted)", 16);
 	ft_memcpy(&m->readline_prompt[i - 1], pwd, ft_strlen(pwd));
 	i += ft_strlen(pwd);
 	ft_memcpy(&m->readline_prompt[i - 1], "\033[0m$ ", 7);
@@ -49,6 +52,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	m.ed = NULL;
 	m.ve = varenv_construct(&m, env);
+	// $SHLVL
 	m.ve.env_to_str = env_to_str(&m.ve);
 	line = "";
 	signal(SIGQUIT, SIG_IGN);
@@ -60,7 +64,10 @@ int	main(int argc, char **argv, char **env)
 		{
 			add_history(line);
 			if (!first_parser(&m, line))
+			{
+				m.ve.bin_return = 2;
 				continue ;
+			}
 			m.ve.bin_return = exec_loop(m.ed, &m.ve);
 			exec_killer(m.ed);
 			m.ed = NULL;
