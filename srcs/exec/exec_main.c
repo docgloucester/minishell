@@ -60,6 +60,22 @@ int	exec_ret(t_execdata *d)
 	return (WEXITSTATUS(ret->return_v));
 }
 
+void	store_underscore(t_execdata *d, t_varenv *ve)
+{
+	int		i;
+	char	*line;
+
+	i = -1;
+	while (d->next)
+		d = d->next;
+	while (d->cmd && d->cmd[++i])
+		;
+	line = ft_strjoin("_=", d->cmd[i - 1]);
+	if (line)
+		push_envitem(ve, line);
+	free(line);
+}
+
 int	exec_loop(t_execdata *d, t_varenv *ve)
 {
 	t_execdata	*first;
@@ -79,7 +95,7 @@ int	exec_loop(t_execdata *d, t_varenv *ve)
 		if (exec_ret(first) == 131)
 			printf("Quit (core dumped)\n");
 	}
-	// $_
+	store_underscore(first, ve);
 	signal(SIGINT, SIG_DFL);
 	return (exec_ret(first));
 }
