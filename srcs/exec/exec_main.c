@@ -65,12 +65,12 @@ void	store_underscore(t_execdata *d, t_varenv *ve)
 	int		i;
 	char	*line;
 
-	i = -1;
-	while (d->next)
+	i = 0;
+	while (d->next && d->next->cmd[0])
 		d = d->next;
-	while (d->cmd && d->cmd[++i])
-		;
-	line = ft_strjoin("_=", d->cmd[i - 1]);
+	while (d->cmd && d->cmd[i + 1])
+		i++;
+	line = ft_strjoin("_=", d->cmd[i]);
 	if (line)
 		push_envitem(ve, line);
 	free(line);
