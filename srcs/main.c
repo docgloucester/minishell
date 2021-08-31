@@ -66,6 +66,25 @@ void	set_shlvl(t_minishell *m)
 	free(line);
 }
 
+void	run_prompt(t_minishell *m, char **line)
+{
+	signal(SIGINT, &sig_reset_prompt);
+	free(*line);
+	*line = readline(pimped_prompt(m));
+	if (*line && (*line)[0])
+	{
+		add_history(*line);
+		if (!first_parser(m, *line))
+		{
+			m->ve.bin_return = 2;
+			return ;
+		}
+		m->ve.bin_return = exec_loop(m->ed, &m->ve);
+		exec_killer(m->ed);
+		m->ed = NULL;
+	}
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_minishell		m;
@@ -81,21 +100,7 @@ int	main(int argc, char **argv, char **env)
 	signal(SIGQUIT, SIG_IGN);
 	while (line)
 	{
-		signal(SIGINT, &sig_reset_prompt);
-		free(line);
-		line = readline(pimped_prompt(&m));
-		if (line && line[0])
-		{
-			add_history(line);
-			if (!first_parser(&m, line))
-			{
-				m.ve.bin_return = 2;
-				continue ;
-			}
-			m.ve.bin_return = exec_loop(m.ed, &m.ve);
-			exec_killer(m.ed);
-			m.ed = NULL;
-		}
+		run_prompt(&m, &line);
 	}
 	builtin_exit(m.ve.minishell_var, NULL);
 	return (0);
