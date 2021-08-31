@@ -20,17 +20,17 @@ char	*pimped_prompt(t_minishell *m)
 	i = 0;
 	ft_memset(m->readline_prompt, 0, 301);
 	ft_memcpy(&m->readline_prompt[i], \
-	"✨ \033[1;33mbâche\033[1m:\033[1;35m", 30);
+	"\001\033[1;33m\002bache:\001\033[1m\002\001\033[1;35m\002", 30);
 	i += 30;
 	ft_memset(pwd, 0, 151);
 	getcwd(pwd, 150);
 	if (errno == ERANGE)
-		ft_memcpy(pwd, "(path too long)", 16);
+		ft_memcpy(pwd, "(path too long)", 15);
 	if (errno == ENOENT)
-		ft_memcpy(pwd, "(deleted)", 16);
-	ft_memcpy(&m->readline_prompt[i - 1], pwd, ft_strlen(pwd));
+		ft_memcpy(pwd, "(deleted)", 9);
+	ft_memcpy(&m->readline_prompt[i], pwd, ft_strlen(pwd));
 	i += ft_strlen(pwd);
-	ft_memcpy(&m->readline_prompt[i - 1], "\033[0m$ ", 7);
+	ft_memcpy(&m->readline_prompt[i], "\001\033[0m\002$ ", 9);
 	return (m->readline_prompt);
 }
 
