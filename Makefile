@@ -10,6 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME =		minishell
+CC =		clang
+CFLAGS =	-Wall -Werror -Wextra
 CTN =		srcs
 SRCS_E =	${CTN}/exec/bin_wrapper.c \
 			${CTN}/exec/builtin_wrapper.c \
@@ -45,18 +48,19 @@ SRCS_P =	${CTN}/parser/parser.c \
 			${CTN}/parser/misc.c \
 			${CTN}/parser/ccon_to_exec.c
 SRCS_M =	${CTN}/main.c ${CTN}/error_handler.c
+
 OBJS_E =	${SRCS_E:.c=.o}
 OBJS_V =	${SRCS_V:.c=.o}
 OBJS_M =	${SRCS_M:.c=.o}
 OBJS_B =	${SRCS_B:.c=.o}
 OBJS_P =	${SRCS_P:.c=.o}
+
 LIB_E =		${CTN}/exec/exec.a
 LIB_V =		${CTN}/varenv/varenv.a
 LIB_B =		${CTN}/builtin/builtin.a
 LIB_P =		${CTN}/parser/parser.a
-CC =		clang
-CFLAGS =	-Wall -Werror -Wextra -g3
-NAME =		minishell
+LIBFT = 	_libft/libft.a
+
 RM =		rm -f
 
 .c.o:
@@ -65,7 +69,7 @@ RM =		rm -f
 all:		${NAME}
 
 libft:
-			@cd _libft && ${MAKE}
+			@make -C _libft
 			@echo "✓ Libft"
 
 varenv:		libft ${OBJS_V}
@@ -90,7 +94,7 @@ parser:		libft ${OBJS_P}
 
 ${NAME}:	libft varenv builtin exec parser ${OBJS_M}
 			@${CC} ${CFLAGS} ${OBJS_M} -o ${NAME} \
-			${LIB_P} ${LIB_E} ${LIB_B} ${LIB_V} _libft/libft.a -lreadline
+			${LIB_P} ${LIB_E} ${LIB_B} ${LIB_V} ${LIBFT} -lreadline
 			@echo "✨✨ minishell is compiled ! ✨✨"
 
 clean:
@@ -99,7 +103,7 @@ clean:
 			@${RM} ${OBJS_M}
 			@${RM} ${OBJS_B}
 			@${RM} ${OBJS_P}
-			@cd _libft && ${MAKE} clean
+			@make clean -C _libft
 			@echo "✨✨ .o cleaned ✨✨"
 
 fclean:		clean
@@ -108,7 +112,7 @@ fclean:		clean
 			@${RM} ${LIB_B}
 			@${RM} ${LIB_P}
 			@${RM} ${NAME}
-			@cd _libft && ${MAKE} fclean
+			@make fclean -C _libft
 			@echo "✨✨ all cleaned ✨✨"
 
 re:			fclean all
