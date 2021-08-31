@@ -48,6 +48,7 @@ void	set_shlvl(t_minishell *m)
 	char			**lvl;
 	int				level;
 	char			*line;
+	char			*itoaaa;
 	int				i;
 
 	lvl = var_value_finder(&m->ve, "SHLVL", 0);
@@ -60,7 +61,9 @@ void	set_shlvl(t_minishell *m)
 		if (lvl[0][i] == 0)
 			level = ft_atoi(lvl[0]) + 1;
 	}
-	line = ft_strjoin("SHLVL=", ft_itoa(level));
+	itoaaa = ft_itoa(level);
+	line = ft_strjoin("SHLVL=", itoaaa);
+	free(itoaaa);
 	if (line)
 		push_envitem(&m->ve, line);
 	free(line);
