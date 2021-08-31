@@ -32,8 +32,7 @@ int	exec_builder(t_execdata **d, char **cmd, t_exectype type, char pipe)
 		current = current->next;
 	new->type = type;
 	new->cmd = cmd;
-	new->pipes[0] = 0;
-	new->pipes[1] = 0;
+	ft_memset(new->pipes, 0, 2 * sizeof(int));
 	ft_close(new->pipes, 2);
 	new->pipe_on = pipe;
 	new->pid = 0;

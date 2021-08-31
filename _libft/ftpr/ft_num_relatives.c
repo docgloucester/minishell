@@ -12,7 +12,7 @@
 
 #	include "ft_printf.h"
 
-unsigned int	pr_num_len(long int num)
+unsigned int	pr_num_len(long num)
 {
 	unsigned int	i;
 
@@ -42,7 +42,7 @@ unsigned int *i)
 	return (pr_calloc(sizeof(char) * *size, ' '));
 }
 
-char	*pr_itoa(long int src)
+char	*pr_itoa(long src)
 {
 	char			*res;
 	unsigned int	size;

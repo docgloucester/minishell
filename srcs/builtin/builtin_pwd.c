@@ -12,7 +12,7 @@
 
 #	include "../minishell.h"
 
-int		builtin_pwd(t_execdata *d)
+int	builtin_pwd(t_execdata *d)
 {
 	char	buffer[1001];
 	int		i;

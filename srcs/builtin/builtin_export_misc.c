@@ -14,7 +14,7 @@
 
 int	is_invalid_ident(char *str, int check_before_equal)
 {
-	int	i = 0;
+	int	i;
 
 	i = -1;
 	if (str[0] == '\0' || !(str[++i] == '_' || ft_isalpha(str[i])))

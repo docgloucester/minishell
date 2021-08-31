@@ -80,11 +80,10 @@ char	**var_value_finder(t_varenv *ve, char *var_name, char malloc_str)
 		{
 			if (malloc_str)
 			{
-				value = malloc(sizeof(char *) * 2);
+				value = ft_calloc(sizeof(char *), 2);
 				if (!value)
 					return (NULL);
 				value[0] = value_to_str(ei->value, ei->value_num - 1);
-				value[1] = NULL;
 				return (value);
 			}
 			else

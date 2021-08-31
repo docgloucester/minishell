@@ -12,7 +12,7 @@
 
 #	include "ft_printf.h"
 
-unsigned int	pr_ptr_len(long int ptr)
+unsigned int	pr_ptr_len(long ptr)
 {
 	unsigned int	i;
 
@@ -25,7 +25,7 @@ unsigned int	pr_ptr_len(long int ptr)
 	return (i);
 }
 
-char	*pr_make_hexnum(long int dec, char alphabet)
+char	*pr_make_hexnum(long dec, char alphabet)
 {
 	char			*res;
 	unsigned int	size;

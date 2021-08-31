@@ -86,7 +86,7 @@ int	builtin_cd(t_execdata *d, t_varenv *ve)
 	if (!d->cmd[1])
 		return (builtin_cd_home(var_value_finder(ve, "HOME", 0), ve));
 	if (d->cmd[1] && d->cmd[2])
-		return (error_handler_p("cd: too many arguments" ,1));
+		return (error_handler_p("cd: too many arguments", 1));
 	if (!ft_strlen(d->cmd[1]))
 		return (0);
 	if (!ft_strncmp(d->cmd[1], "-", 0))

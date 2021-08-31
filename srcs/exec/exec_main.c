@@ -36,7 +36,7 @@ int	cmd_dispatcher(t_execdata *d, t_varenv *ve)
 
 int	exec_ret(t_execdata *d)
 {
-	t_execdata *ret;
+	t_execdata	*ret;
 
 	ret = NULL;
 	while (d && d->pipe_on)

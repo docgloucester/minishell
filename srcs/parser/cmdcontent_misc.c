@@ -52,34 +52,42 @@ int	cmdcontent_extract_iothings(t_cmdcontent *ccon, t_chunkseg *cs)
 	return (0);
 }
 
+int	cmdc_ext_cmd_supp(t_chunkseg **cs, char ***cmd, int i, int *y)
+{
+	if ((*cs)->segments[i])
+	{
+		(*cmd)[*y] = ft_strdup((*cs)->segments[i]);
+		if (!cmd[*y])
+		{
+			*cmd = kill_segments(*cmd, 0);
+			return (error_handler(NULL, NULL, -1));
+		}
+		free((*cs)->segments[i]);
+		(*cs)->segments[i] = NULL;
+		(*y)++;
+	}
+	return (0);
+}
+
 int	cmdcontent_extract_cmd(t_cmdcontent *ccon, t_chunkseg *cs)
 {
 	char	**cmd;
 	int		i;
 	int		y;
+	int		ret;
 
-	i = 0;
+	i = -1;
 	y = count_strs(cs->segments, cs->segs_count);
 	cmd = malloc(sizeof(char *) * (y + 1));
 	if (!cmd)
 		return (error_handler(NULL, NULL, -1));
 	ft_memset(cmd, 0, sizeof(char *) * (y + 1));
 	y = 0;
-	while (i < cs->segs_count)
+	while (++i < cs->segs_count)
 	{
-		if (cs->segments[i])
-		{
-			cmd[y] = ft_strdup(cs->segments[i]);
-			if (!cmd[y])
-			{
-				cmd = kill_segments(cmd, 0);
-				return (error_handler(NULL, NULL, -1));
-			}
-			free(cs->segments[i]);
-			cs->segments[i] = NULL;
-			y++;
-		}
-		i++;
+		ret = cmdc_ext_cmd_supp(&cs, &cmd, i, &y);
+		if (ret)
+			return (ret);
 	}
 	ccon->cmd = cmd;
 	return (0);
