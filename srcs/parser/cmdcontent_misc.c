@@ -57,7 +57,7 @@ int	cmdc_ext_cmd_supp(t_chunkseg **cs, char ***cmd, int i, int *y)
 	if ((*cs)->segments[i])
 	{
 		(*cmd)[*y] = ft_strdup((*cs)->segments[i]);
-		if (!cmd[*y])
+		if (!(*cmd)[*y])
 		{
 			*cmd = kill_segments(*cmd, 0);
 			return (error_handler(NULL, NULL, -1));
