@@ -32,9 +32,7 @@ int	chunkset_list_setup(t_chunkseg **cs, t_chunkseg *new)
 int	chunkseg_builder(t_chunkseg **cs, t_cmdchunk *cmdc)
 {
 	t_chunkseg	*new;
-	int			i;
 
-	i = 0;
 	new = malloc(sizeof(t_chunkseg) * 1);
 	if (!new)
 		return (error_handler(NULL, NULL, -1));

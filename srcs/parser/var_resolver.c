@@ -25,7 +25,7 @@ int	get_next_var_start(char *current)
 		y = fchar_nesc(current, '$', z);
 		if (y == -1)
 			return (ft_strlen(current));
-		if (!(int)evar_name(&current[y + 1], 1))
+		if (!evar_name(&current[y + 1], 1))
 		{
 			z++;
 			continue ;

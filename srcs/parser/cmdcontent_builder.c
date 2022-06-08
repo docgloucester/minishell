@@ -116,11 +116,9 @@ int	cmdcontent_list_setup(t_cmdcontent **ccon, t_cmdcontent *new)
 int	cmdcontent_builder(t_cmdcontent **ccon, t_chunkseg *cs)
 {
 	t_cmdcontent	*new;
-	t_cmdcontent	*tmp;
 
 	if (!cs)
 		return (0);
-	tmp = *ccon;
 	new = malloc(sizeof(t_cmdcontent) * 1);
 	if (!new)
 		return (error_handler(NULL, NULL, -1));

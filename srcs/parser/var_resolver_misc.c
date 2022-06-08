@@ -78,6 +78,6 @@ int	var_concat(char *current, char **new, t_varenv *ve, int next_var)
 		return (i);
 	if (var_concat_supp(&current[i + 1], new, ve) == -1)
 		return (-1);
-	i += (int)evar_name(&current[i + 1], 1) + 1;
+	i += (long)evar_name(&current[i + 1], 1) + 1;
 	return (i);
 }

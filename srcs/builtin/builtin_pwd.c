@@ -15,9 +15,7 @@
 int	builtin_pwd(t_execdata *d)
 {
 	char	buffer[1001];
-	int		i;
 
-	i = 0;
 	ft_memset(buffer, 0, 1001);
 	if (!getcwd(buffer, 1000))
 		return (error_handler("pwd", NULL, -1));

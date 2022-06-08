@@ -33,10 +33,8 @@ int	cmdcontent_filler(t_chunkseg **cs, t_cmdcontent **ccon)
 int	chunkseg_filler(t_cmdchunk **cmdc, t_chunkseg **cs)
 {
 	t_cmdchunk		*tmp;
-	t_chunkseg		*tmp2;
 
 	tmp = *cmdc;
-	tmp2 = *cs;
 	while (tmp)
 	{
 		if (chunkseg_builder(cs, tmp) == -1)
